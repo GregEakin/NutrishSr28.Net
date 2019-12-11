@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="sr28lib"
+                   namespace="sr28lib.Data">
+
+  <class name="FoodGroup" table="FD_GROUP">
+    <id name="FdGrp_Cd">
+      <generator class="native" />
+    </id>
+    <property name="FdGrp_Desc" />
+    <bag name="FoodGroups" table="FOOD_DES">
+      <key column="foodGroup" />
+      <one-to-many class="FoodGroup" />
+    </bag>
+  </class>
+
+  
+</hibernate-mapping>

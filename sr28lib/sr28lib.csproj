@@ -42,10 +42,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Data\Abbreviations.cs" />
+    <Compile Include="Data\DataDerivation.cs" />
+    <Compile Include="Data\DataSource.cs" />
+    <Compile Include="Data\FoodDescription.cs" />
+    <Compile Include="Data\FoodGroup.cs" />
+    <Compile Include="Data\Footnote.cs" />
+    <Compile Include="Data\Language.cs" />
+    <Compile Include="Data\NutrientData.cs" />
+    <Compile Include="Data\NutrientDefinition.cs" />
+    <Compile Include="Data\SourceCode.cs" />
+    <Compile Include="Data\Weight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Content Include="sr28.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
