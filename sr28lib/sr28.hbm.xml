@@ -52,13 +52,53 @@
       <one-to-many class="FoodGroup" />
     </bag>
   </class>
-  <!-- 
-  <class name="Footnote" table="FOOTNOTE" ></class>
-  <class name="Language" table="LANGDESC" ></class>
-  <class name="NutrientData" table="NUT_DATA" ></class>
-  <class name="NutrientDefinition" table="NUTR_DEF" ></class>
-  <class name="SourceCode" table="SRC_CD" ></class>
-  <class name="Weight" table="WEIGHT" ></class>
--->
+
+  <class name="Footnote" table="FOOTNOTE" >
+    <id name="Id" column="ID" >
+      <generator class="native" />
+    </id>
+
+  </class>
+  
+  <class name="Language" table="LANGDESC" >
+    <id name="Factor_Code" column="Factor_Code" type="string" length="5">
+      <generator class="assigned" />
+    </id>
+
+  </class>
+  
+  <class name="NutrientData" table="NUT_DATA" >
+    <composite-id name="NutrientDataKey" class="NutrientDataKey">
+      <key-many-to-one class="FoodDescription" name="FoodDescription" column="NDB_No" />
+      <key-many-to-one class="NutrientDefinition" name="NutrientDefinition" column="Nutr_No" />
+    </composite-id>
+
+  </class>
+
+  <class name="NutrientDefinition" table="NUTR_DEF" >
+    <id name="Nutr_No" column="Nutr_No" type="string" length="3">
+      <generator class="assigned" />
+    </id>
+
+  </class>
+  
+  <class name="SourceCode" table="SRC_CD" >
+    <id name="Src_Cd" column="Src_Cd" type="string" length="2">
+      <generator class="assigned" />
+    </id>
+
+  </class>
+  
+  <class name="Weight" table="WEIGHT" >
+    <composite-id name="WeightKey" class="WeightKey">
+      <key-many-to-one class="FoodDescription" name="FoodDescription" column="NDB_No" />
+      <key-property name="Seq" column="Seq" type="string" length="2"/>
+    </composite-id>
+    <property name="Amount" type="double" />
+    <property name="Msre_Desc" type="string" length="84" />
+    <property name="Gm_Wgt" type="double" />
+    <property name="Num_Data_Pts" type="int" />
+    <property name="Std_Dev" type="double" />
+  </class>
 
 </hibernate-mapping>

@@ -2,6 +2,6 @@
 {
     public class Language
     {
-        
+        public virtual string Factor_Code { get; set; }
     }
 }
