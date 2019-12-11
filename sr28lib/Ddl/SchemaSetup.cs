@@ -30,7 +30,7 @@ namespace SR28lib.Ddl
             var executingAssembly = Assembly.GetExecutingAssembly();
             cfg.AddAssembly(executingAssembly);
             var libAssembly = typeof(FoodGroup).Assembly;
-            cfg.AddAssembly(libAssembly);
+            //cfg.AddAssembly(libAssembly);
 
             if (execute)
                 new SchemaExport(cfg).SetOutputFile("schema.hibernate5.sql").Execute(true, true, false);

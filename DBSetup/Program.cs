@@ -11,8 +11,8 @@ namespace DBSetup
         static void Main(string[] args)
         {
             const string connection =
-                "Data Source=(localdb)\\ProjectsV13;" +
-                "Initial Catalog=SprintData;" +
+                "Data Source=(localdb)\\SR28;" +
+                "Initial Catalog=Nutrish;" +
                 "Integrated Security=True;" +
                 "Connect Timeout=30;" +
                 "Encrypt=False;" +
@@ -20,7 +20,7 @@ namespace DBSetup
                 "ApplicationIntent=ReadWrite;" +
                 "MultiSubnetFailover=False";
 
-            var execute = false;
+            var execute = true;
 
             using (var schema = new SR28lib.Ddl.SchemaSetup(connection, execute))
             {

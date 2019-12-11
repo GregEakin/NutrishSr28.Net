@@ -1,31 +1,58 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    assembly="SR28lib"
                    namespace="SR28lib.Data">
-<!--
   <class name="Abbreviations" table="ABBREV" >
-    <id name="NDB_No" column="NDB_No" type="string" length="5" nullable="false">
+    <id name="NDB_No" column="NDB_No" type="string" length="5">
+      <generator class="assigned" />
+    </id>
+  </class>
+  
+  <class name="DataDerivation" table="DERIV_CD" >
+    <id name="Deriv_Cd" column="Deriv_Cd" type="string" length="4">
+      <generator class="assigned" />
+    </id>
+    <property name="Deriv_Desc" type="string" length="120" not-null="true" />
+  </class>
+
+  <class name="DataSource" table="DATA_SRC" >
+    <id name="DataSrc_ID" column="DataSrc_ID" type="string" length="6">
       <generator class="assigned" />
     </id>
 
   </class>
-  <class name="DataDerivation" table="DERIV_CD" ></class>
-  <class name="DataSource" table="DATA_SRC" ></class>
-  <class name="FoodDescription" table="FOOD_DES" ></class>  -->
-  <class name="FoodGroup" table="FD_GROUP">
-    <id name="FdGrp_Cd" column="FdGrp_Cd" type="string" length="4" nullable="false">
+  
+  <class name="FoodDescription" table="FOOD_DES" >
+    <id name="NDB_No" column="NDB_No" type="string" length="5">
       <generator class="assigned" />
     </id>
-    <property name="FdGrp_Desc" type="string" length="60" nullable="false" />
-    <!--
-    <bag name="FoodGroups" table="FOOD_DES">
+    <many-to-one name="FoodGroups" class="FoodGroup" column="FdGrp_Cd" cascade="all" not-null="true" />
+    <property name="Long_Desc" type="string" length="200" not-null="true" />
+    <property name="Shrt_Desc" type="string" length="60" not-null="true" />
+    <property name="ComName" type="string" length="100" />
+    <property name="ManufacName" type="string" length="65" />
+    <property name="Survey" type="string" length="1" />
+    <property name="Ref_desc" type="string" length="135" />
+    <property name="Refuse" type="int" />
+    <property name="SciName" type="string" length="65" />
+    <property name="N_Factor" type="double" />
+    <property name="Pro_Factor" type="double" />
+    <property name="Fat_Factor" type="double" />
+    <property name="CHO_Factor" type="double" />
+  </class>
+
+  <class name="FoodGroup" table="FD_GROUP">
+    <id name="FdGrp_Cd" column="FdGrp_Cd" type="string" length="4">
+      <generator class="assigned" />
+    </id>
+    <property name="FdGrp_Desc" type="string" length="60" not-null="true" />
+    <bag name="FoodDescriptions" table="FOOD_DES">
       <key column="foodGroup" />
       <one-to-many class="FoodGroup" />
     </bag>
-    -->
   </class>
-<!-- 
+  <!-- 
   <class name="Footnote" table="FOOTNOTE" ></class>
   <class name="Language" table="LANGDESC" ></class>
   <class name="NutrientData" table="NUT_DATA" ></class>

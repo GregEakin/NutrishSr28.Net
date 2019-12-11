@@ -2,6 +2,6 @@
 {
     public class Abbreviations
     {
-        
+        public virtual string NDB_No { get; set; }
     }
 }

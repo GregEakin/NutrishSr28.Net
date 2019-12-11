@@ -76,7 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SR28.hbm.xml" />
+    <EmbeddedResource Include="SR28.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

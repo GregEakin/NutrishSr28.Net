@@ -9,7 +9,7 @@ namespace SR28lib.Data
         public virtual string NDB_No { get; set; }
         public virtual IList<FoodGroup> FoodGroups { get; set; }
 
-        public void AddFoodGroup(FoodGroup foodGroup)
+        public virtual void AddFoodGroup(FoodGroup foodGroup)
         {
             if (foodGroup == null)
                 throw new ArgumentNullException(nameof(foodGroup));
