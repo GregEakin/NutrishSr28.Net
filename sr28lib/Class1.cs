@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace sr28lib
+namespace SR28lib
 {
     public class Class1
     {

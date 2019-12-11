@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SR28lib")]
+[assembly: AssemblyTitle("DBSetup")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SR28lib")]
-[assembly: AssemblyCopyright("Copyright © Gregory Eakin 2019")]
+[assembly: AssemblyProduct("DBSetup")]
+[assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("73d1fd23-2413-4002-9908-62a2b8092dde")]
+[assembly: Guid("7f7538b8-2b75-4ecb-8e21-342247621b81")]
 
 // Version information for an assembly consists of the following four values:
 //

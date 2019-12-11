@@ -1,4 +1,4 @@
-﻿namespace sr28lib.Data
+﻿namespace SR28lib.Data
 {
     public class Abbreviations
     {

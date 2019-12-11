@@ -1,19 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
-                   assembly="sr28lib"
-                   namespace="sr28lib.Data">
-
-  <class name="FoodGroup" table="FD_GROUP">
-    <id name="FdGrp_Cd">
-      <generator class="native" />
+                   assembly="SR28lib"
+                   namespace="SR28lib.Data">
+<!--
+  <class name="Abbreviations" table="ABBREV" >
+    <id name="NDB_No" column="NDB_No" type="string" length="5" nullable="false">
+      <generator class="assigned" />
     </id>
-    <property name="FdGrp_Desc" />
+
+  </class>
+  <class name="DataDerivation" table="DERIV_CD" ></class>
+  <class name="DataSource" table="DATA_SRC" ></class>
+  <class name="FoodDescription" table="FOOD_DES" ></class>  -->
+  <class name="FoodGroup" table="FD_GROUP">
+    <id name="FdGrp_Cd" column="FdGrp_Cd" type="string" length="4" nullable="false">
+      <generator class="assigned" />
+    </id>
+    <property name="FdGrp_Desc" type="string" length="60" nullable="false" />
+    <!--
     <bag name="FoodGroups" table="FOOD_DES">
       <key column="foodGroup" />
       <one-to-many class="FoodGroup" />
     </bag>
+    -->
   </class>
+<!-- 
+  <class name="Footnote" table="FOOTNOTE" ></class>
+  <class name="Language" table="LANGDESC" ></class>
+  <class name="NutrientData" table="NUT_DATA" ></class>
+  <class name="NutrientDefinition" table="NUTR_DEF" ></class>
+  <class name="SourceCode" table="SRC_CD" ></class>
+  <class name="Weight" table="WEIGHT" ></class>
+-->
 
-  
 </hibernate-mapping>

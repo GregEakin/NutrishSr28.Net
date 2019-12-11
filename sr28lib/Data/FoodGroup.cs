@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace sr28lib.Data
+namespace SR28lib.Data
 {
     public class FoodGroup
     {
