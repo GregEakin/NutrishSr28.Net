@@ -7,6 +7,60 @@
     <id name="NDB_No" column="NDB_No" type="string" length="5">
       <generator class="assigned" />
     </id>
+    <!--
+    <property name = "Shrt_Desc" length="60" not-null="false" />
+    <property name = "Water" />
+    <property name = "Energ_Kcal" />
+    <property name = "Protein" />
+    <property name = "Lipid_Tot" />
+    <property name = "Ash" />
+    <property name = "Carbohydrt" not-null="false" />
+    <property name = "Fiber_TD" />
+    <property name = "Sugar_Tot" />
+    <property name = "Calcium" />
+    <property name = "Iron" />
+    <property name = "Magnesium" />
+    <property name = "Phosphorus" />
+    <property name = "Potassium" />
+    <property name = "Sodium" />
+    <property name = "Zinc" />
+    <property name = "Copper" />
+    <property name = "Manganese" />
+    <property name = "Selenium" />
+    <property name = "Vit_C" />
+    <property name = "Thiamin" />
+    <property name = "Riboflavin" />
+    <property name = "Niacin" />
+    <property name = "Panto_acid" />
+    <property name = "Vit_B6" />
+    <property name = "Folate_Tot" />
+    <property name = "Folic_acid" />
+    <property name = "Food_Folate" />
+    <property name = "Folate_DFE" />
+    <property name = "Choline_Tot" />
+    <property name = "Vit_B12" />
+    <property name = "Vit_A_IU" />
+    <property name = "Vit_A_RAE" />
+    <property name = "Retinol" />
+    <property name = "Alpha_Carot" />
+    <property name = "Beta_Carot" />
+    <property name = "Beta_Crypt" />
+    <property name = "Lycopene" />
+    <property name = "Lut_Zea" />
+    <property name = "Vit_E" />
+    <property name = "Vit_D_mcg" />
+    <property name = "Vit_D_IU" />
+    <property name = "Vit_K" />
+    <property name = "FA_Sat" />
+    <property name = "FA_Mono" />
+    <property name = "FA_Poly" />
+    <property name = "Cholestrl" />
+    <property name = "GmWt_1" />
+    <property name = "GmWt_Desc1" length="120" />
+    <property name = "GmWt_2" />
+    <property name = "GWt_Desc2" length="120" />
+    <property name = "Refuse_Pct" />
+    -->
   </class>
   
   <class name="DataDerivation" table="DERIV_CD" >
@@ -14,13 +68,28 @@
       <generator class="assigned" />
     </id>
     <property name="Deriv_Desc" type="string" length="120" not-null="true" />
+    <bag name="NutrientDataSet" table="NutrientData">
+      <key column="dataDerivation" />
+      <one-to-many class="NutrientData" />
+    </bag>
   </class>
 
   <class name="DataSource" table="DATA_SRC" >
     <id name="DataSrc_ID" column="DataSrc_ID" type="string" length="6">
       <generator class="assigned" />
     </id>
-
+    <property name = "Authors" type="string" length="255" />
+    <property name = "Title" type="string" length="255" not-null="false" />
+    <property name = "Year" type="string" length="4" />
+    <property name = "Journal" type="string" length="135" />
+    <property name = "Vol_City" type="string" length="16" />
+    <property name = "Issue_State" type="string" length="5" />
+    <property name = "Start_Page" type="string" length="5" />
+    <property name = "End_Page" type="string" length="5" />
+    <bag name="NutrientDataSet" table="NutrientData">
+      <key column="dataSourceSet" />
+      <one-to-many class="NutrientData" />
+    </bag>
   </class>
   
   <class name="FoodDescription" table="FOOD_DES" >
