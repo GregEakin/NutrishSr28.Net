@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 
 namespace SR28lib.Data
@@ -10,7 +10,28 @@ namespace SR28lib.Data
         public virtual int Num_Data_Pts{ get; set; }
         public virtual double Std_Error{ get; set; }
         public virtual SourceCode SourceCode{ get; set; }
+
+        public virtual void AddSourceCode(SourceCode sourceCode)
+        {
+            if (sourceCode == null)
+                throw new ArgumentNullException(nameof(sourceCode));
+
+            SourceCode = sourceCode;
+            sourceCode.NutrientDataSet.Add(this);
+        }
+
         public virtual DataDerivation DataDerivation{ get; set; }
+
+        public virtual void AddDataDerivation(DataDerivation dataDerivation)
+        {
+            if (dataDerivation == null)
+                throw new ArgumentNullException(nameof(dataDerivation));
+
+            dataDerivation.NutrientDataSet.Add(this);
+            // DataDerivation = dataDerivation;
+            // dataDerivation.NutrientDataSet.Add(this);
+        }
+
         public virtual FoodDescription FoodDescription { get; set; }
         public virtual string Add_Nutr_Mark{ get; set; }
         public virtual int Num_Studies{ get; set; }
@@ -26,6 +47,8 @@ namespace SR28lib.Data
         public virtual ICollection<DataSource> DataSourceSet { get; set; }
         public virtual void AddDataSource(DataSource dataSource)
         {
+            if (dataSource == null)
+                throw new ArgumentNullException(nameof(dataSource));
         }
     }
 

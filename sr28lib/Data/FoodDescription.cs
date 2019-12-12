@@ -60,12 +60,15 @@ namespace SR28lib.Data
             footnote.FoodDescription = this;
             FootnoteSet.Add(footnote);
         }
-        // many to many: LANGUAL  LanguageSet
 
         public virtual ICollection<Language> LanguageSet { get; set; }
-
         public virtual void AddLanguage(Language language)
         {
+            if (language == null)
+                throw new ArgumentNullException(nameof(language));
+
+            language.FoodDescriptionSet.Add(this);
+            LanguageSet.Add(language);
         }
     }
 }

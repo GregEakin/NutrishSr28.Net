@@ -6,7 +6,7 @@
         public virtual FoodDescription FoodDescription { get; set; }
         public virtual string Footnt_No { get; set; }
         public virtual string Footnt_Typ { get; set; }
-        public virtual string NutrientDefinition { get; set; }
+        public virtual NutrientDefinition NutrientDefinition { get; set; }
         public virtual string Footnt_Txt { get; set; }
     }
 }

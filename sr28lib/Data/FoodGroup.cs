@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SR28lib.Data
 {
@@ -10,6 +11,9 @@ namespace SR28lib.Data
 
         public virtual void AddFoodDescription(FoodDescription foodDescription)
         {
+            if(foodDescription == null)
+                throw new ArgumentException(nameof(foodDescription));
+
             foodDescription.FoodGroup = this;
             FoodDescriptionSet.Add(foodDescription);
         }

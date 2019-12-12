@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SR28lib.Data
 {
@@ -11,7 +12,26 @@ namespace SR28lib.Data
         public virtual string NutrDesc { get; set; }
         public virtual string Num_Dec { get; set; }
         public virtual int SR_Order { get; set; }
-        public virtual ICollection<NutrientDefinition> NutrientDefinitionSet { get; set; }
+        public virtual ICollection<NutrientData> NutrientDataSet { get; set; }
+
+        public virtual void AddNutrientData(NutrientData nutrientData)
+        {
+            if (nutrientData == null)
+                throw new ArgumentNullException(nameof(nutrientData));
+
+            // if (nutrientData.NutrientDataKey.NutrientDefinition.)
+            NutrientDataSet.Add(nutrientData);
+        }
+
         public virtual ICollection<Footnote> FootnoteSet { get; set; }
+
+        public virtual void AddFootnote(Footnote footnote)
+        {
+            if (footnote == null)
+                throw new ArgumentNullException(nameof(footnote));
+
+            FootnoteSet.Add(footnote);
+            footnote.NutrientDefinition = this;
+        }
     }
 }

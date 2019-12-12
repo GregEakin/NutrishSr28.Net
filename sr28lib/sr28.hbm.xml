@@ -120,6 +120,10 @@
       <key column="FoodDescription" />
       <one-to-many class="Weight" />
     </set>
+    <set name="FootnoteSet">
+      <key column="FoodDescription" />
+      <one-to-many class="Footnote" />
+    </set>
   </class>
 
   <class name="FoodGroup" table="FD_GROUP">
@@ -197,10 +201,14 @@
     <property name="NutrDesc" type="string" length="60" not-null="true" />
     <property name="Num_Dec" type="string" length="1" not-null="true" />
     <property name="SR_Order" type="int" not-null="true" />
-    <!-- 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDataKey.nutrientDefinition")
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
-    -->
+    <set name="NutrientDataSet">
+      <key column="NDB_NO" />
+      <one-to-many class="NutrientData" />
+    </set>
+    <set name="FootnoteSet">
+      <key column="NDB_NO" />
+      <one-to-many class="Footnote" />
+    </set>
   </class>
 
   <class name="SourceCode" table="SRC_CD">
