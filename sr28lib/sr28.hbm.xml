@@ -68,10 +68,10 @@
       <generator class="assigned" />
     </id>
     <property name="Deriv_Desc" type="string" length="120" not-null="true" />
-    <bag name="NutrientDataSet" table="NutrientData">
-      <key column="dataDerivation" />
+    <set name="NutrientDataSet">
+      <key column="Deriv_Cd" />
       <one-to-many class="NutrientData" />
-    </bag>
+    </set>
   </class>
 
   <class name="DataSource" table="DATA_SRC">
@@ -113,15 +113,15 @@
     <property name="Fat_Factor" type="double" />
     <property name="CHO_Factor" type="double" />
     <set name="NutrientDataSet">
-      <key column="FoodDescription" />
+      <key column="NDB_No" />
       <one-to-many class="NutrientData" />
     </set>
     <set name="WeightSet">
-      <key column="FoodDescription" />
+      <key column="NDB_No" />
       <one-to-many class="Weight" />
     </set>
     <set name="FootnoteSet">
-      <key column="FoodDescription" />
+      <key column="NDB_No" />
       <one-to-many class="Footnote" />
     </set>
     <set name="LanguageSet" table="LANGUAL">
@@ -180,7 +180,7 @@
     <property name="Min" type="double" />
     <property name="Max" type="double" />
     <property name="DF" type="int" />
-    <property name="Low_EB" type="string" />
+    <property name="Low_EB" type="double" />
     <property name="Up_EB" type="double" />
     <property name="Stat_cmt" type="string" length="10" />
     <property name="AddMod_Date" type="string" length="10" />
@@ -192,7 +192,6 @@
       </key>
       <many-to-many class="DataSource" column="DataSrc_ID" />
     </set>
-
   </class>
 
   <class name="NutrientDefinition" table="NUTR_DEF">
@@ -221,7 +220,7 @@
     </id>
     <property name="SrcCd_Desc" type="string" length="60" not-null="true" />
     <set name="NutrientDataSet">
-      <key column="sourcecode" />
+      <key column="Src_Cd" />
       <one-to-many class="NutrientData" />
     </set>
 

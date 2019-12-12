@@ -10,18 +10,13 @@ namespace SR28lib.Data
         public virtual int Num_Data_Pts{ get; set; }
         public virtual double Std_Error{ get; set; }
         public virtual SourceCode SourceCode{ get; set; }
-
         public virtual void AddSourceCode(SourceCode sourceCode)
         {
-            if (sourceCode == null)
-                throw new ArgumentNullException(nameof(sourceCode));
-
-            SourceCode = sourceCode;
+            SourceCode = sourceCode ?? throw new ArgumentNullException(nameof(sourceCode));
             sourceCode.NutrientDataSet.Add(this);
         }
 
         public virtual DataDerivation DataDerivation{ get; set; }
-
         public virtual void AddDataDerivation(DataDerivation dataDerivation)
         {
             if (dataDerivation == null)
@@ -33,6 +28,12 @@ namespace SR28lib.Data
         }
 
         public virtual FoodDescription FoodDescription { get; set; }
+        public virtual void AddFoodDescription(FoodDescription foodDescription)
+        {
+            if (foodDescription == null)
+                throw new ArgumentNullException(nameof(foodDescription));
+        }
+
         public virtual string Add_Nutr_Mark{ get; set; }
         public virtual int Num_Studies{ get; set; }
         public virtual double Min{ get; set; }
@@ -44,7 +45,7 @@ namespace SR28lib.Data
         public virtual string AddMod_Date{ get; set; }
         public virtual string CC{ get; set; }
 
-        public virtual ICollection<DataSource> DataSourceSet { get; set; }
+        public virtual ICollection<DataSource> DataSourceSet { get; set; } = new List<DataSource>();
         public virtual void AddDataSource(DataSource dataSource)
         {
             if (dataSource == null)

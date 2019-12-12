@@ -87,11 +87,11 @@ namespace SR28lib.Ddl
                 transaction.Commit();
             }
 
-            using (var transaction = _session.BeginTransaction())
-            {
-                LanguaL.ParseFile(_session);
-                transaction.Commit();
-            }
+            // using (var transaction = _session.BeginTransaction())
+            // {
+            //     LanguaL.ParseFile(_session);
+            //     transaction.Commit();
+            // }
 
             using (var transaction = _session.BeginTransaction())
             {
