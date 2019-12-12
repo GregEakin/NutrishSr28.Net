@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using NHibernate;
 using SR28lib.Data;
 
@@ -20,10 +21,10 @@ namespace SR28lib.Parsers
             var fields = line.Split('^');
             var item = new FoodGroup
             {
-                FdGrp_Cd = fields[0].Substring(1, fields[0].Length - 1),
-                FdGrp_Desc = fields[0].Substring(1, fields[0].Length - 1)
+                FdGrp_Cd = fields[0].Substring(1, fields[0].Length - 2),
+                FdGrp_Desc = fields[1].Substring(1, fields[1].Length - 2)
             };
-
+            
             session.Save(item);
         }
     }

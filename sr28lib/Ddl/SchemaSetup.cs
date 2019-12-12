@@ -6,7 +6,6 @@ using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Tool.hbm2ddl;
-using SR28lib.Data;
 using SR28lib.Parsers;
 
 namespace SR28lib.Ddl
@@ -29,7 +28,7 @@ namespace SR28lib.Ddl
 
             var executingAssembly = Assembly.GetExecutingAssembly();
             cfg.AddAssembly(executingAssembly);
-            var libAssembly = typeof(FoodGroup).Assembly;
+            var libAssembly = typeof(SR28lib.Data.FoodGroup).Assembly;
             //cfg.AddAssembly(libAssembly);
 
             if (execute)
@@ -47,51 +46,77 @@ namespace SR28lib.Ddl
 
         public void SetupDates()
         {
-            FdGroup.ParseFile(_session);
+            using (var transaction = _session.BeginTransaction())
+            {
+                FdGroup.ParseFile(_session);
+                transaction.Commit();
+            }
 
-            // foreach (var project in projects)
-            // {
-            //     Console.WriteLine("SetupDates: {0}", project);
-            //     SprintInformation.PopulateIteration(new Uri(_server), project);
-            // }
-            //
-            // foreach (var sprintInfo in SprintInformation.SList)
-            //     using (var tx = _session.BeginTransaction())
-            //     {
-            //         var count = sprintInfo.Value[0].Split(' ')[0];
-            //         var parsed = int.TryParse(count, out var days);
-            //         if (!parsed) continue;
-            //         var end = sprintInfo.Key + TimeSpan.FromDays(days - 1);
-            //
-            //         var dbDate = _session.QueryOver<SprintDate>().Where(sd => sd.Start == sprintInfo.Key).SingleOrDefault();
-            //         var sprintDate = dbDate ?? new SprintDate
-            //         {
-            //             Start = sprintInfo.Key,
-            //             End = end,
-            //             Days = days,
-            //         };
-            //
-            //         _session.SaveOrUpdate(sprintDate);
-            //
-            //         foreach (var yy in sprintInfo.Value)
-            //         {
-            //             if (yy.Contains(" days.")) continue;
-            //             var pw = yy.Replace(@"\Iteration\", @"\");
-            //
-            //             var dbSprint = _session.QueryOver<Sprint>().Where(ss => ss.Name == pw).SingleOrDefault();
-            //             var sprint = dbSprint ?? new Sprint
-            //             {
-            //                 Name = pw,
-            //                 Calendar = sprintDate,
-            //             };
-            //
-            //             if (dbSprint == null) sprintDate.AddSprint(sprint);
-            //             _session.SaveOrUpdate(sprint);
-            //         }
-            //
-            //         tx.Commit();
-            //     }
+            using (var transaction = _session.BeginTransaction())
+            {
+                SrcCd.ParseFile(_session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                DerivCD.ParseFile(_session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                LangDesc.ParseFile(_session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                DataSrc.ParseFile(_session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                // NutrDef.parseFile(session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                // FoodDes.parseFile(session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                // LanguaL.parseFile(session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                // Weight.parseFile(session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                // NutData.parseFile(session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                // DatScrLn.parseFile(session);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                // Footnote.parseFile(session);
+                transaction.Commit();
+            }
         }
-
     }
 }

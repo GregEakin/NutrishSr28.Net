@@ -132,7 +132,7 @@
     </id>
     <property name="FdGrp_Desc" type="string" length="60" not-null="true" />
     <set name="FoodDescriptionSet">
-      <key column="foodGroup" />
+      <key column="FdGrp_Cd" />
       <one-to-many class="FoodGroup" />
     </set>
   </class>

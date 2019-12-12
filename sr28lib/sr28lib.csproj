@@ -72,7 +72,11 @@
     <Compile Include="Data\SourceCode.cs" />
     <Compile Include="Data\Weight.cs" />
     <Compile Include="Ddl\SchemaSetup.cs" />
+    <Compile Include="Parsers\DataSrc.cs" />
+    <Compile Include="Parsers\DerivCD.cs" />
     <Compile Include="Parsers\FdGroup.cs" />
+    <Compile Include="Parsers\LangDesc.cs" />
+    <Compile Include="Parsers\SrcCd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
