@@ -13,18 +13,18 @@ namespace SR28lib.Parsers
         public static void ParseFile(ISession session)
         {
             var lines = File.ReadLines(Filename);
-            foreach (var line in lines)
+            foreach (var line in lines) 
                 ParseLine(session, line);
         }
 
         private static void ParseLine(ISession session, string line)
         {
             var fields = line.Split('^');
-            var item = ParseDataSource(session, fields);
+            var item = ParseFoodDescription(session, fields);
             session.Save(item);
         }
 
-        private static FoodDescription ParseDataSource(ISession session, IReadOnlyList<string> fields)
+        private static FoodDescription ParseFoodDescription(ISession session, IReadOnlyList<string> fields)
         {
             var item = new FoodDescription();
             item.NDB_No = fields[0].Substring(1, fields[0].Length - 2);
