@@ -86,19 +86,20 @@
     <property name="Issue_State" type="string" length="5" />
     <property name="Start_Page" type="string" length="5" />
     <property name="End_Page" type="string" length="5" />
-    <!--
     <set name="NutrientDataSet" table="DATSRCLN">
       <key column="DataSrc_ID" />
-      <many-to-many class="NutrientData" />
+      <many-to-many class="NutrientData">
+        <column name="NDB_No" />
+        <column name="Nutr_No" />
+      </many-to-many>
     </set>
-    -->
   </class>
 
   <class name="FoodDescription" table="FOOD_DES">
     <id name="NDB_No" column="NDB_No" type="string" length="5">
       <generator class="assigned" />
     </id>
-    <many-to-one name="FoodGroups" class="FoodGroup" column="FdGrp_Cd" cascade="all" not-null="true" />
+    <many-to-one name="FoodGroup" class="FoodGroup" column="FdGrp_Cd" cascade="all" not-null="true" />
     <property name="Long_Desc" type="string" length="200" not-null="true" />
     <property name="Shrt_Desc" type="string" length="60" not-null="true" />
     <property name="ComName" type="string" length="100" />
@@ -176,27 +177,15 @@
     <property name="Stat_cmt" type="string" length="10" />
     <property name="AddMod_Date" type="string" length="10" />
     <property name="CC" type="string" length="1" />
-    <!--
     <set name="DataSourceSet" table="DATSRCLN">
       <key>
         <column name="NDB_No" />
         <column name="Nutr_No" />
       </key>
-      <many-to-many class="DataSource" />
-    </set>
-    -->
-    <!-- 
-    <set name="DataSourceSet" table="DATSRCLN">
-      <key column="NDB_No" />
-      <key column="Nutr_No" />
-      <many-to-many class="DataSource" column="DataSrc_ID" />
-      <key column="NDB_No" />
-      <key column="Nutr_No" />
       <many-to-many class="DataSource" column="DataSrc_ID" />
     </set>
-      -->
 
-    </class>
+  </class>
 
   <class name="NutrientDefinition" table="NUTR_DEF">
     <id name="Nutr_No" column="Nutr_No" type="string" length="3">

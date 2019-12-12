@@ -11,7 +11,7 @@ namespace SR28lib.Data
         public virtual string NutrDesc { get; set; }
         public virtual string Num_Dec { get; set; }
         public virtual int SR_Order { get; set; }
-        public virtual IList<NutrientDefinition> NutrientDefinitionSet { get; set; }
-        public virtual IList<Footnote> FootnoteSet { get; set; }
+        public virtual ICollection<NutrientDefinition> NutrientDefinitionSet { get; set; }
+        public virtual ICollection<Footnote> FootnoteSet { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace SR28lib.Data
     {
         public virtual string Factor_Code { get; set; }
         public virtual string Description { get; set; }
-        public virtual IList<FoodDescription> FoodDescriptionSet { get; set; }
+        public virtual ICollection<FoodDescription> FoodDescriptionSet { get; set; }
     }
 }
