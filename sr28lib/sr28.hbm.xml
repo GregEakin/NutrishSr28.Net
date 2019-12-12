@@ -124,6 +124,10 @@
       <key column="FoodDescription" />
       <one-to-many class="Footnote" />
     </set>
+    <set name="LanguageSet" table="LANGUAL">
+      <key column="NDB_No" />
+      <many-to-many class="Language" column="Factor_Code" />
+    </set>
   </class>
 
   <class name="FoodGroup" table="FD_GROUP">
@@ -153,9 +157,9 @@
       <generator class="assigned" />
     </id>
     <property name="Description" type="string" length="140" not-null="true" />
-    <set name="FoodDescriptionSet" table="languageSet">
-      <key column="languageSet" />
-      <many-to-many class="FoodDescription" column="ITEM_ID" />
+    <set name="FoodDescriptionSet" table="LANGUAL">
+      <key column="Factor_Code" />
+      <many-to-many class="FoodDescription" column="NDB_No" />
     </set>
   </class>
 

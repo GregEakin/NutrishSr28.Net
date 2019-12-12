@@ -37,7 +37,7 @@ namespace SR28lib.Data
             NutrientDataSet.Add(nutrientData);
         }
 
-        public virtual ICollection<Weight> WeightSet { get; set; }
+        public virtual ICollection<Weight> WeightSet { get; set; } = new List<Weight>();
         public virtual void AddWeight(Weight weight)
         {
             if (weight == null)
@@ -49,7 +49,7 @@ namespace SR28lib.Data
             WeightSet.Add(weight);
         }
 
-        public virtual ICollection<Footnote> FootnoteSet { get; set; }
+        public virtual ICollection<Footnote> FootnoteSet { get; set; } = new List<Footnote>();
         public virtual void AddFootnote(Footnote footnote)
         {
             if (footnote == null)
@@ -59,7 +59,7 @@ namespace SR28lib.Data
             FootnoteSet.Add(footnote);
         }
 
-        public virtual ICollection<Language> LanguageSet { get; set; }
+        public virtual ICollection<Language> LanguageSet { get; set; } = new List<Language>();
         public virtual void AddLanguage(Language language)
         {
             if (language == null)
