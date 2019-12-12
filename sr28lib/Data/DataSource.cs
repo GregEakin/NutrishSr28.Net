@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SR28lib.Data
@@ -16,5 +17,13 @@ namespace SR28lib.Data
         public virtual string Start_Page { get; set; }
         public virtual string End_Page { get; set; }
         public virtual IList<NutrientData> NutrientDataSet { get; set; }
+
+        public virtual void AddNutrientData(NutrientData nutrientData)
+        {
+            if (nutrientData == null)
+                throw new ArgumentNullException(nameof(nutrientData));
+            nutrientData.DataSourceSet.Add(this);
+            NutrientDataSet.Add(nutrientData);
+        }
     }
 }

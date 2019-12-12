@@ -3,7 +3,7 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    assembly="SR28lib"
                    namespace="SR28lib.Data">
-  <class name="Abbreviations" table="ABBREV" >
+  <class name="Abbreviations" table="ABBREV">
     <id name="NDB_No" column="NDB_No" type="string" length="5">
       <generator class="assigned" />
     </id>
@@ -62,8 +62,8 @@
     <property name = "Refuse_Pct" />
     -->
   </class>
-  
-  <class name="DataDerivation" table="DERIV_CD" >
+
+  <class name="DataDerivation" table="DERIV_CD">
     <id name="Deriv_Cd" column="Deriv_Cd" type="string" length="4">
       <generator class="assigned" />
     </id>
@@ -74,25 +74,25 @@
     </bag>
   </class>
 
-  <class name="DataSource" table="DATA_SRC" >
+  <class name="DataSource" table="DATA_SRC">
     <id name="DataSrc_ID" column="DataSrc_ID" type="string" length="6">
       <generator class="assigned" />
     </id>
-    <property name = "Authors" type="string" length="255" />
-    <property name = "Title" type="string" length="255" not-null="false" />
-    <property name = "Year" type="string" length="4" />
-    <property name = "Journal" type="string" length="135" />
-    <property name = "Vol_City" type="string" length="16" />
-    <property name = "Issue_State" type="string" length="5" />
-    <property name = "Start_Page" type="string" length="5" />
-    <property name = "End_Page" type="string" length="5" />
-    <bag name="NutrientDataSet" table="NutrientData">
+    <property name="Authors" type="string" length="255" />
+    <property name="Title" type="string" length="255" not-null="false" />
+    <property name="Year" type="string" length="4" />
+    <property name="Journal" type="string" length="135" />
+    <property name="Vol_City" type="string" length="16" />
+    <property name="Issue_State" type="string" length="5" />
+    <property name="Start_Page" type="string" length="5" />
+    <property name="End_Page" type="string" length="5" />
+    <bag name="NutrientDataSet" table="dataSourceSet">
       <key column="dataSourceSet" />
-      <one-to-many class="NutrientData" />
+      <many-to-many class="NutrientData" />
     </bag>
   </class>
-  
-  <class name="FoodDescription" table="FOOD_DES" >
+
+  <class name="FoodDescription" table="FOOD_DES">
     <id name="NDB_No" column="NDB_No" type="string" length="5">
       <generator class="assigned" />
     </id>
@@ -109,6 +109,14 @@
     <property name="Pro_Factor" type="double" />
     <property name="Fat_Factor" type="double" />
     <property name="CHO_Factor" type="double" />
+    <set name="NutrientDataSet">
+      <key column="FoodDescription" />
+      <one-to-many class="NutrientData" />
+    </set>
+    <set name="WeightSet">
+      <key column="FoodDescription" />
+      <one-to-many class="Weight" />
+    </set>
   </class>
 
   <class name="FoodGroup" table="FD_GROUP">
@@ -116,52 +124,101 @@
       <generator class="assigned" />
     </id>
     <property name="FdGrp_Desc" type="string" length="60" not-null="true" />
-    <bag name="FoodDescriptions" table="FOOD_DES">
+    <set name="FoodDescriptionSet">
       <key column="foodGroup" />
       <one-to-many class="FoodGroup" />
-    </bag>
+    </set>
   </class>
 
-  <class name="Footnote" table="FOOTNOTE" >
-    <id name="Id" column="ID" >
+  <class name="Footnote" table="FOOTNOTE">
+    <id name="Id" column="ID">
       <generator class="native" />
     </id>
-
+    <many-to-one name="FoodDescription" class="FoodDescription" column="NDB_No" cascade="all" />
+    <property name="Footnt_No" type="string" length="4" not-null="true" />
+    <property name="Footnt_Typ" type="string" length="1" not-null="true" />
+    <many-to-one name="NutrientDefinition" class="NutrientDefinition" column="Nutr_No" cascade="all" />
+    <property name="Footnt_Txt" type="string" length="200" not-null="true" />
   </class>
-  
-  <class name="Language" table="LANGDESC" >
+
+  <class name="Language" table="LANGDESC">
     <id name="Factor_Code" column="Factor_Code" type="string" length="5">
       <generator class="assigned" />
     </id>
-
+    <property name="Description" type="string" length="140" not-null="true" />
+    <set name="FoodDescriptionSet" table="languageSet">
+      <key column="languageSet" />
+      <many-to-many class="FoodDescription" column="ITEM_ID" />
+    </set>
   </class>
-  
-  <class name="NutrientData" table="NUT_DATA" >
+
+  <class name="NutrientData" table="NUT_DATA">
     <composite-id name="NutrientDataKey" class="NutrientDataKey">
       <key-many-to-one class="FoodDescription" name="FoodDescription" column="NDB_No" />
       <key-many-to-one class="NutrientDefinition" name="NutrientDefinition" column="Nutr_No" />
     </composite-id>
 
-  </class>
+    <property name="Nutr_Val" type="double" not-null="true" />
+    <property name="Num_Data_Pts" type="int" not-null="true" />
+    <property name="Std_Error" type="double" />
+    <many-to-one name="SourceCode" class="SourceCode" column="Src_Cd" cascade="all" not-null="true" />
+    <many-to-one name="DataDerivation" class="DataDerivation" column="Deriv_Cd" cascade="all" />
+    <many-to-one name="FoodDescription" class="FoodDescription" column="Ref_NDB_No" cascade="all" />
+    <property name="Add_Nutr_Mark" type="string" length="1" />
+    <property name="Num_Studies" type="int" />
+    <property name="Min" type="double" />
+    <property name="Max" type="double" />
+    <property name="DF" type="int" />
+    <property name="Low_EB" type="string" />
+    <property name="Up_EB" type="double" />
+    <property name="Stat_cmt" type="string" length="10" />
+    <property name="AddMod_Date" type="string" length="10" />
+    <property name="CC" type="string" length="1" />
+    <!-- 
+    <set name="DataSourceSet" table="DATSRCLN">
+      <key column="NDB_No" />
+      <key column="Nutr_No" />
+      <many-to-many class="DataSource" column="DataSrc_ID" />
+      <key column="NDB_No" />
+      <key column="Nutr_No" />
+      <many-to-many class="DataSource" column="DataSrc_ID" />
+    </set>
+      -->
 
-  <class name="NutrientDefinition" table="NUTR_DEF" >
+    </class>
+
+  <class name="NutrientDefinition" table="NUTR_DEF">
     <id name="Nutr_No" column="Nutr_No" type="string" length="3">
       <generator class="assigned" />
     </id>
 
+    <property name="Units" type="string" length="7" not-null="true" />
+    <property name="Tagname" type="string" length="20" />
+    <property name="NutrDesc" type="string" length="60" not-null="true" />
+    <property name="Num_Dec" type="string" length="1" not-null="true" />
+    <property name="SR_Order" type="int" not-null="true" />
+    <!-- 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDataKey.nutrientDefinition")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nutrientDefinition")
+    -->
   </class>
-  
-  <class name="SourceCode" table="SRC_CD" >
+
+  <class name="SourceCode" table="SRC_CD">
     <id name="Src_Cd" column="Src_Cd" type="string" length="2">
       <generator class="assigned" />
     </id>
+    <property name="SrcCd_Desc" type="string" length="60" not-null="true" />
+    <set name="NutrientDataSet">
+      <key column="sourcecode" />
+      <one-to-many class="NutrientData" />
+    </set>
 
   </class>
-  
-  <class name="Weight" table="WEIGHT" >
+
+  <class name="Weight" table="WEIGHT">
     <composite-id name="WeightKey" class="WeightKey">
       <key-many-to-one class="FoodDescription" name="FoodDescription" column="NDB_No" />
-      <key-property name="Seq" column="Seq" type="string" length="2"/>
+      <key-property name="Seq" column="Seq" type="string" length="2" />
     </composite-id>
     <property name="Amount" type="double" />
     <property name="Msre_Desc" type="string" length="84" />

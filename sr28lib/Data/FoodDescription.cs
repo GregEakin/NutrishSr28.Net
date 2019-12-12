@@ -14,7 +14,7 @@ namespace SR28lib.Data
             if (foodGroup == null)
                 throw new ArgumentNullException(nameof(foodGroup));
             // this.foodGroup = foodGroup;
-            // this.FoodGroup.FoodDescriptions.add(this); 
+            // this.FoodGroup.FoodDescriptionSet.add(this); 
         }
 
         public virtual string Long_Desc { get; set; }
