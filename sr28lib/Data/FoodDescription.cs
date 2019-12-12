@@ -12,6 +12,7 @@ namespace SR28lib.Data
         {
             if (foodGroup == null)
                 throw new ArgumentNullException(nameof(foodGroup));
+
             FoodGroup = foodGroup;
             FoodGroup.FoodDescriptionSet.Add(this);
         }
@@ -22,12 +23,12 @@ namespace SR28lib.Data
         public virtual string ManufacName { get; set; }
         public virtual string Survey { get; set; }
         public virtual string Ref_desc { get; set; }
-        public virtual string Refuse { get; set; }
+        public virtual int Refuse { get; set; }
         public virtual string SciName { get; set; }
-        public virtual string N_Factor { get; set; }
-        public virtual string Pro_Factor { get; set; }
-        public virtual string Fat_Factor { get; set; }
-        public virtual string CHO_Factor { get; set; }
+        public virtual double N_Factor { get; set; }
+        public virtual double Pro_Factor { get; set; }
+        public virtual double Fat_Factor { get; set; }
+        public virtual double CHO_Factor { get; set; }
         public virtual ICollection<NutrientData> NutrientDataSet { get; set; }
         public virtual void AddNutrientData(NutrientData nutrientData)
         {

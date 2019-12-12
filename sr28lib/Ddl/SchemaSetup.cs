@@ -78,43 +78,43 @@ namespace SR28lib.Ddl
 
             using (var transaction = _session.BeginTransaction())
             {
-                // NutrDef.parseFile(session);
+                NutrDef.ParseFile(_session);
                 transaction.Commit();
             }
 
             using (var transaction = _session.BeginTransaction())
             {
-                // FoodDes.parseFile(session);
+                FoodDes.ParseFile(_session);
                 transaction.Commit();
             }
 
             using (var transaction = _session.BeginTransaction())
             {
-                // LanguaL.parseFile(session);
+                LanguaL.ParseFile(_session);
                 transaction.Commit();
             }
 
             using (var transaction = _session.BeginTransaction())
             {
-                // Weight.parseFile(session);
+                Weight.ParseFile(_session);
                 transaction.Commit();
             }
 
             using (var transaction = _session.BeginTransaction())
             {
-                // NutData.parseFile(session);
+                NutData.ParseFile(_session);
                 transaction.Commit();
             }
 
             using (var transaction = _session.BeginTransaction())
             {
-                // DatScrLn.parseFile(session);
+                DatScrLn.ParseFile(_session);
                 transaction.Commit();
             }
 
             using (var transaction = _session.BeginTransaction())
             {
-                // Footnote.parseFile(session);
+                Footnote.ParseFile(_session);
                 transaction.Commit();
             }
         }

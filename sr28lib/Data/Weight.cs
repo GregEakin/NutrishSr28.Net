@@ -9,14 +9,22 @@ namespace SR28lib.Data
         public virtual string Msre_Desc { get; set; }
         public virtual double Gm_Wgt { get; set; }
         public virtual int Num_Data_Pts { get; set; }
-        public virtual int Std_Dev { get; set; }
+        public virtual double Std_Dev { get; set; }
     }
 
     [Serializable]
-    public class WeightKey
+    public sealed class WeightKey
     {
-        public virtual FoodDescription FoodDescription { get; set; }
-        public virtual string Seq { get; set; }
+        public FoodDescription FoodDescription { get; set; }
+        public string Seq { get; set; }
+
+        public WeightKey() { }
+
+        public WeightKey(FoodDescription foodDescription, string seq)
+        {
+            FoodDescription = foodDescription;
+            Seq = seq;
+        }
 
         public override bool Equals(object obj)
         {
@@ -30,7 +38,7 @@ namespace SR28lib.Data
 
         public override int GetHashCode()
         {
-            var result = (FoodDescription != null ? FoodDescription.GetHashCode() : 0);
+            var result = FoodDescription != null ? FoodDescription.GetHashCode() : 0;
             result = 31 * result + (Seq != null ? Seq.GetHashCode() : 0);
             return result;
         }

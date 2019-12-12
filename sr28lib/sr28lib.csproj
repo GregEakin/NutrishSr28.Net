@@ -73,10 +73,17 @@
     <Compile Include="Data\Weight.cs" />
     <Compile Include="Ddl\SchemaSetup.cs" />
     <Compile Include="Parsers\DataSrc.cs" />
+    <Compile Include="Parsers\DatScrLn.cs" />
     <Compile Include="Parsers\DerivCD.cs" />
     <Compile Include="Parsers\FdGroup.cs" />
+    <Compile Include="Parsers\FoodDes.cs" />
+    <Compile Include="Parsers\Footnote.cs" />
     <Compile Include="Parsers\LangDesc.cs" />
+    <Compile Include="Parsers\LanguaL.cs" />
+    <Compile Include="Parsers\NutData.cs" />
+    <Compile Include="Parsers\NutrDef.cs" />
     <Compile Include="Parsers\SrcCd.cs" />
+    <Compile Include="Parsers\Weight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

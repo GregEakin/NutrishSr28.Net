@@ -52,10 +52,18 @@ namespace SR28lib.Data
         }
     }
 
-    public class NutrientDataKey
+    [Serializable]
+    public sealed class NutrientDataKey
     {
-        public virtual FoodDescription FoodDescription { get; set; }
-        public virtual NutrientDefinition NutrientDefinition { get; set; }
+        public FoodDescription FoodDescription { get; set; }
+        public NutrientDefinition NutrientDefinition { get; set; }
+
+        public NutrientDataKey() { }
+        public NutrientDataKey(FoodDescription foodDescription, NutrientDefinition nutrientDefinition)
+        {
+            FoodDescription = foodDescription;
+            NutrientDefinition = nutrientDefinition;
+        }
 
         public override bool Equals(object obj)
         {
@@ -69,7 +77,7 @@ namespace SR28lib.Data
 
         public override int GetHashCode()
         {
-            var result = (FoodDescription != null ? FoodDescription.GetHashCode() : 0);
+            var result = FoodDescription != null ? FoodDescription.GetHashCode() : 0;
             result = 31 * result + (NutrientDefinition != null ? NutrientDefinition.GetHashCode() : 0);
             return result;
         }
