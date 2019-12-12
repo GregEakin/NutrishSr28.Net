@@ -86,10 +86,12 @@
     <property name="Issue_State" type="string" length="5" />
     <property name="Start_Page" type="string" length="5" />
     <property name="End_Page" type="string" length="5" />
-    <bag name="NutrientDataSet" table="dataSourceSet">
-      <key column="dataSourceSet" />
+    <!--
+    <set name="NutrientDataSet" table="DATSRCLN">
+      <key column="DataSrc_ID" />
       <many-to-many class="NutrientData" />
-    </bag>
+    </set>
+    -->
   </class>
 
   <class name="FoodDescription" table="FOOD_DES">
@@ -174,6 +176,15 @@
     <property name="Stat_cmt" type="string" length="10" />
     <property name="AddMod_Date" type="string" length="10" />
     <property name="CC" type="string" length="1" />
+    <!--
+    <set name="DataSourceSet" table="DATSRCLN">
+      <key>
+        <column name="NDB_No" />
+        <column name="Nutr_No" />
+      </key>
+      <many-to-many class="DataSource" />
+    </set>
+    -->
     <!-- 
     <set name="DataSourceSet" table="DATSRCLN">
       <key column="NDB_No" />

@@ -23,7 +23,7 @@ namespace SR28lib.Data
         public virtual string AddMod_Date{ get; set; }
         public virtual string CC{ get; set; }
 
-        public virtual IList<DataSource> DataSourceSet { get; set; }
+        public virtual ICollection<DataSource> DataSourceSet { get; set; }
         public virtual void AddDataSource(DataSource dataSource)
         {
         }

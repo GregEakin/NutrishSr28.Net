@@ -16,7 +16,7 @@ namespace SR28lib.Data
         public virtual string Issue_State { get; set; }
         public virtual string Start_Page { get; set; }
         public virtual string End_Page { get; set; }
-        public virtual IList<NutrientData> NutrientDataSet { get; set; }
+        public virtual ICollection<NutrientData> NutrientDataSet { get; set; }
 
         public virtual void AddNutrientData(NutrientData nutrientData)
         {
