@@ -8,7 +8,7 @@ namespace SR28lib.Data
     {
         public virtual string Deriv_Cd { get; set; }
         public virtual string Deriv_Desc { get; set; }
-        public virtual ICollection<NutrientData> NutrientDataSet { get; set; } = new List<NutrientData>();
+        public virtual ICollection<NutrientData> NutrientDataSet { get; set; } = new HashSet<NutrientData>();
 
         public virtual void AddNutrientData(NutrientData nutrientData)
         {
