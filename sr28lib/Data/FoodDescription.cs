@@ -55,7 +55,7 @@ namespace SR28lib.Data
                 throw new ArgumentNullException(nameof(footnote));
 
             footnote.FoodDescription = this;
-            FootnoteSet.Add(footnote);
+            //FootnoteSet.Add(footnote);
         }
 
         public virtual ICollection<Language> LanguageSet { get; set; } = new HashSet<Language>();
