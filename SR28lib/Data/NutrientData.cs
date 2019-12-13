@@ -45,11 +45,14 @@ namespace SR28lib.Data
         public virtual string AddMod_Date{ get; set; }
         public virtual string CC{ get; set; }
 
-        public virtual ICollection<DataSource> DataSourceSet { get; set; } = new HashSet<DataSource>();
+        public virtual ISet<DataSource> DataSourceSet { get; set; } = new HashSet<DataSource>();
         public virtual void AddDataSource(DataSource dataSource)
         {
             if (dataSource == null)
                 throw new ArgumentNullException(nameof(dataSource));
+
+            DataSourceSet.Add(dataSource);
+            dataSource.NutrientDataSet.Add(this);
         }
     }
 

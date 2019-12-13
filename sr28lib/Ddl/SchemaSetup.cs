@@ -12,7 +12,7 @@ namespace SR28lib.Ddl
     public class SchemaSetup : IDisposable
     {
         private readonly ISessionFactory _factory;
-        private readonly IStatelessSession _session;
+        private readonly ISession _session;
 
         public SchemaSetup(string connection, bool execute)
         {
@@ -34,7 +34,7 @@ namespace SR28lib.Ddl
                 new SchemaExport(cfg).SetOutputFile("schema.hibernate5.sql").Execute(true, true, false);
 
             _factory = cfg.BuildSessionFactory();
-            _session = _factory.OpenStatelessSession();
+            _session = _factory.OpenSession();
         }
 
         public void Dispose()
@@ -113,14 +113,14 @@ namespace SR28lib.Ddl
             //     LanguaL.ParseFile(_session);
             //     transaction.Commit();
             // }
-
-            // // nut_data
-            // // data_src
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     DatScrLn.ParseFile(_session);
-            //     transaction.Commit();
-            // }
+            
+            // nut_data
+            // data_src
+            using (var transaction = _session.BeginTransaction())
+            {
+                DatScrLn.ParseFile(_session);
+                transaction.Commit();
+            }
 
             // // food_des
             // // nuter_def

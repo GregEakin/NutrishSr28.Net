@@ -86,7 +86,7 @@
     <property name="Issue_State" type="string" length="5" />
     <property name="Start_Page" type="string" length="5" />
     <property name="End_Page" type="string" length="5" />
-    <set name="NutrientDataSet" table="DATSRCLN">
+    <set name="NutrientDataSet" table="DATSRCLN" inverse="true">
       <key column="DataSrc_ID" />
       <many-to-many class="NutrientData">
         <column name="NDB_No" />
@@ -157,7 +157,7 @@
       <generator class="assigned" />
     </id>
     <property name="Description" type="string" length="140" not-null="true" />
-    <set name="FoodDescriptionSet" table="LANGUAL">
+    <set name="FoodDescriptionSet" table="LANGUAL" inverse="true">
       <key column="Factor_Code" />
       <many-to-many class="FoodDescription" column="NDB_No" />
     </set>
