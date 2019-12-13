@@ -13,7 +13,7 @@ namespace SR28lib.Parsers
         public static void ParseFile(ISession session)
         {
             var lines = File.ReadLines(Filename);
-            foreach (var line in lines)
+            foreach (var line in lines) 
                 ParseLine(session, line);
         }
 
@@ -73,7 +73,7 @@ namespace SR28lib.Parsers
             if (fields[17].Length > 0) item.CC = fields[17];
 
             foodDescription.AddNutrientData(item);
-            nutrientDefinition.AddNutrientData(item);
+            // nutrientDefinition.AddNutrientData(item);
 
             return item;
         }
