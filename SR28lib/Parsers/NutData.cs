@@ -10,29 +10,29 @@ namespace SR28lib.Parsers
     {
         public static readonly string Filename = "..\\..\\..\\data\\NUT_DATA.txt";
 
-        public static void ParseFile(ISession session)
+        public static void ParseFile(IStatelessSession session)
         {
             var lines = File.ReadLines(Filename);
             foreach (var line in lines) 
                 ParseLine(session, line);
         }
 
-        private static void ParseLine(ISession session, string line)
+        private static void ParseLine(IStatelessSession session, string line)
         {
             var fields = line.Split('^');
             var item = ParseDataSource(session, fields);
-            session.Save(item);
+            session.Insert(item);
         }
 
-        private static NutrientData ParseDataSource(ISession session, IReadOnlyList<string> fields)
+        private static NutrientData ParseDataSource(IStatelessSession session, IReadOnlyList<string> fields)
         {
             var item = new NutrientData();
 
             var NDB_No = fields[0].Substring(1, fields[0].Length - 2);
-            var foodDescription = session.Load<FoodDescription>(NDB_No);
+            var foodDescription = session.Get<FoodDescription>(NDB_No);
 
             var Nutr_No = fields[1].Substring(1, fields[1].Length - 2);
-            var nutrientDefinition = session.Load<NutrientDefinition>(Nutr_No);
+            var nutrientDefinition = session.Get<NutrientDefinition>(Nutr_No);
 
             var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
             item.NutrientDataKey = nutrientDataKey;
@@ -44,20 +44,20 @@ namespace SR28lib.Parsers
             if (fields[4].Length > 0) item.Std_Error = double.Parse(fields[4]);
 
             var Src_Cd = fields[5].Substring(1, fields[5].Length - 2);
-            var sourceCode = session.Load<SourceCode>(Src_Cd);
+            var sourceCode = session.Get<SourceCode>(Src_Cd);
             item.AddSourceCode(sourceCode);
 
             if (fields[6].Length > 2)
             {
                 var Deriv_Cd = fields[6].Substring(1, fields[6].Length - 2);
-                var dataDerivation = session.Load<DataDerivation>(Deriv_Cd);
+                var dataDerivation = session.Get<DataDerivation>(Deriv_Cd);
                 item.AddDataDerivation(dataDerivation);
             }
 
             if (fields[7].Length > 2)
             {
                 var Ref_NDB_No = fields[7].Substring(1, fields[7].Length - 2);
-                var refFoodDescription = session.Load<FoodDescription>(Ref_NDB_No);
+                var refFoodDescription = session.Get<FoodDescription>(Ref_NDB_No);
                 item.FoodDescription = refFoodDescription;
             }
 
@@ -72,8 +72,8 @@ namespace SR28lib.Parsers
             if (fields[16].Length > 0) item.AddMod_Date = fields[16];
             if (fields[17].Length > 0) item.CC = fields[17];
 
-            foodDescription.AddNutrientData(item);
-            // nutrientDefinition.AddNutrientData(item);
+            //foodDescription.AddNutrientData(item);
+            //nutrientDefinition.AddNutrientData(item);
 
             return item;
         }

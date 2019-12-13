@@ -13,7 +13,7 @@ namespace SR28lib.Data
         public virtual void AddSourceCode(SourceCode sourceCode)
         {
             SourceCode = sourceCode ?? throw new ArgumentNullException(nameof(sourceCode));
-            sourceCode.NutrientDataSet.Add(this);
+            //sourceCode.NutrientDataSet.Add(this);
         }
 
         public virtual DataDerivation DataDerivation{ get; set; }
@@ -22,7 +22,7 @@ namespace SR28lib.Data
             if (dataDerivation == null)
                 throw new ArgumentNullException(nameof(dataDerivation));
 
-            dataDerivation.NutrientDataSet.Add(this);
+            //dataDerivation.NutrientDataSet.Add(this);
             // DataDerivation = dataDerivation;
             // dataDerivation.NutrientDataSet.Add(this);
         }

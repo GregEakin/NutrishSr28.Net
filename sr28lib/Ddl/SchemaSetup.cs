@@ -12,7 +12,7 @@ namespace SR28lib.Ddl
     public class SchemaSetup : IDisposable
     {
         private readonly ISessionFactory _factory;
-        private readonly ISession _session;
+        private readonly IStatelessSession _session;
 
         public SchemaSetup(string connection, bool execute)
         {
@@ -34,7 +34,7 @@ namespace SR28lib.Ddl
                 new SchemaExport(cfg).SetOutputFile("schema.hibernate5.sql").Execute(true, true, false);
 
             _factory = cfg.BuildSessionFactory();
-            _session = _factory.OpenSession();
+            _session = _factory.OpenStatelessSession();
         }
 
         public void Dispose()

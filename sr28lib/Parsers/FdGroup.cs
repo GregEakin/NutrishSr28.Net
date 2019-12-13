@@ -9,14 +9,14 @@ namespace SR28lib.Parsers
     {
         public static readonly string Filename = "..\\..\\..\\data\\FD_GROUP.txt";
 
-        public static void ParseFile(ISession session)
+        public static void ParseFile(IStatelessSession session)
         {
             var lines = File.ReadLines(Filename);
             foreach (var line in lines)
                 ParseLine(session, line);
         }
 
-        private static void ParseLine(ISession session, string line)
+        private static void ParseLine(IStatelessSession session, string line)
         {
             var fields = line.Split('^');
             var item = new FoodGroup
@@ -25,7 +25,7 @@ namespace SR28lib.Parsers
                 FdGrp_Desc = fields[1].Substring(1, fields[1].Length - 2)
             };
             
-            session.Save(item);
+            session.Insert(item);
         }
     }
 }

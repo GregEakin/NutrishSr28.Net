@@ -9,25 +9,25 @@ namespace SR28lib.Parsers
     {
         public static readonly string Filename = "..\\..\\..\\data\\FOOTNOTE.txt";
 
-        public static void ParseFile(ISession session)
+        public static void ParseFile(IStatelessSession session)
         {
             var lines = File.ReadLines(Filename);
             foreach (var line in lines)
                 ParseLine(session, line);
         }
 
-        private static void ParseLine(ISession session, string line)
+        private static void ParseLine(IStatelessSession session, string line)
         {
             var fields = line.Split('^');
             var item = ParseFootnote(session, fields);
-            session.Save(item);
+            session.Insert(item);
         }
 
-        private static SR28lib.Data.Footnote ParseFootnote(ISession session, IReadOnlyList<string> fields)
+        private static SR28lib.Data.Footnote ParseFootnote(IStatelessSession session, IReadOnlyList<string> fields)
         {
             var item = new SR28lib.Data.Footnote();
             var foodDescriptionId = fields[0].Substring(1, fields[0].Length - 2);
-            var foodDescription = session.Load<SR28lib.Data.FoodDescription>(foodDescriptionId);
+            var foodDescription = session.Get<SR28lib.Data.FoodDescription>(foodDescriptionId);
             item.FoodDescription = foodDescription;
 
             item.Footnt_No = fields[1].Substring(1, fields[1].Length - 2);
@@ -37,7 +37,7 @@ namespace SR28lib.Parsers
             if (fields[3].Length > 2)
             {
                 var Nutr_No = fields[3].Substring(1, fields[3].Length - 2);
-                var nutrientDefinition = session.Load<SR28lib.Data.NutrientDefinition>(Nutr_No);
+                var nutrientDefinition = session.Get<SR28lib.Data.NutrientDefinition>(Nutr_No);
                 item.NutrientDefinition = nutrientDefinition;
             }
 

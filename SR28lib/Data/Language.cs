@@ -14,8 +14,8 @@ namespace SR28lib.Data
             if (foodDescription == null)
                 throw new ArgumentNullException(nameof(foodDescription));
 
-            FoodDescriptionSet.Add(foodDescription);
-            foodDescription.LanguageSet.Add(this);
+            //FoodDescriptionSet.Add(foodDescription);
+            //foodDescription.LanguageSet.Add(this);
         }
     }
 }

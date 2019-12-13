@@ -10,7 +10,7 @@ namespace SR28lib.Data
         public virtual void AddFoodGroup(FoodGroup foodGroup)
         {
             FoodGroup = foodGroup ?? throw new ArgumentNullException(nameof(foodGroup));
-            FoodGroup.FoodDescriptionSet.Add(this);
+            //FoodGroup.FoodDescriptionSet.Add(this);
         }
 
         public virtual string Long_Desc { get; set; }
@@ -45,7 +45,7 @@ namespace SR28lib.Data
             if (!weight.WeightKey.FoodDescription.NDB_No.Equals(NDB_No))
                 throw new ArgumentException("Weight not related to Food Description.");
 
-            WeightSet.Add(weight);
+            //WeightSet.Add(weight);
         }
 
         public virtual ICollection<Footnote> FootnoteSet { get; set; } = new HashSet<Footnote>();

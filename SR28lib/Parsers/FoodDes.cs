@@ -10,27 +10,27 @@ namespace SR28lib.Parsers
     {
         public static readonly string Filename = "..\\..\\..\\data\\FOOD_DES.txt";
 
-        public static void ParseFile(ISession session)
+        public static void ParseFile(IStatelessSession session)
         {
             var lines = File.ReadLines(Filename);
             foreach (var line in lines) 
                 ParseLine(session, line);
         }
 
-        private static void ParseLine(ISession session, string line)
+        private static void ParseLine(IStatelessSession session, string line)
         {
             var fields = line.Split('^');
             var item = ParseFoodDescription(session, fields);
-            session.Save(item);
+            session.Insert(item);
         }
 
-        private static FoodDescription ParseFoodDescription(ISession session, IReadOnlyList<string> fields)
+        private static FoodDescription ParseFoodDescription(IStatelessSession session, IReadOnlyList<string> fields)
         {
             var item = new FoodDescription();
             item.NDB_No = fields[0].Substring(1, fields[0].Length - 2);
 
             var foodGroupId = fields[1].Substring(1, fields[1].Length - 2);
-            var foodGroup = session.Load<FoodGroup>(foodGroupId);
+            var foodGroup = session.Get<FoodGroup>(foodGroupId);
             item.AddFoodGroup(foodGroup);
 
             item.Long_Desc = fields[2].Substring(1, fields[2].Length - 2);

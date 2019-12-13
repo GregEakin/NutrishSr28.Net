@@ -10,18 +10,18 @@ namespace SR28lib.Parsers
     {
         public static readonly string Filename = "..\\..\\..\\data\\NUTR_DEF.txt";
 
-        public static void ParseFile(ISession session)
+        public static void ParseFile(IStatelessSession session)
         {
             var lines = File.ReadLines(Filename);
             foreach (var line in lines)
                 ParseLine(session, line);
         }
 
-        private static void ParseLine(ISession session, string line)
+        private static void ParseLine(IStatelessSession session, string line)
         {
             var fields = line.Split('^');
             var item = ParseDataSource(fields);
-            session.Save(item);
+            session.Insert(item);
         }
 
         private static NutrientDefinition ParseDataSource(IReadOnlyList<string> fields)
