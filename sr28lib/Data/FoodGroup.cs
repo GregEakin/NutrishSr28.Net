@@ -7,7 +7,7 @@ namespace SR28lib.Data
     {
         public virtual string FdGrp_Cd { get; set; }
         public virtual string FdGrp_Desc { get; set; }
-        public virtual ICollection<FoodDescription> FoodDescriptionSet { get; set; } = new HashSet<FoodDescription>();
+        public virtual ISet<FoodDescription> FoodDescriptionSet { get; set; } = new HashSet<FoodDescription>();
 
         public virtual void AddFoodDescription(FoodDescription foodDescription)
         {
