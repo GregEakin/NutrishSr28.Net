@@ -18,6 +18,7 @@ namespace SR28lib.Parsers
 
         private static void ParseLine(IStatelessSession session, string line)
         {
+            Console.WriteLine(line);
             var fields = line.Split('^');
             var item = ParseFootnote(session, fields);
             session.Insert(item);

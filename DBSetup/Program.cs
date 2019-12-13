@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DBSetup
+﻿namespace DBSetup
 {
     class Program
     {
@@ -22,7 +16,7 @@ namespace DBSetup
 
             var execute = true;
 
-            using (var schema = new SR28lib.Ddl.SchemaSetup(connection, execute))
+            using (var schema = new SR28lib.Ddl.SchemaSetup(connection, false))
             {
                 if (execute)
                 {

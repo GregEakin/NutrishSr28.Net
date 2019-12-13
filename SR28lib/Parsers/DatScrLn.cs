@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using NHibernate;
+﻿using NHibernate;
 using SR28lib.Data;
+using System.IO;
 
 namespace SR28lib.Parsers
 {
