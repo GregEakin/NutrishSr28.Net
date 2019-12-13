@@ -14,6 +14,16 @@ namespace SR28lib.Ddl
         private readonly ISessionFactory _factory;
         private readonly ISession _session;
 
+        const string connection =
+            "Data Source=(localdb)\\SR28;" +
+            "Initial Catalog=Nutrish;" +
+            "Integrated Security=True;" +
+            "Connect Timeout=30;" +
+            "Encrypt=False;" +
+            "TrustServerCertificate=False;" +
+            "ApplicationIntent=ReadWrite;" +
+            "MultiSubnetFailover=False";
+
         public SchemaSetup(string connection, bool execute)
         {
             var cfg = new Configuration();
