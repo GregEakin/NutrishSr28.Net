@@ -22,12 +22,12 @@ namespace SR28lib.Ddl
                 x.ConnectionString = connection;
                 x.Driver<SqlClientDriver>();
                 x.Dialect<MsSql2012Dialect>();
-                x.BatchSize = 1000;
+                x.BatchSize = 50;
             });
 
             var executingAssembly = Assembly.GetExecutingAssembly();
             cfg.AddAssembly(executingAssembly);
-            var libAssembly = typeof(SR28lib.Data.FoodGroup).Assembly;
+            //var libAssembly = typeof(SR28lib.Data.FoodGroup).Assembly;
             //cfg.AddAssembly(libAssembly);
 
             if (execute)
@@ -81,36 +81,49 @@ namespace SR28lib.Ddl
                 transaction.Commit();
             }
 
+            // fd_group
             using (var transaction = _session.BeginTransaction())
             {
                 FoodDes.ParseFile(_session);
                 transaction.Commit();
             }
 
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     LanguaL.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-
+            // food_des
             using (var transaction = _session.BeginTransaction())
             {
                 Weight.ParseFile(_session);
                 transaction.Commit();
             }
 
+            // food_des
+            // nutr_def
+            // src_cd
+            // deriv_cd
+            // food_des
             using (var transaction = _session.BeginTransaction())
             {
                 NutData.ParseFile(_session);
                 transaction.Commit();
             }
 
+            // langdesc
+            // food_des
+            using (var transaction = _session.BeginTransaction())
+            {
+                LanguaL.ParseFile(_session);
+                transaction.Commit();
+            }
+
+            // nut_data
+            // data_src
             using (var transaction = _session.BeginTransaction())
             {
                 DatScrLn.ParseFile(_session);
                 transaction.Commit();
             }
 
+            // food_des
+            // nuter_def
             using (var transaction = _session.BeginTransaction())
             {
                 Footnote.ParseFile(_session);
