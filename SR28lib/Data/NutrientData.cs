@@ -1,4 +1,17 @@
-﻿using System;
+﻿// Copyright 2019 Greg Eakin
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at:
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using System;
 using System.Collections.Generic;
 
 namespace SR28lib.Data
@@ -10,29 +23,10 @@ namespace SR28lib.Data
         public virtual int Num_Data_Pts{ get; set; }
         public virtual double Std_Error{ get; set; }
         public virtual SourceCode SourceCode{ get; set; }
-        public virtual void AddSourceCode(SourceCode sourceCode)
-        {
-            SourceCode = sourceCode ?? throw new ArgumentNullException(nameof(sourceCode));
-            //sourceCode.NutrientDataSet.Add(this);
-        }
 
         public virtual DataDerivation DataDerivation{ get; set; }
-        public virtual void AddDataDerivation(DataDerivation dataDerivation)
-        {
-            if (dataDerivation == null)
-                throw new ArgumentNullException(nameof(dataDerivation));
-
-            //dataDerivation.NutrientDataSet.Add(this);
-            // DataDerivation = dataDerivation;
-            // dataDerivation.NutrientDataSet.Add(this);
-        }
 
         public virtual FoodDescription FoodDescription { get; set; }
-        public virtual void AddFoodDescription(FoodDescription foodDescription)
-        {
-            if (foodDescription == null)
-                throw new ArgumentNullException(nameof(foodDescription));
-        }
 
         public virtual string Add_Nutr_Mark{ get; set; }
         public virtual int Num_Studies{ get; set; }
@@ -46,6 +40,29 @@ namespace SR28lib.Data
         public virtual string CC{ get; set; }
 
         public virtual ISet<DataSource> DataSourceSet { get; set; } = new HashSet<DataSource>();
+
+        public virtual void AddSourceCode(SourceCode sourceCode)
+        {
+            SourceCode = sourceCode ?? throw new ArgumentNullException(nameof(sourceCode));
+            //sourceCode.NutrientDataSet.Add(this);
+        }
+
+        public virtual void AddDataDerivation(DataDerivation dataDerivation)
+        {
+            if (dataDerivation == null)
+                throw new ArgumentNullException(nameof(dataDerivation));
+
+            //dataDerivation.NutrientDataSet.Add(this);
+            // DataDerivation = dataDerivation;
+            // dataDerivation.NutrientDataSet.Add(this);
+        }
+
+        public virtual void AddFoodDescription(FoodDescription foodDescription)
+        {
+            if (foodDescription == null)
+                throw new ArgumentNullException(nameof(foodDescription));
+        }
+
         public virtual void AddDataSource(DataSource dataSource)
         {
             if (dataSource == null)
@@ -59,15 +76,16 @@ namespace SR28lib.Data
     [Serializable]
     public sealed class NutrientDataKey
     {
-        public FoodDescription FoodDescription { get; set; }
-        public NutrientDefinition NutrientDefinition { get; set; }
-
         public NutrientDataKey() { }
+
         public NutrientDataKey(FoodDescription foodDescription, NutrientDefinition nutrientDefinition)
         {
             FoodDescription = foodDescription;
             NutrientDefinition = nutrientDefinition;
         }
+
+        public FoodDescription FoodDescription { get; set; }
+        public NutrientDefinition NutrientDefinition { get; set; }
 
         public override bool Equals(object obj)
         {

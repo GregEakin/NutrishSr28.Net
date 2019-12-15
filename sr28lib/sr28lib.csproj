@@ -59,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Data\Abbreviations.cs" />
     <Compile Include="Data\DataDerivation.cs" />
     <Compile Include="Data\DataSource.cs" />

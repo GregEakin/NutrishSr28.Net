@@ -1,4 +1,17 @@
-﻿using System;
+﻿// Copyright 2019 Greg Eakin
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at:
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using System;
 using System.Collections.Generic;
 
 namespace SR28lib.Data
@@ -7,11 +20,6 @@ namespace SR28lib.Data
     {
         public virtual string NDB_No { get; set; }
         public virtual FoodGroup FoodGroup { get; set; }
-        public virtual void AddFoodGroup(FoodGroup foodGroup)
-        {
-            FoodGroup = foodGroup ?? throw new ArgumentNullException(nameof(foodGroup));
-            //FoodGroup.FoodDescriptionSet.Add(this);
-        }
 
         public virtual string Long_Desc { get; set; }
         public virtual string Shrt_Desc { get; set; }
@@ -26,6 +34,19 @@ namespace SR28lib.Data
         public virtual double Fat_Factor { get; set; }
         public virtual double CHO_Factor { get; set; }
         public virtual ISet<NutrientData> NutrientDataSet { get; set; } = new HashSet<NutrientData>();
+
+        public virtual ISet<Weight> WeightSet { get; set; } = new HashSet<Weight>();
+
+        public virtual ISet<Footnote> FootnoteSet { get; set; } = new HashSet<Footnote>();
+
+        public virtual ISet<Language> LanguageSet { get; set; } = new HashSet<Language>();
+
+        public virtual void AddFoodGroup(FoodGroup foodGroup)
+        {
+            FoodGroup = foodGroup ?? throw new ArgumentNullException(nameof(foodGroup));
+            //FoodGroup.FoodDescriptionSet.Add(this);
+        }
+
         public virtual void AddNutrientData(NutrientData nutrientData)
         {
             if (nutrientData == null)
@@ -36,7 +57,6 @@ namespace SR28lib.Data
             NutrientDataSet.Add(nutrientData);
         }
 
-        public virtual ISet<Weight> WeightSet { get; set; } = new HashSet<Weight>();
         public virtual void AddWeight(Weight weight)
         {
             if (weight == null)
@@ -48,7 +68,6 @@ namespace SR28lib.Data
             //WeightSet.Add(weight);
         }
 
-        public virtual ISet<Footnote> FootnoteSet { get; set; } = new HashSet<Footnote>();
         public virtual void AddFootnote(Footnote footnote)
         {
             if (footnote == null)
@@ -58,7 +77,6 @@ namespace SR28lib.Data
             //FootnoteSet.Add(footnote);
         }
 
-        public virtual ISet<Language> LanguageSet { get; set; } = new HashSet<Language>();
         public virtual void AddLanguage(Language language)
         {
             if (language == null)
