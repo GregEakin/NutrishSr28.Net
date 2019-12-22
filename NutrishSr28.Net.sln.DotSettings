@@ -11,4 +11,6 @@ distributed under the License is distributed on an "AS IS" BASIS,&#xD;
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#xD;
 See the License for the specific language governing permissions and&#xD;
 limitations under the License.</s:String>
-	<s:Boolean x:Key="/Default/UserDictionary/Words/=Eakin/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Eakin/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Nutrish/@EntryIndexedValue">True</s:Boolean>
+	</wpf:ResourceDictionary>

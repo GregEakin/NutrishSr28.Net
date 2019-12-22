@@ -21,7 +21,7 @@ namespace SR28lib.Data
         public virtual NutrientDataKey NutrientDataKey { get; set; }
         public virtual double Nutr_Val { get; set; }
         public virtual int Num_Data_Pts{ get; set; }
-        public virtual double Std_Error{ get; set; }
+        public virtual double? Std_Error{ get; set; }
         public virtual SourceCode SourceCode{ get; set; }
 
         public virtual DataDerivation DataDerivation{ get; set; }
@@ -29,12 +29,12 @@ namespace SR28lib.Data
         public virtual FoodDescription FoodDescription { get; set; }
 
         public virtual string Add_Nutr_Mark{ get; set; }
-        public virtual int Num_Studies{ get; set; }
-        public virtual double Min{ get; set; }
-        public virtual double Max{ get; set; }
-        public virtual int DF{ get; set; }
-        public virtual double Low_EB{ get; set; }
-        public virtual double Up_EB{ get; set; }
+        public virtual int? Num_Studies{ get; set; }
+        public virtual double? Min{ get; set; }
+        public virtual double? Max{ get; set; }
+        public virtual int? DF{ get; set; }
+        public virtual double? Low_EB{ get; set; }
+        public virtual double? Up_EB{ get; set; }
         public virtual string Stat_cmt{ get; set; }
         public virtual string AddMod_Date{ get; set; }
         public virtual string CC{ get; set; }

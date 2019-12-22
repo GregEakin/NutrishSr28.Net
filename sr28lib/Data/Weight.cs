@@ -18,11 +18,11 @@ namespace SR28lib.Data
     public class Weight
     {
         public virtual WeightKey WeightKey { get; set; }
-        public virtual double Amount { get; set; }
+        public virtual double? Amount { get; set; }
         public virtual string Msre_Desc { get; set; }
-        public virtual double Gm_Wgt { get; set; }
-        public virtual int Num_Data_Pts { get; set; }
-        public virtual double Std_Dev { get; set; }
+        public virtual double? Gm_Wgt { get; set; }
+        public virtual int? Num_Data_Pts { get; set; }
+        public virtual double? Std_Dev { get; set; }
     }
 
     [Serializable]

@@ -27,12 +27,12 @@ namespace SR28lib.Data
         public virtual string ManufacName { get; set; }
         public virtual string Survey { get; set; }
         public virtual string Ref_desc { get; set; }
-        public virtual int Refuse { get; set; }
+        public virtual int? Refuse { get; set; }
         public virtual string SciName { get; set; }
-        public virtual double N_Factor { get; set; }
-        public virtual double Pro_Factor { get; set; }
-        public virtual double Fat_Factor { get; set; }
-        public virtual double CHO_Factor { get; set; }
+        public virtual double? N_Factor { get; set; }
+        public virtual double? Pro_Factor { get; set; }
+        public virtual double? Fat_Factor { get; set; }
+        public virtual double? CHO_Factor { get; set; }
         public virtual ISet<NutrientData> NutrientDataSet { get; set; } = new HashSet<NutrientData>();
 
         public virtual ISet<Weight> WeightSet { get; set; } = new HashSet<Weight>();

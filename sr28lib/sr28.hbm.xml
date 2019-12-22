@@ -205,11 +205,11 @@
     <property name="Num_Dec" type="string" length="1" not-null="true" />
     <property name="SR_Order" type="int" not-null="true" />
     <set name="NutrientDataSet">
-      <key column="NDB_NO" />
+      <key column="NDB_No" />
       <one-to-many class="NutrientData" />
     </set>
     <set name="FootnoteSet">
-      <key column="NDB_NO" />
+      <key column="Nutr_No" />
       <one-to-many class="Footnote" />
     </set>
   </class>

@@ -64,12 +64,20 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataValidation\AbbreviatedTests.cs" />
     <Compile Include="DataValidation\ElementCountTests.cs" />
+    <Compile Include="DataValidation\FattyAcidTests.cs" />
+    <Compile Include="DataValidation\FoodSearchTests.cs" />
+    <Compile Include="DataValidation\NutGroupTests.cs" />
+    <Compile Include="DataValidation\NutrientValidationTests.cs" />
+    <Compile Include="DataValidation\YogurtTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\NutrishRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -80,6 +88,7 @@
       <Name>SR28lib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
