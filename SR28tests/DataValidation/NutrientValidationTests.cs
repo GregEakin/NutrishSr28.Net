@@ -12,10 +12,12 @@
 // limitations under the License.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.DataValidation
 {
+    [TestClass]
     public class NutrientValidationTests
         : NutrishRepository
     {
@@ -25,5 +27,13 @@ namespace SR28tests.DataValidation
         [ClassCleanup]
         public static void ClassDestructor() => AfterAll();
 
+        [TestMethod]
+        public void NutrientDataTest()
+        {
+            var dataSource = Session.Load<DataSource>("D642");
+
+            var nutrientDataSet = dataSource.NutrientDataSet;
+            Assert.AreEqual(2, nutrientDataSet.Count);
+        }
     }
 }
