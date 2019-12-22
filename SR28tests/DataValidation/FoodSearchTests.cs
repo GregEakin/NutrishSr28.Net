@@ -11,11 +11,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.DataValidation
 {
+    [TestClass]
     public class FoodSearchTests
         : NutrishRepository
     {
@@ -25,5 +29,44 @@ namespace SR28tests.DataValidation
         [ClassCleanup]
         public static void ClassDestructor() => AfterAll();
 
+        [TestMethod]
+        public void SortedQueryTest()
+        {
+            FoodDescription foodDescription = Session.Load<FoodDescription>("01001");
+            Console.WriteLine("Basic Report: " + foodDescription.NDB_No
+                                               + ", " + foodDescription.Long_Desc);
+
+            Console.WriteLine("   Weight: Value per 100 g");
+            var weightSet = foodDescription.WeightSet;
+            foreach (var weight in weightSet)
+            {
+                Console.WriteLine(
+                    "   Weight: " + weight.Msre_Desc + ", " + weight.Amount + " x " + weight.Gm_Wgt + " g");
+            }
+
+            var hql = "select nds "
+                      + "from FoodDescription fd join fd.nutrientDataSet nds "
+                      + "where fd.NDB_No = :id "
+                      + "order by nds.nutrientDataKey.nutrientDefinition.SR_Order";
+            var query = Session.CreateQuery(hql);
+            query.SetParameter("id", "01001");
+            var list = query.List<NutrientData>();
+
+            //        Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
+            //        Comparator<NutrientData> nutrientDataComparator = Comparator.comparingInt(o -> o.getNutrientDataKey().getNutrientDefinition().getSR_Order());
+            //        List<NutrientData> list = nutrientDataSet.stream().sorted(nutrientDataComparator).collect(Collectors.toList());
+
+            Assert.AreEqual(115, list.Count);
+            foreach (var nutrientData in list)
+            {
+                var nutrientDataKey = nutrientData.NutrientDataKey;
+                var nutrientDefinition = nutrientDataKey.NutrientDefinition;
+
+                Console.WriteLine("   NutData: " + nutrientDefinition.SR_Order
+                                                 + ", " + nutrientDefinition.NutrDesc
+                                                 + " = " + nutrientData.Nutr_Val
+                                                 + " " + nutrientDefinition.Units);
+            }
+        }
     }
 }

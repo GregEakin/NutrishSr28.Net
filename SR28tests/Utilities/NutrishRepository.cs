@@ -19,7 +19,6 @@ using NHibernate.Driver;
 
 namespace SR28tests.Utilities
 {
-    [TestClass]
     public abstract class NutrishRepository
     {
         const string Connection =
@@ -38,7 +37,6 @@ namespace SR28tests.Utilities
 
         protected ISession Session => _session;
 
-        [ClassInitialize]
         public static void BeforeAll(TestContext context)
         {
             var cfg = new Configuration();
@@ -57,7 +55,6 @@ namespace SR28tests.Utilities
             _session = _factory.OpenSession();
         }
 
-        [ClassCleanup]
         public static void AfterAll()
         {
             _session?.Close();

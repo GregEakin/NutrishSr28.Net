@@ -12,12 +12,13 @@
 // limitations under the License.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SR28lib.Data;
 using SR28tests.Utilities;
 
-namespace SR28tests.DataValidation
+namespace SR28tests.References
 {
     [TestClass]
-    public class AbbreviatedTests 
+    public class DataDerivationTests
         : NutrishRepository
     {
         [ClassInitialize]
@@ -26,6 +27,14 @@ namespace SR28tests.DataValidation
         [ClassCleanup]
         public static void ClassDestructor() => AfterAll();
 
+        //  Links to the Nutrient Data file by Deriv_Cd
+        [TestMethod]
+        public void NutrientDataTest()
+        {
+            var dataDerivation = Session.Load<DataDerivation>("RC");
 
+            var nutrientDataSet = dataDerivation.NutrientDataSet;
+            Assert.AreEqual(2358, nutrientDataSet.Count);
+        }
     }
 }

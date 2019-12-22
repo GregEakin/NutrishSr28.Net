@@ -11,21 +11,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SR28tests.Utilities;
 
-namespace SR28tests.DataValidation
+namespace SR28tests.Utilities
 {
-    [TestClass]
-    public class AbbreviatedTests 
-        : NutrishRepository
+    public static class ExpectedException
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
+        public static T AssertThrows<T>(Action action) where T : Exception
+        {
+            try
+            {
+                action.Invoke();
+            }
+            catch (T ex)
+            {
+                if (ex.GetType() != typeof(T)) throw;
+                return ex;
+            }
 
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
-
+            Assert.Fail("Failed to throw exception!");
+            return null;
+        }
     }
 }

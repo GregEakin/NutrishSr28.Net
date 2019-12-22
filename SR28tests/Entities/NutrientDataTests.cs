@@ -11,21 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SR28tests.Utilities;
+using SR28lib.Data;
 
-namespace SR28tests.DataValidation
+namespace SR28tests.Entities
 {
-    [TestClass]
-    public class AbbreviatedTests 
-        : NutrishRepository
+    public class NutrientDataTests
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
-
+        public static NutrientData CrateNutrientData(FoodDescription foodDescription,
+            NutrientDefinition nutrientDefinition)
+        {
+            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+            var nutrientData = new NutrientData {NutrientDataKey = nutrientDataKey};
+            return nutrientData;
+        }
     }
 }

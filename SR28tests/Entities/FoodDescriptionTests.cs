@@ -11,21 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SR28tests.Utilities;
+using SR28lib.Data;
 
-namespace SR28tests.DataValidation
+namespace SR28tests.Entities
 {
-    [TestClass]
-    public class AbbreviatedTests 
-        : NutrishRepository
+    public class FoodDescriptionTests
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
+        public static FoodDescription CreateFoodDescription()
+        {
+            var foodDescription = new FoodDescription {NDB_No = "000000"};
+            return foodDescription;
+        }
 
     }
 }

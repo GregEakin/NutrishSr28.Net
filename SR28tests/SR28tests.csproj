@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataValidation\AbbreviatedTests.cs" />
+    <Compile Include="Entities\DataDerivationTests.cs" />
     <Compile Include="DataValidation\ElementCountTests.cs" />
     <Compile Include="DataValidation\FattyAcidTests.cs" />
     <Compile Include="DataValidation\FoodSearchTests.cs" />
@@ -77,7 +78,13 @@
     <Compile Include="DataValidation\NutrientCountTests.cs" />
     <Compile Include="DataValidation\NutrientValidationTests.cs" />
     <Compile Include="DataValidation\YogurtTests.cs" />
+    <Compile Include="Entities\DataSourceTests.cs" />
+    <Compile Include="Entities\FoodDescriptionTests.cs" />
+    <Compile Include="Entities\NutrientDataTests.cs" />
+    <Compile Include="Entities\NutrientDefinitionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="References\DataDerivationTests.cs" />
+    <Compile Include="Utilities\ExpectedException.cs" />
     <Compile Include="Utilities\NutrishRepository.cs" />
   </ItemGroup>
   <ItemGroup>
