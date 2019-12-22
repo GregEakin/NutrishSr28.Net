@@ -23,6 +23,16 @@ namespace SR28lib.Data
         public virtual double? Gm_Wgt { get; set; }
         public virtual int? Num_Data_Pts { get; set; }
         public virtual double? Std_Dev { get; set; }
+
+        public virtual void AddFoodDescription(FoodDescription foodDescription)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void AddNutrientData(NutrientData nutrientData)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     [Serializable]

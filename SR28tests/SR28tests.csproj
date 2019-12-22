@@ -89,6 +89,15 @@
     <Compile Include="Entities\WeightTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="References\DataDerivationTests.cs" />
+    <Compile Include="References\DataSourceTests.cs" />
+    <Compile Include="References\FoodDescriptionTests.cs" />
+    <Compile Include="References\FoodGroupTests.cs" />
+    <Compile Include="References\FootnoteTests.cs" />
+    <Compile Include="References\LanguageTests.cs" />
+    <Compile Include="References\NutrientDataTests.cs" />
+    <Compile Include="References\NutrientDefinitionTests.cs" />
+    <Compile Include="References\SourceCodeTests.cs" />
+    <Compile Include="References\WeightTests.cs" />
     <Compile Include="Utilities\ExpectedException.cs" />
     <Compile Include="Utilities\NutrishRepository.cs" />
   </ItemGroup>
