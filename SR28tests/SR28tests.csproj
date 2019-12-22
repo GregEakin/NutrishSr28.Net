@@ -74,6 +74,7 @@
     <Compile Include="DataValidation\FattyAcidTests.cs" />
     <Compile Include="DataValidation\FoodSearchTests.cs" />
     <Compile Include="DataValidation\NutGroupTests.cs" />
+    <Compile Include="DataValidation\NutrientCountTests.cs" />
     <Compile Include="DataValidation\NutrientValidationTests.cs" />
     <Compile Include="DataValidation\YogurtTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

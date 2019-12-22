@@ -18,7 +18,7 @@ using SR28tests.Utilities;
 namespace SR28tests.DataValidation
 {
     [TestClass]
-    public class NutGroupTests
+    public class NutrientCountTests
         : NutrishRepository
     {
         [ClassInitialize]
@@ -27,15 +27,27 @@ namespace SR28tests.DataValidation
         [ClassCleanup]
         public static void ClassDestructor() => AfterAll();
 
-        [TestMethod]
-        public void Test1()
+        private static readonly string[][] Stuff =
         {
-            var foodGroup = Session.Load<FoodGroup>("1200");
-            Assert.AreEqual("1200", foodGroup.FdGrp_Cd);
-            Assert.AreEqual("Nut and Seed Products", foodGroup.FdGrp_Desc);
+            new[] {"255", "Water", "WATER", "g", "8788"},
+            new[] {"208", "Energy", "ENERC_KCAL", "kcal", "8789"},
+            new[] {"211", "Glucose (dextrose)", "GLUS", "g", "1752"},
+            new[] {"204", "Total lipid (fat)", "FAT", "g", "8789"},
+        };
 
-            var foodDescriptionSet = foodGroup.FoodDescriptionSet;
-            Assert.AreEqual(137, foodDescriptionSet.Count);
+        [TestMethod]
+        public void CounterTest()
+        {
+            foreach (var data in Stuff)
+            {
+                var nutrientDefinition = Session.Load<NutrientDefinition>(data[0]);
+                Assert.AreEqual(data[1], nutrientDefinition.NutrDesc);
+                Assert.AreEqual(data[2], nutrientDefinition.Tagname);
+                Assert.AreEqual(data[3], nutrientDefinition.Units);
+
+                var nutrientDataSet = nutrientDefinition.NutrientDataSet;
+                Assert.AreEqual(int.Parse(data[4]), nutrientDataSet.Count);
+            }
         }
     }
 }
