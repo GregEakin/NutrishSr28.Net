@@ -11,24 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Collections.Generic;
+using SR28lib.Data;
 
-namespace SR28lib.Data
+namespace SR28tests.Entities
 {
-    public class FoodGroup
+    public class FootnoteTests
     {
-        public virtual string FdGrp_Cd { get; set; }
-        public virtual string FdGrp_Desc { get; set; }
-        public virtual ISet<FoodDescription> FoodDescriptionSet { get; set; } = new HashSet<FoodDescription>();
-
-        public virtual void AddFoodDescription(FoodDescription foodDescription)
+        public static Footnote CreateFootnote()
         {
-            if (foodDescription == null)
-                throw new ArgumentNullException(nameof(foodDescription));
-
-            foodDescription.FoodGroup = this;
-            FoodDescriptionSet.Add(foodDescription);
+            var footnote = new Footnote();
+            return footnote;
         }
+
     }
 }

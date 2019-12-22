@@ -32,7 +32,7 @@ namespace SR28tests.DataValidation
         [TestMethod]
         public void SortedQueryTest()
         {
-            FoodDescription foodDescription = Session.Load<FoodDescription>("01001");
+            var foodDescription = Session.Load<FoodDescription>("01001");
             Console.WriteLine("Basic Report: " + foodDescription.NDB_No
                                                + ", " + foodDescription.Long_Desc);
 

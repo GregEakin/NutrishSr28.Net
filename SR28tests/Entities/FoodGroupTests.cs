@@ -11,14 +11,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
-namespace SR28tests.DataValidation
+namespace SR28tests.Entities
 {
     [TestClass]
-    public class FattyAcidTests 
+    public class FoodGroupTests
         : NutrishRepository
     {
         [ClassInitialize]
@@ -27,37 +28,31 @@ namespace SR28tests.DataValidation
         [ClassCleanup]
         public static void ClassDestructor() => AfterAll();
 
-        [TestMethod]
-        public void ButyricTest()
+        public static FoodGroup CreateFoodGroup()
         {
-
-            var nutrientDefinition = Session.Load<NutrientDefinition>( "607");
-            Assert.AreEqual("4:0", nutrientDefinition.NutrDesc);
-            Assert.AreEqual("F4D0", nutrientDefinition.Tagname);
-            Assert.AreEqual("g", nutrientDefinition.Units);
-
+            var foodGroup = new FoodGroup {FdGrp_Cd = "0000"};
+            return foodGroup;
         }
 
         [TestMethod]
-        public void CaproicTest()
+        public void AddNullFoodDescriptionTest()
         {
+            var foodGroup = CreateFoodGroup();
 
-            var nutrientDefinition = Session.Load<NutrientDefinition>("608");
-            Assert.AreEqual("6:0", nutrientDefinition.NutrDesc);
-            Assert.AreEqual("F6D0", nutrientDefinition.Tagname);
-            Assert.AreEqual("g", nutrientDefinition.Units);
-
+            void ClosureContainingCodeToTest() => foodGroup.AddFoodDescription(null);
+            var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
+            Assert.AreEqual("Value cannot be null.\r\nParameter name: foodDescription", exception.Message);
         }
 
         [TestMethod]
-        public void MyristoleicTest()
+        public void AddFoodDescriptionTest()
         {
+            var foodGroup = CreateFoodGroup();
+            var foodDescription = FoodDescriptionTests.CreateFoodDescription();
 
-            var nutrientDefinition = Session.Load<NutrientDefinition>("625");
-            Assert.AreEqual("14:1", nutrientDefinition.NutrDesc);
-            Assert.AreEqual("F14D1", nutrientDefinition.Tagname);
-            Assert.AreEqual("g", nutrientDefinition.Units);
-
+            foodGroup.AddFoodDescription(foodDescription);
+            Assert.AreSame(foodGroup, foodDescription.FoodGroup);
+            Assert.IsTrue(foodGroup.FoodDescriptionSet.Contains(foodDescription));
         }
     }
 }

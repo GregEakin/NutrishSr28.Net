@@ -80,8 +80,12 @@
     <Compile Include="DataValidation\YogurtTests.cs" />
     <Compile Include="Entities\DataSourceTests.cs" />
     <Compile Include="Entities\FoodDescriptionTests.cs" />
+    <Compile Include="Entities\FoodGroupTests.cs" />
+    <Compile Include="Entities\FootnoteTests.cs" />
+    <Compile Include="Entities\LanguageTests.cs" />
     <Compile Include="Entities\NutrientDataTests.cs" />
     <Compile Include="Entities\NutrientDefinitionTests.cs" />
+    <Compile Include="Entities\WeightTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="References\DataDerivationTests.cs" />
     <Compile Include="Utilities\ExpectedException.cs" />
