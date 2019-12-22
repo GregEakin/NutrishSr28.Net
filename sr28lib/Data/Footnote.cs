@@ -22,12 +22,12 @@ namespace SR28lib.Data
         public virtual NutrientDefinition NutrientDefinition { get; set; }
         public virtual string Footnt_Txt { get; set; }
 
-        public void AddNutrientDefinition(NutrientDefinition o)
+        public virtual void AddNutrientDefinition(NutrientDefinition o)
         {
             throw new System.NotImplementedException();
         }
 
-        public void AddFoodDescription(FoodDescription o)
+        public virtual void AddFoodDescription(FoodDescription o)
         {
             throw new System.NotImplementedException();
         }
