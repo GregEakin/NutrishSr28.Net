@@ -50,7 +50,7 @@ namespace SR28tests.Entities
             var dataDerivation = CreateDataDerivation();
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
             var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
-            var nutrientData = NutrientDataTests.CrateNutrientData(foodDescription, nutrientDefinition);
+            var nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
 
             dataDerivation.AddNutrientData(nutrientData);
             Assert.AreSame(dataDerivation, nutrientData.DataDerivation);

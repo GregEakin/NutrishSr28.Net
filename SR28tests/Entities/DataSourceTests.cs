@@ -56,7 +56,7 @@ namespace SR28tests.Entities
             var dataSource = CreateDataSource();
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
             var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
-            var nutrientData = NutrientDataTests.CrateNutrientData(foodDescription, nutrientDefinition);
+            var nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
 
             dataSource.AddNutrientData(nutrientData);
             Assert.IsTrue(nutrientData.DataSourceSet.Contains(dataSource));
