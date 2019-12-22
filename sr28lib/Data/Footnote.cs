@@ -21,5 +21,15 @@ namespace SR28lib.Data
         public virtual string Footnt_Typ { get; set; }
         public virtual NutrientDefinition NutrientDefinition { get; set; }
         public virtual string Footnt_Txt { get; set; }
+
+        public void AddNutrientDefinition(NutrientDefinition o)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddFoodDescription(FoodDescription o)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

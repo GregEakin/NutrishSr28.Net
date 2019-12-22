@@ -11,17 +11,69 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SR28lib.Data;
+using SR28tests.Utilities;
 
 namespace SR28tests.Entities
 {
+    [TestClass]
     public class FootnoteTests
+        : NutrishRepository
     {
+        [ClassInitialize]
+        public static void ClassInit(TestContext context) => BeforeAll(context);
+
+        [ClassCleanup]
+        public static void ClassDestructor() => AfterAll();
+
         public static Footnote CreateFootnote()
         {
             var footnote = new Footnote();
             return footnote;
         }
 
+        [TestMethod]
+        public void AddNullNutrientDefinitionTest()
+        {
+            var footnote = FootnoteTests.CreateFootnote();
+
+            void ClosureContainingCodeToTest() => footnote.AddNutrientDefinition(null);
+            var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
+            Assert.AreEqual("Value cannot be null.\r\nParameter name: nutrientDefinition", exception.Message);
+        }
+
+        [TestMethod]
+        public void AddNutrientDefinitionTest()
+        {
+            var footnote = CreateFootnote();
+            var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
+
+            footnote.AddNutrientDefinition(nutrientDefinition);
+            Assert.AreSame(nutrientDefinition, footnote.NutrientDefinition);
+            Assert.IsTrue(nutrientDefinition.FootnoteSet.Contains(footnote));
+        }
+
+        [TestMethod]
+        public void AddNullFoodDescriptionTest()
+        {
+            var footnote = CreateFootnote();
+
+            void ClosureContainingCodeToTest() => footnote.AddFoodDescription(null);
+            var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
+            Assert.AreEqual("Value cannot be null.\r\nParameter name: foodDescription", exception.Message);
+        }
+
+        [TestMethod]
+        public void AddFoodDescriptionTest()
+        {
+            var footnote = CreateFootnote();
+            var foodDescription = FoodDescriptionTests.CreateFoodDescription();
+
+            footnote.AddFoodDescription(foodDescription);
+            Assert.AreSame(foodDescription, footnote.FoodDescription);
+            Assert.IsTrue(foodDescription.FootnoteSet.Contains(footnote));
+        }
     }
 }
