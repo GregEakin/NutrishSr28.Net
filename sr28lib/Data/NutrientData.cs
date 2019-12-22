@@ -71,6 +71,13 @@ namespace SR28lib.Data
             DataSourceSet.Add(dataSource);
             dataSource.NutrientDataSet.Add(this);
         }
+
+        public virtual ISet<Weight> WeightSet { get; set; }
+
+        public virtual void AddWeight(Weight weight)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     [Serializable]
