@@ -22,11 +22,32 @@ namespace SR28lib.Data
         public virtual double Nutr_Val { get; set; }
         public virtual int Num_Data_Pts { get; set; }
         public virtual double? Std_Error { get; set; }
+
         public virtual SourceCode SourceCode { get; set; }
+        public virtual void AddSourceCode(SourceCode sourceCode)
+        {
+            SourceCode = sourceCode ?? throw new ArgumentNullException(nameof(sourceCode));
+            sourceCode.NutrientDataSet.Add(this);
+        }
 
         public virtual DataDerivation DataDerivation { get; set; }
+        public virtual void AddDataDerivation(DataDerivation dataDerivation)
+        {
+            if (dataDerivation == null)
+                throw new ArgumentNullException(nameof(dataDerivation));
+
+            dataDerivation.NutrientDataSet.Add(this);
+            DataDerivation = dataDerivation;
+            dataDerivation.NutrientDataSet.Add(this);
+        }
+
 
         public virtual FoodDescription FoodDescription { get; set; }
+        public virtual void AddFoodDescription(FoodDescription foodDescription)
+        {
+            if (foodDescription == null)
+                throw new ArgumentNullException(nameof(foodDescription));
+        }
 
         public virtual string Add_Nutr_Mark { get; set; }
         public virtual int? Num_Studies { get; set; }
@@ -40,29 +61,6 @@ namespace SR28lib.Data
         public virtual string CC { get; set; }
 
         public virtual ISet<DataSource> DataSourceSet { get; set; } = new HashSet<DataSource>();
-
-        public virtual void AddSourceCode(SourceCode sourceCode)
-        {
-            SourceCode = sourceCode ?? throw new ArgumentNullException(nameof(sourceCode));
-            sourceCode.NutrientDataSet.Add(this);
-        }
-
-        public virtual void AddDataDerivation(DataDerivation dataDerivation)
-        {
-            if (dataDerivation == null)
-                throw new ArgumentNullException(nameof(dataDerivation));
-
-            dataDerivation.NutrientDataSet.Add(this);
-            DataDerivation = dataDerivation;
-            dataDerivation.NutrientDataSet.Add(this);
-        }
-
-        public virtual void AddFoodDescription(FoodDescription foodDescription)
-        {
-            if (foodDescription == null)
-                throw new ArgumentNullException(nameof(foodDescription));
-        }
-
         public virtual void AddDataSource(DataSource dataSource)
         {
             if (dataSource == null)
@@ -71,9 +69,8 @@ namespace SR28lib.Data
             DataSourceSet.Add(dataSource);
             dataSource.NutrientDataSet.Add(this);
         }
-
+        
         public virtual ISet<Weight> WeightSet { get; set; } = new HashSet<Weight>();
-
         public virtual void AddWeight(Weight weight)
         {
             if (weight == null) 
