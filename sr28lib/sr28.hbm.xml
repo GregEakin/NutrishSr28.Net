@@ -192,6 +192,10 @@
       </key>
       <many-to-many class="DataSource" column="DataSrc_ID" />
     </set>
+    <set name="WeightSet">
+      <key column="NDB_No" />
+      <one-to-many class="Weight" />
+    </set>
   </class>
 
   <class name="NutrientDefinition" table="NUTR_DEF">

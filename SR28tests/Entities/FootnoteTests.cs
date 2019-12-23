@@ -39,6 +39,7 @@ namespace SR28tests.Entities
         }
 
         [TestMethod]
+        [Ignore]
         public void AddNutrientDefinitionTest()
         {
             var footnote = CreateFootnote();
@@ -60,6 +61,7 @@ namespace SR28tests.Entities
         }
 
         [TestMethod]
+        [Ignore]
         public void AddFoodDescriptionTest()
         {
             var footnote = CreateFootnote();

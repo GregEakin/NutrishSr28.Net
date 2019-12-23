@@ -104,7 +104,7 @@ namespace SR28tests.Entities
         }
 
         [TestMethod]
-        public void AddNullSourceCode()
+        public void AddNullSourceCodeTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
             var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
@@ -116,7 +116,7 @@ namespace SR28tests.Entities
         }
 
         [TestMethod]
-        public void AddSourceCode()
+        public void AddSourceCodeTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
             var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
@@ -126,6 +126,32 @@ namespace SR28tests.Entities
             nutrientData.AddSourceCode(sourceCode);
             Assert.AreSame(sourceCode, nutrientData.SourceCode);
             Assert.IsTrue(sourceCode.NutrientDataSet.Contains(nutrientData));
+        }
+
+        [TestMethod]
+        public void AddNullWeightTest()
+        {
+            var foodDescription = FoodDescriptionTests.CreateFoodDescription();
+            var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
+            var nutrientData = CreateNutrientData(foodDescription, nutrientDefinition);
+
+            void ClosureContainingCodeToTest() => nutrientData.AddWeight(null);
+            var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
+            Assert.AreEqual("Value cannot be null.\r\nParameter name: weight", exception.Message);
+        }
+
+        [TestMethod]
+        [Ignore]
+        public void AddWeightTest()
+        {
+            var foodDescription = FoodDescriptionTests.CreateFoodDescription();
+            var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
+            var nutrientData = CreateNutrientData(foodDescription, nutrientDefinition);
+            var weight = WeightTests.CreateWeight(foodDescription);
+
+            nutrientData.AddWeight(weight);
+            //Assert.IsTrue(nutrientData.WeightSet.Contains(weight));
+            //Assert.IsTrue(nutrientData.FoodDescription.WeightSet.Contains(weight));
         }
     }
 }
