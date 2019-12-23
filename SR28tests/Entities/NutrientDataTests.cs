@@ -57,7 +57,7 @@ namespace SR28tests.Entities
             var dataDerivation = DataDerivationTests.CreateDataDerivation();
 
             nutrientData.AddDataDerivation(dataDerivation);
-            Assert.AreSame(dataDerivation, nutrientData.DataDerivation);
+            Assert.AreEqual(dataDerivation, nutrientData.DataDerivation);
             Assert.IsTrue(dataDerivation.NutrientDataSet.Contains(nutrientData));
         }
 

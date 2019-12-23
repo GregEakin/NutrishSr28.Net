@@ -20,31 +20,31 @@ namespace SR28lib.Data
     {
         public virtual NutrientDataKey NutrientDataKey { get; set; }
         public virtual double Nutr_Val { get; set; }
-        public virtual int Num_Data_Pts{ get; set; }
-        public virtual double? Std_Error{ get; set; }
-        public virtual SourceCode SourceCode{ get; set; }
+        public virtual int Num_Data_Pts { get; set; }
+        public virtual double? Std_Error { get; set; }
+        public virtual SourceCode SourceCode { get; set; }
 
-        public virtual DataDerivation DataDerivation{ get; set; }
+        public virtual DataDerivation DataDerivation { get; set; }
 
         public virtual FoodDescription FoodDescription { get; set; }
 
-        public virtual string Add_Nutr_Mark{ get; set; }
-        public virtual int? Num_Studies{ get; set; }
-        public virtual double? Min{ get; set; }
-        public virtual double? Max{ get; set; }
-        public virtual int? DF{ get; set; }
-        public virtual double? Low_EB{ get; set; }
-        public virtual double? Up_EB{ get; set; }
-        public virtual string Stat_cmt{ get; set; }
-        public virtual string AddMod_Date{ get; set; }
-        public virtual string CC{ get; set; }
+        public virtual string Add_Nutr_Mark { get; set; }
+        public virtual int? Num_Studies { get; set; }
+        public virtual double? Min { get; set; }
+        public virtual double? Max { get; set; }
+        public virtual int? DF { get; set; }
+        public virtual double? Low_EB { get; set; }
+        public virtual double? Up_EB { get; set; }
+        public virtual string Stat_cmt { get; set; }
+        public virtual string AddMod_Date { get; set; }
+        public virtual string CC { get; set; }
 
         public virtual ISet<DataSource> DataSourceSet { get; set; } = new HashSet<DataSource>();
 
         public virtual void AddSourceCode(SourceCode sourceCode)
         {
             SourceCode = sourceCode ?? throw new ArgumentNullException(nameof(sourceCode));
-            //sourceCode.NutrientDataSet.Add(this);
+            sourceCode.NutrientDataSet.Add(this);
         }
 
         public virtual void AddDataDerivation(DataDerivation dataDerivation)
@@ -52,9 +52,9 @@ namespace SR28lib.Data
             if (dataDerivation == null)
                 throw new ArgumentNullException(nameof(dataDerivation));
 
-            //dataDerivation.NutrientDataSet.Add(this);
-            // DataDerivation = dataDerivation;
-            // dataDerivation.NutrientDataSet.Add(this);
+            dataDerivation.NutrientDataSet.Add(this);
+            DataDerivation = dataDerivation;
+            dataDerivation.NutrientDataSet.Add(this);
         }
 
         public virtual void AddFoodDescription(FoodDescription foodDescription)
@@ -83,7 +83,9 @@ namespace SR28lib.Data
     [Serializable]
     public sealed class NutrientDataKey
     {
-        public NutrientDataKey() { }
+        public NutrientDataKey()
+        {
+        }
 
         public NutrientDataKey(FoodDescription foodDescription, NutrientDefinition nutrientDefinition)
         {
@@ -98,7 +100,7 @@ namespace SR28lib.Data
         {
             if (this == obj) return true;
             if (obj == null || GetType() != obj.GetType()) return false;
-            var that = (NutrientDataKey)obj;
+            var that = (NutrientDataKey) obj;
             var same = (FoodDescription?.Equals(that.FoodDescription) ?? that.FoodDescription == null)
                        && (NutrientDefinition?.Equals(that.NutrientDefinition) ?? that.NutrientDefinition == null);
             return same;

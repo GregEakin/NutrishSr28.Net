@@ -26,11 +26,13 @@ namespace SR28lib.Data
 
         public virtual void AddFoodDescription(FoodDescription foodDescription)
         {
+            if (foodDescription == null) throw new ArgumentNullException(nameof(foodDescription));
             throw new NotImplementedException();
         }
 
         public virtual void AddNutrientData(NutrientData nutrientData)
         {
+            if (nutrientData == null) throw new ArgumentNullException(nameof(nutrientData));
             throw new NotImplementedException();
         }
     }
@@ -38,7 +40,9 @@ namespace SR28lib.Data
     [Serializable]
     public sealed class WeightKey
     {
-        public WeightKey() { }
+        public WeightKey()
+        {
+        }
 
         public WeightKey(FoodDescription foodDescription, string seq)
         {

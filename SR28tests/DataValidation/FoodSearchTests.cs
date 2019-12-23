@@ -45,9 +45,9 @@ namespace SR28tests.DataValidation
             }
 
             var hql = "select nds "
-                      + "from FoodDescription fd join fd.nutrientDataSet nds "
+                      + "from FoodDescription fd join fd.NutrientDataSet nds "
                       + "where fd.NDB_No = :id "
-                      + "order by nds.nutrientDataKey.nutrientDefinition.SR_Order";
+                      + "order by nds.NutrientDataKey.NutrientDefinition.SR_Order";
             var query = Session.CreateQuery(hql);
             query.SetParameter("id", "01001");
             var list = query.List<NutrientData>();

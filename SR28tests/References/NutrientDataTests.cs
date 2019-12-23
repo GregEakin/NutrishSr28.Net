@@ -78,16 +78,15 @@ namespace SR28tests.References
             var nutrientDefinition = Session.Load<NutrientDefinition>("320");
             var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
 
-            throw new NotImplementedException();
-            // String hql =
-            //     "FROM Footnote WHERE foodDescription.NDB_No = :ndb_no and nutrientDefinition.nutr_No = :nutr_no";
-            // Query<Footnote> query = session.createQuery(hql, Footnote.class);
-            // query.setParameter("ndb_no", nutrientDataKey.getFoodDescription().getNDB_No());
-            // query.setParameter("nutr_no", nutrientDataKey.getNutrientDefinition().getNutr_No());
-            // Footnote footnote = query.getSingleResult();
-            //
-            // assertEquals("03073", footnote.getFoodDescription().getNDB_No());
-            // assertEquals("320", footnote.getNutrientDefinition().getNutr_No());
+            String hql =
+                "FROM Footnote WHERE FoodDescription.NDB_No = :ndb_no and NutrientDefinition.Nutr_No = :nutr_no";
+            var query = Session.CreateQuery(hql);
+            query.SetParameter("ndb_no", nutrientDataKey.FoodDescription.NDB_No);
+            query.SetParameter("nutr_no", nutrientDataKey.NutrientDefinition.Nutr_No);
+            Footnote footnote = query.UniqueResult<Footnote>();
+
+            Assert.AreEqual("03073", footnote.FoodDescription.NDB_No);
+            Assert.AreEqual("320", footnote.NutrientDefinition.Nutr_No);
         }
 
         //  Links to the Sources of Data Link file by NDB_No and Nutr_No

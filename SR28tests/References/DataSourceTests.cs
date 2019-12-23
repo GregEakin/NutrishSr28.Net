@@ -46,7 +46,7 @@ namespace SR28tests.References
             //DataSource dataSource = session.load(DataSource.class, "D642");
 
             var hql =
-                "select nd from DataSource ds join ds.nutrientDataSet nds join nds.nutrientDataKey.nutrientDefinition nd where ds.id = :id";
+                "select nd from DataSource ds join ds.NutrientDataSet nds join nds.NutrientDataKey.NutrientDefinition nd where ds.DataSrc_ID = :id";
             var query = Session.CreateQuery(hql);
             query.SetParameter("id", "D642");
             var list = query.List();
