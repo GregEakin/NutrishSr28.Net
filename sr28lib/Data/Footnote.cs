@@ -11,6 +11,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+
 namespace SR28lib.Data
 {
     public class Footnote
@@ -22,13 +24,15 @@ namespace SR28lib.Data
         public virtual NutrientDefinition NutrientDefinition { get; set; }
         public virtual string Footnt_Txt { get; set; }
 
-        public virtual void AddNutrientDefinition(NutrientDefinition o)
+        public virtual void AddNutrientDefinition(NutrientDefinition nutrientDefinition)
         {
+            if (nutrientDefinition == null) throw new ArgumentNullException(nameof(nutrientDefinition));
             throw new System.NotImplementedException();
         }
 
-        public virtual void AddFoodDescription(FoodDescription o)
+        public virtual void AddFoodDescription(FoodDescription foodDescription)
         {
+            if (foodDescription == null) throw new ArgumentNullException(nameof(foodDescription));
             throw new System.NotImplementedException();
         }
     }
