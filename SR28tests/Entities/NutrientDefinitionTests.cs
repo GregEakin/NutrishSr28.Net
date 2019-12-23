@@ -24,7 +24,7 @@ namespace SR28tests.Entities
     {
         public static NutrientDefinition CreateNutrientDefinition()
         {
-            var nutrientDefinition = new NutrientDefinition {Nutr_No = "000"};
+            var nutrientDefinition = new NutrientDefinition {Nutr_No = "000", NutrDesc = "Bits" };
             return nutrientDefinition;
         }
 

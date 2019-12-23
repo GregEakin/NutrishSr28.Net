@@ -24,7 +24,7 @@ namespace SR28tests.Entities
     {
         public static FoodDescription CreateFoodDescription()
         {
-            var foodDescription = new FoodDescription {NDB_No = "000000"};
+            var foodDescription = new FoodDescription {NDB_No = "000000", Shrt_Desc = "CPU Size"};
             return foodDescription;
         }
 

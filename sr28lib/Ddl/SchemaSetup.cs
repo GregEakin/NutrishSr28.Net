@@ -19,6 +19,8 @@ using NHibernate.Tool.hbm2ddl;
 using SR28lib.Parsers;
 using System;
 using System.Reflection;
+using Footnote = SR28lib.Parsers.Footnote;
+using Weight = SR28lib.Parsers.Weight;
 
 namespace SR28lib.Ddl
 {
@@ -51,8 +53,6 @@ namespace SR28lib.Ddl
 
             var executingAssembly = Assembly.GetExecutingAssembly();
             cfg.AddAssembly(executingAssembly);
-            //var libAssembly = typeof(SR28lib.Data.FoodGroup).Assembly;
-            //cfg.AddAssembly(libAssembly);
 
             if (execute)
                 new SchemaExport(cfg).SetOutputFile("schema.hibernate5.sql").Execute(true, true, false);
@@ -76,6 +76,10 @@ namespace SR28lib.Ddl
                 FdGroup.ParseFile(_statelessSession);
                 transaction.Commit();
             }
+            // var countFdGroup = _session
+            //     .QueryOver<FoodGroup>()
+            //     .RowCount();
+            // Console.WriteLine(countFdGroup);
 
             using (var transaction = _session.BeginTransaction())
             {

@@ -12,9 +12,11 @@
 // limitations under the License.
 
 using System;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{Id} {Footnt_Txt}")]
     public class Footnote
     {
         public virtual int Id { get; set; }

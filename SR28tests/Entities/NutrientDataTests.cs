@@ -26,7 +26,7 @@ namespace SR28tests.Entities
             NutrientDefinition nutrientDefinition)
         {
             var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
-            var nutrientData = new NutrientData {NutrientDataKey = nutrientDataKey};
+            var nutrientData = new NutrientData {NutrientDataKey = nutrientDataKey, Nutr_Val = 64.0};
             return nutrientData;
         }
 

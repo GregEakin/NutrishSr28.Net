@@ -13,9 +13,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{Nutr_No} {NutrDesc}")]
     public class NutrientDefinition
     {
         public virtual string Nutr_No { get; set; }

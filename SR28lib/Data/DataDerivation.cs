@@ -14,9 +14,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{Deriv_Cd} {Deriv_Desc}")]
     public class DataDerivation
     {
         public virtual string Deriv_Cd { get; set; }

@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class DataSourceTests
         : TransactionSetup
     {
-        public static DataDerivation CreateDataDerivation()
-        {
-            var dataDerivation = new DataDerivation {Deriv_Cd = "0000"};
-            return dataDerivation;
-        }
-
         public static DataSource CreateDataSource()
         {
             var dataSource = new DataSource {DataSrc_ID = "000000"};

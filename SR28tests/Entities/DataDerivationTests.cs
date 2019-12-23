@@ -24,7 +24,7 @@ namespace SR28tests.Entities
     {
         public static DataDerivation CreateDataDerivation()
         {
-            var dataDerivation = new DataDerivation {Deriv_Cd = "0000"};
+            var dataDerivation = new DataDerivation {Deriv_Cd = "BUG", Deriv_Desc = "Debugger"};
             return dataDerivation;
         }
 

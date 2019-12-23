@@ -12,9 +12,11 @@
 // limitations under the License.
 
 using System;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{WeightKey.FoodDescription} {WeightKey.Seq} {Msre_Desc}")]
     public class Weight
     {
         public virtual WeightKey WeightKey { get; set; }

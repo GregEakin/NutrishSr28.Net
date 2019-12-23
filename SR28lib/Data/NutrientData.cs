@@ -13,9 +13,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{NutrientDataKey.FoodDescription.NDB_No} {NutrientDataKey.NutrientDefinition.Nutr_No} {Nutr_Val}")]
     public class NutrientData
     {
         public virtual NutrientDataKey NutrientDataKey { get; set; }
