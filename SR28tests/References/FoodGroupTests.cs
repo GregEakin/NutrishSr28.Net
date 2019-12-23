@@ -11,10 +11,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SR28lib.Data;
+using SR28tests.Utilities;
+
 namespace SR28tests.References
 {
+    [TestClass]
     public class FoodGroupTests
+        : NutrishRepository
     {
-        
-    }
+        [ClassInitialize]
+        public static void ClassInit(TestContext context) => BeforeAll(context);
+
+        [ClassCleanup]
+        public static void ClassDestructor() => AfterAll();
+
+        //  Links to the Food Description file by FdGrp_Cd
+        [TestMethod]
+        public void FoodDescriptionTest()
+        {
+            var foodGroup = Session.Load<FoodGroup>("0400");
+
+            var foodDescriptionSet = foodGroup.FoodDescriptionSet;
+            Assert.AreEqual(220, foodDescriptionSet.Count);
+        }
+
+}
 }

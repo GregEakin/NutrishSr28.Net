@@ -11,10 +11,72 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SR28lib.Data;
+using SR28tests.Utilities;
+
 namespace SR28tests.References
 {
+    [TestClass]
     public class FoodDescriptionTests
+        : NutrishRepository
     {
-        
+        [ClassInitialize]
+        public static void ClassInit(TestContext context) => BeforeAll(context);
+
+        [ClassCleanup]
+        public static void ClassDestructor() => AfterAll();
+
+        //  Links to the Food Group Description file by the FdGrp_Cd field
+        [TestMethod]
+        public void FoodGroupTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+
+            var foodGroup = foodDescription.FoodGroup;
+            Assert.AreEqual("0100", foodGroup.FdGrp_Cd);
+            Assert.AreEqual("Dairy and Egg Products", foodGroup.FdGrp_Desc);
+        }
+
+        //  Links to the Nutrient Data file by the NDB_No field
+        [TestMethod]
+        public void NutrientDataTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+
+            var nutrientDataSet = foodDescription.NutrientDataSet;
+            Assert.AreEqual(91, nutrientDataSet.Count);
+        }
+
+//  Links to the Weight file by the NDB_No field
+        [TestMethod]
+        public void WeightTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+
+            var weightSet = foodDescription.WeightSet;
+            Assert.AreEqual(3, weightSet.Count);
+        }
+
+        //  Links to the Footnote file by the NDB_No field
+        [TestMethod]
+        public void FootnoteTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("05315");
+
+            var footnoteSet = foodDescription.FootnoteSet;
+            Assert.AreEqual(3, footnoteSet.Count);
+        }
+
+        //  Links to the LanguaL Factor file by the NDB_No field
+        [TestMethod]
+        public void LanguageTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("02002");
+
+            var languageSet = foodDescription.LanguageSet;
+            Assert.AreEqual(13, languageSet.Count);
+        }
     }
 }

@@ -11,10 +11,139 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SR28lib.Data;
+using SR28tests.Utilities;
+
 namespace SR28tests.References
 {
+    [TestClass]
     public class NutrientDataTests
+        : NutrishRepository
     {
-        
+        [ClassInitialize]
+        public static void ClassInit(TestContext context) => BeforeAll(context);
+
+        [ClassCleanup]
+        public static void ClassDestructor() => AfterAll();
+
+        //  Links to the Food Description file by Ref_NDB_No
+        [TestMethod]
+        public void FoodDescriptionTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("204");
+            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+            var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
+
+            Assert.AreSame(nutrientDataKey, nutrientData.NutrientDataKey);
+            Assert.AreSame(foodDescription, nutrientData.NutrientDataKey.FoodDescription);
+        }
+
+        //  Links to the Weight file by NDB_No
+        //    [TestMethod]
+        //    public void weightTest() {
+        //        FoodDescription foodDescription = Session.Load<FoodDescription.class, "01119");
+        //        NutrientDefinition nutrientDefinition = Session.Load<NutrientDefinition.class, "204");
+        //        NutrientDataKey nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+        //        NutrientData nutrientData = Session.Load<NutrientData.class, nutrientDataKey);
+        //
+        //        Set<Weight> weightSet = nutrientData.getNutrientDataKey().getFoodDescription().getWeightSet();
+        //        assertEquals(3, weightSet.size());
+        //    }
+
+        //  Links to the Footnote file by NDB_No
+        [TestMethod]
+        public void FootnoteTest1()
+        {
+            var foodDescription = Session.Load<FoodDescription>("12040");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("204");
+            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+
+            var footnoteSet = nutrientDataKey.FoodDescription.FootnoteSet;
+            Assert.AreEqual(2, footnoteSet.Count);
+            foreach (var footnote in footnoteSet)
+            {
+                Assert.AreEqual("12040", footnote.FoodDescription.NDB_No);
+                Assert.IsNull(footnote.NutrientDefinition);
+            }
+        }
+
+        //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
+        [TestMethod]
+        public void FootnoteTest2()
+        {
+            var foodDescription = Session.Load<FoodDescription>("03073");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("320");
+            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+
+            throw new NotImplementedException();
+            // String hql =
+            //     "FROM Footnote WHERE foodDescription.NDB_No = :ndb_no and nutrientDefinition.nutr_No = :nutr_no";
+            // Query<Footnote> query = session.createQuery(hql, Footnote.class);
+            // query.setParameter("ndb_no", nutrientDataKey.getFoodDescription().getNDB_No());
+            // query.setParameter("nutr_no", nutrientDataKey.getNutrientDefinition().getNutr_No());
+            // Footnote footnote = query.getSingleResult();
+            //
+            // assertEquals("03073", footnote.getFoodDescription().getNDB_No());
+            // assertEquals("320", footnote.getNutrientDefinition().getNutr_No());
+        }
+
+        //  Links to the Sources of Data Link file by NDB_No and Nutr_No
+        [TestMethod]
+        public void DataSourceTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("313");
+            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+            var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
+
+            var dataSourceSet = nutrientData.DataSourceSet;
+            Assert.AreEqual(1, dataSourceSet.Count);
+        }
+
+        //  Links to the Nutrient Definition file by Nutr_No
+        [TestMethod]
+        public void NutrientDefinitionTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("204");
+            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+            var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
+
+            Assert.AreEqual(nutrientDataKey, nutrientData.NutrientDataKey);
+            Assert.AreSame(nutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
+        }
+
+        //  Links to the Source Code file by Src_Cd
+        [TestMethod]
+        public void SourceCodeTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("317");
+            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+            var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
+
+            var sourceCode = nutrientData.SourceCode;
+            Assert.AreEqual("4", sourceCode.Src_Cd);
+            Assert.AreEqual("Calculated or imputed", sourceCode.SrcCd_Desc);
+        }
+
+        //  Links to the Data Derivation Code Description file by Deriv_Cd
+        [TestMethod]
+        public void DataDerivationTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("317");
+            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+            var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
+
+            var dataDerivation = nutrientData.DataDerivation;
+            Assert.AreEqual("BFNN", dataDerivation.Deriv_Cd);
+            Assert.AreEqual(
+                "Based on another form of the food or similar food; Concentration adjustment; Non-fat solids; Retention factors not used",
+                dataDerivation.Deriv_Desc);
+        }
     }
 }

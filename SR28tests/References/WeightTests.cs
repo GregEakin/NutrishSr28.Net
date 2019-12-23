@@ -11,10 +11,44 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SR28lib.Data;
+using SR28tests.Utilities;
+
 namespace SR28tests.References
 {
+    [TestClass]
     public class WeightTests
+        : NutrishRepository
     {
-        
+        [ClassInitialize]
+        public static void ClassInit(TestContext context) => BeforeAll(context);
+
+        [ClassCleanup]
+        public static void ClassDestructor() => AfterAll();
+
+        //  Links to Food Description file by NDB_No
+        [TestMethod]
+        public void FoodDescriptionTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+            var weightKey = new WeightKey(foodDescription, "3 ");
+            var weight = Session.Load<Weight>(weightKey);
+
+            Assert.AreSame(foodDescription, weight.WeightKey.FoodDescription);
+        }
+
+        //  Links to Nutrient Data file by NDB_No
+        [TestMethod]
+        public void NutrientDataTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01119");
+            var weightKey = new WeightKey(foodDescription, "3 ");
+            var weight = Session.Load<Weight>(weightKey);
+
+            var nutrientDataSet = weight.WeightKey.FoodDescription.NutrientDataSet;
+            Assert.AreEqual(91, nutrientDataSet.Count);
+        }
     }
 }

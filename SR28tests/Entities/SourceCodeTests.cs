@@ -37,7 +37,7 @@ namespace SR28tests.Entities
         [TestMethod]
         public void AddNullNutrientDataTest()
         {
-            SourceCode sourceCode = CreateSourceCode();
+            var sourceCode = CreateSourceCode();
 
             void ClosureContainingCodeToTest() => sourceCode.AddNutrientData(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
@@ -47,10 +47,10 @@ namespace SR28tests.Entities
     [TestMethod]
         public void AddNutrientDataTest()
         {
-            SourceCode sourceCode = CreateSourceCode();
-            FoodDescription foodDescription = FoodDescriptionTests.CreateFoodDescription();
-            NutrientDefinition nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
-            NutrientData nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
+            var sourceCode = CreateSourceCode();
+            var foodDescription = FoodDescriptionTests.CreateFoodDescription();
+            var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
+            var nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
 
             sourceCode.AddNutrientData(nutrientData);
             Assert.AreSame(sourceCode, nutrientData.SourceCode);

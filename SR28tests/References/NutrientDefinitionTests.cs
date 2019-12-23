@@ -11,10 +11,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SR28lib.Data;
+using SR28tests.Utilities;
+
 namespace SR28tests.References
 {
+    [TestClass]
     public class NutrientDefinitionTests
+        : NutrishRepository
     {
-        
+        [ClassInitialize]
+        public static void ClassInit(TestContext context) => BeforeAll(context);
+
+        [ClassCleanup]
+        public static void ClassDestructor() => AfterAll();
+
+        //  Links to the Nutrient Data file by Nutr_No
+        [TestMethod]
+        public void NutrientDataTest()
+        {
+            var nutrientDefinition = Session.Load<NutrientDefinition>("204");
+            var nutrientDataSet = nutrientDefinition.NutrientDataSet;
+            Assert.AreEqual(8789, nutrientDataSet.Count);
+        }
     }
 }
