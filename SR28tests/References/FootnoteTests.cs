@@ -30,7 +30,7 @@ namespace SR28tests.References
             query.SetParameter("ndb_no", "05316");
             var footnote = query.UniqueResult<Footnote>();
             
-            FoodDescription foodDescription = footnote.FoodDescription;
+            var foodDescription = footnote.FoodDescription;
             Assert.AreEqual("05316", foodDescription.NDB_No);
         }
 
@@ -41,7 +41,7 @@ namespace SR28tests.References
             var hql = "FROM Footnote WHERE FoodDescription.NDB_No = :ndb_no and NutrientDefinition.Nutr_No is null";
             var query = Session.CreateQuery(hql);
             query.SetParameter("ndb_no", "05316");
-            Footnote footnote = query.UniqueResult<Footnote>();
+            var footnote = query.UniqueResult<Footnote>();
 
             var foodDescription = footnote.FoodDescription;
             var nutrientDataSet = foodDescription.NutrientDataSet;
