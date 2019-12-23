@@ -31,7 +31,7 @@ namespace SR28tests.References
             var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
-            Assert.AreSame(nutrientDataKey, nutrientData.NutrientDataKey);
+            Assert.AreEqual(nutrientDataKey, nutrientData.NutrientDataKey);
             Assert.AreSame(foodDescription, nutrientData.NutrientDataKey.FoodDescription);
         }
 
