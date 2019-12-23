@@ -18,40 +18,34 @@ using SR28tests.Utilities;
 namespace SR28tests.DataValidation
 {
     [TestClass]
-    public class FattyAcidTests 
+    public class FattyAcidTests
         : TransactionSetup
     {
         [TestMethod]
         public void ButyricTest()
         {
-
-            var nutrientDefinition = Session.Load<NutrientDefinition>( "607");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("607");
             Assert.AreEqual("4:0", nutrientDefinition.NutrDesc);
             Assert.AreEqual("F4D0", nutrientDefinition.Tagname);
             Assert.AreEqual("g", nutrientDefinition.Units);
-
         }
 
         [TestMethod]
         public void CaproicTest()
         {
-
             var nutrientDefinition = Session.Load<NutrientDefinition>("608");
             Assert.AreEqual("6:0", nutrientDefinition.NutrDesc);
             Assert.AreEqual("F6D0", nutrientDefinition.Tagname);
             Assert.AreEqual("g", nutrientDefinition.Units);
-
         }
 
         [TestMethod]
         public void MyristoleicTest()
         {
-
             var nutrientDefinition = Session.Load<NutrientDefinition>("625");
             Assert.AreEqual("14:1", nutrientDefinition.NutrDesc);
             Assert.AreEqual("F14D1", nutrientDefinition.Tagname);
             Assert.AreEqual("g", nutrientDefinition.Units);
-
         }
     }
 }

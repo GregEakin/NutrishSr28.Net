@@ -11,11 +11,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
 using NHibernate;
 using SR28lib.Data;
+using System.Collections.Generic;
+using System.IO;
 
 namespace SR28lib.Parsers
 {

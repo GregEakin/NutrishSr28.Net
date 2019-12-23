@@ -14,7 +14,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SR28lib.Data;
 using SR28tests.Utilities;
-using System;
 using System.Linq;
 
 namespace SR28tests.DataValidation

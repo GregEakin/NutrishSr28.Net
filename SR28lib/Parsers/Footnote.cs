@@ -11,10 +11,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
+using NHibernate;
 using System.Collections.Generic;
 using System.IO;
-using NHibernate;
 
 namespace SR28lib.Parsers
 {
@@ -55,9 +54,6 @@ namespace SR28lib.Parsers
             }
 
             item.Footnt_Txt = fields[4].Substring(1, fields[4].Length - 2);
-
-            //foodDescription.AddFootnote(item);
-
             return item;
         }
     }

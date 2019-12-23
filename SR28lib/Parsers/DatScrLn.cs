@@ -43,8 +43,6 @@ namespace SR28lib.Parsers
             var DataSrc_ID = fields[2].Substring(1, fields[2].Length - 2);
             var dataSource = session.Get<DataSource>(DataSrc_ID);
 
-            // nutrientData.AddDataSource(dataSource);
-            // dataSource.AddNutrientData(nutrientData);
             nutrientData.DataSourceSet.Add(dataSource);
             dataSource.NutrientDataSet.Add(nutrientData);
 

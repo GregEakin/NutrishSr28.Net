@@ -26,16 +26,6 @@ namespace SR28lib.Ddl
 {
     public class SchemaSetup : IDisposable
     {
-        const string connection =
-            "Data Source=(localdb)\\SR28;" +
-            "Initial Catalog=Nutrish;" +
-            "Integrated Security=True;" +
-            "Connect Timeout=30;" +
-            "Encrypt=False;" +
-            "TrustServerCertificate=False;" +
-            "ApplicationIntent=ReadWrite;" +
-            "MultiSubnetFailover=False";
-
         private readonly ISessionFactory _factory;
         private readonly IStatelessSession _statelessSession;
         private readonly ISession _session;

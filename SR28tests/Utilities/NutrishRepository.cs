@@ -22,7 +22,7 @@ namespace SR28tests.Utilities
     [TestClass]
     public class NutrishRepository
     {
-        const string Connection =
+        private const string Connection =
             "Data Source=(localdb)\\SR28;" +
             "Initial Catalog=Nutrish;" +
             "Integrated Security=True;" +

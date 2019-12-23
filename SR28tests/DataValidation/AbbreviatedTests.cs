@@ -20,7 +20,5 @@ namespace SR28tests.DataValidation
     public class AbbreviatedTests 
         : TransactionSetup
     {
-
-
     }
 }
