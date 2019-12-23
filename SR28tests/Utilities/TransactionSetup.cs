@@ -20,7 +20,7 @@ namespace SR28tests.Utilities
     {
         private ITransaction _transaction;
 
-        protected static ISession Session => Initialize.Session;
+        protected static ISession Session => NutrishRepository.Session;
 
         [TestInitialize]
         public void BeforeTestExecution()

@@ -22,7 +22,7 @@ using NHibernate.Driver;
 namespace SR28tests.Utilities
 {
     [TestClass]
-    public class Initialize
+    public class NutrishRepository
     {
         const string Connection =
             "Data Source=(localdb)\\SR28;" +
