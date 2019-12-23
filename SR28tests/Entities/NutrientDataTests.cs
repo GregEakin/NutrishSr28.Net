@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class NutrientDataTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         public static NutrientData CreateNutrientData(FoodDescription foodDescription,
             NutrientDefinition nutrientDefinition)
         {

@@ -22,12 +22,6 @@ namespace SR28tests.References
     public class SourceCodeTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         //  Links to the Nutrient Data file by Src_Cd
         [TestMethod]
         public void NutrientDataTest()

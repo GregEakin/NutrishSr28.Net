@@ -22,12 +22,6 @@ namespace SR28tests.DataValidation
     public class YogurtTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         [TestMethod]
         public void FoodDescriptionTest()
         {

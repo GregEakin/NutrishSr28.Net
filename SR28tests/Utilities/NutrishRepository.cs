@@ -13,58 +13,19 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
-using NHibernate.Cfg;
-using NHibernate.Dialect;
-using NHibernate.Driver;
 
 namespace SR28tests.Utilities
 {
     public abstract class NutrishRepository
     {
-        const string Connection =
-            "Data Source=(localdb)\\SR28;" +
-            "Initial Catalog=Nutrish;" +
-            "Integrated Security=True;" +
-            "Connect Timeout=30;" +
-            "Encrypt=False;" +
-            "TrustServerCertificate=False;" +
-            "ApplicationIntent=ReadWrite;" +
-            "MultiSubnetFailover=False";
-
-        private static ISessionFactory _factory;
-        private static ISession _session;
         private ITransaction _transaction;
 
-        protected ISession Session => _session;
-
-        public static void BeforeAll(TestContext context)
-        {
-            var cfg = new Configuration();
-            cfg.DataBaseIntegration(x =>
-            {
-                x.ConnectionString = Connection;
-                x.Driver<SqlClientDriver>();
-                x.Dialect<MsSql2012Dialect>();
-                x.BatchSize = 50;
-            });
-
-            var libAssembly = typeof(SR28lib.Data.FoodGroup).Assembly;
-            cfg.AddAssembly(libAssembly);
-
-            _factory = cfg.BuildSessionFactory();
-            _session = _factory.OpenSession();
-        }
-
-        public static void AfterAll()
-        {
-            _session?.Close();
-            _factory?.Close();
-        }
+        protected static ISession Session => Initialize.Session;
 
         [TestInitialize]
         public void BeforeTestExecution()
         {
-            _transaction = _session.BeginTransaction();
+            _transaction = Session.BeginTransaction();
         }
 
         [TestCleanup]

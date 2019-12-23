@@ -22,12 +22,6 @@ namespace SR28tests.References
     public class FoodGroupTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         //  Links to the Food Description file by FdGrp_Cd
         [TestMethod]
         public void FoodDescriptionTest()

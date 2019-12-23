@@ -23,12 +23,6 @@ namespace SR28tests.References
     public class DataSourceTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
         [TestMethod]
         public void NutrientDataTest()
@@ -46,7 +40,11 @@ namespace SR28tests.References
             //DataSource dataSource = session.load(DataSource.class, "D642");
 
             var hql =
-                "select nd from DataSource ds join ds.NutrientDataSet nds join nds.NutrientDataKey.NutrientDefinition nd where ds.DataSrc_ID = :id";
+                "select nd " +
+                "from DataSource ds " +
+                "join ds.NutrientDataSet nds " +
+                "join nds.NutrientDataKey.NutrientDefinition nd " +
+                "where ds.DataSrc_ID = :id";
             var query = Session.CreateQuery(hql);
             query.SetParameter("id", "D642");
             var list = query.List();

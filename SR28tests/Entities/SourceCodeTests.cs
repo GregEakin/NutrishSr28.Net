@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class SourceCodeTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         public static SourceCode CreateSourceCode()
         {
             var sourceCode = new SourceCode {Src_Cd = "00"};

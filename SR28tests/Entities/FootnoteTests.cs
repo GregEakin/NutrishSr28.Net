@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class FootnoteTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         public static Footnote CreateFootnote()
         {
             var footnote = new Footnote();

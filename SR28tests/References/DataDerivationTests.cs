@@ -21,12 +21,6 @@ namespace SR28tests.References
     public class DataDerivationTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         //  Links to the Nutrient Data file by Deriv_Cd
         [TestMethod]
         public void NutrientDataTest()

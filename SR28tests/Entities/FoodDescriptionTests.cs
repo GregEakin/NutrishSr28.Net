@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class FoodDescriptionTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         public static FoodDescription CreateFoodDescription()
         {
             var foodDescription = new FoodDescription {NDB_No = "000000"};

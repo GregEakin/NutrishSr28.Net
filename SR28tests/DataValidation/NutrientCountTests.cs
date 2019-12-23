@@ -21,12 +21,6 @@ namespace SR28tests.DataValidation
     public class NutrientCountTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         private static readonly string[][] Stuff =
         {
             new[] {"255", "Water", "WATER", "g", "8788"},

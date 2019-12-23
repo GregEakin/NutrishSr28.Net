@@ -23,12 +23,6 @@ namespace SR28tests.DataValidation
     public class ElementCountTests 
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         [TestMethod]
         public void WaterTest()
         {
@@ -37,7 +31,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual("Water", nutrientDefinition.NutrDesc);
             Assert.AreEqual("g", nutrientDefinition.Units);
 
-            var hql = "select count(*) from  NutrientData where nutr_No = :nutr_no";
+            var hql = "select count(*) from  NutrientData where Nutr_No = :nutr_no";
             var query = Session.CreateQuery(hql);
             query.SetParameter("nutr_no", "255");
             var count = query.UniqueResult<long>();
@@ -48,7 +42,7 @@ namespace SR28tests.DataValidation
         public void WaterLimitTest()
         {
             var hql = "FROM NutrientData "
-                      + "WHERE nutr_No = :nutr_no "
+                      + "WHERE Nutr_No = :nutr_no "
                       + "ORDER BY NDB_No DESC ";
             var query = Session.CreateQuery(hql);
             query.SetParameter("nutr_no", "255");

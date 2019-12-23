@@ -20,11 +20,6 @@ namespace SR28tests.DataValidation
     public class AbbreviatedTests 
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
 
 
     }

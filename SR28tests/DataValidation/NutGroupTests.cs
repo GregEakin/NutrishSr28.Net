@@ -21,12 +21,6 @@ namespace SR28tests.DataValidation
     public class NutGroupTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         [TestMethod]
         public void Test1()
         {

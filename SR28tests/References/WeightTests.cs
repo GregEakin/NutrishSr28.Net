@@ -22,12 +22,6 @@ namespace SR28tests.References
     public class WeightTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         //  Links to Food Description file by NDB_No
         [TestMethod]
         public void FoodDescriptionTest()

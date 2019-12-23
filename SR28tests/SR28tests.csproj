@@ -99,6 +99,7 @@
     <Compile Include="References\SourceCodeTests.cs" />
     <Compile Include="References\WeightTests.cs" />
     <Compile Include="Utilities\ExpectedException.cs" />
+    <Compile Include="Utilities\Initialize.cs" />
     <Compile Include="Utilities\NutrishRepository.cs" />
   </ItemGroup>
   <ItemGroup>

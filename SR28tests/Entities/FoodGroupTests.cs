@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class FoodGroupTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         public static FoodGroup CreateFoodGroup()
         {
             var foodGroup = new FoodGroup {FdGrp_Cd = "0000"};

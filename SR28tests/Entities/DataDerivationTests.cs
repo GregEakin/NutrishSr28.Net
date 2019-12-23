@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class DataDerivationTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         public static DataDerivation CreateDataDerivation()
         {
             var dataDerivation = new DataDerivation {Deriv_Cd = "0000"};

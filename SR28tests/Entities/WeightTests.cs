@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class WeightTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         public static Weight CreateWeight(FoodDescription foodDescription)
         {
             var weightKey = new WeightKey(foodDescription, "00");

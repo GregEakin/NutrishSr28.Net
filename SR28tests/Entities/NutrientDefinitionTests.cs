@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class NutrientDefinitionTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         public static NutrientDefinition CreateNutrientDefinition()
         {
             var nutrientDefinition = new NutrientDefinition {Nutr_No = "000"};

@@ -22,12 +22,6 @@ namespace SR28tests.Entities
     public class LanguageTests
         : NutrishRepository
     {
-        [ClassInitialize]
-        public static void ClassInit(TestContext context) => BeforeAll(context);
-
-        [ClassCleanup]
-        public static void ClassDestructor() => AfterAll();
-
         public static Language CreateLanguage()
         {
             var language = new Language {Factor_Code = "00000"};
