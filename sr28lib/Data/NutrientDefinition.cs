@@ -25,10 +25,8 @@ namespace SR28lib.Data
         public virtual string NutrDesc { get; set; }
         public virtual string Num_Dec { get; set; }
         public virtual int? SR_Order { get; set; }
+
         public virtual ISet<NutrientData> NutrientDataSet { get; set; } = new HashSet<NutrientData>();
-
-        public virtual ISet<Footnote> FootnoteSet { get; set; } = new HashSet<Footnote>();
-
         public virtual void AddNutrientData(NutrientData nutrientData)
         {
             if (nutrientData == null)
@@ -38,6 +36,7 @@ namespace SR28lib.Data
             NutrientDataSet.Add(nutrientData);
         }
 
+        public virtual ISet<Footnote> FootnoteSet { get; set; } = new HashSet<Footnote>();
         public virtual void AddFootnote(Footnote footnote)
         {
             if (footnote == null)
