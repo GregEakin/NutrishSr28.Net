@@ -35,6 +35,7 @@ namespace SR28lib.Ddl
             "MultiSubnetFailover=False";
 
         private readonly ISessionFactory _factory;
+        private readonly IStatelessSession _statelessSession;
         private readonly ISession _session;
 
         public SchemaSetup(string connection, bool execute)
@@ -57,101 +58,103 @@ namespace SR28lib.Ddl
                 new SchemaExport(cfg).SetOutputFile("schema.hibernate5.sql").Execute(true, true, false);
 
             _factory = cfg.BuildSessionFactory();
+            _statelessSession = _factory.OpenStatelessSession();
             _session = _factory.OpenSession();
         }
 
         public void Dispose()
         {
+            _statelessSession?.Dispose();
             _session?.Dispose();
             _factory?.Dispose();
         }
 
         public void SetupDates()
         {
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     FdGroup.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            //
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     SrcCd.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            //
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     DerivCD.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            //
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     LangDesc.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            //
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     DataSrc.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            //
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     NutrDef.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            //
-            // // fd_group
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     FoodDes.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            //
-            // // food_des
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     Weight.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            //
-            // // food_des
-            // // nutr_def
-            // // src_cd
-            // // deriv_cd
-            // // food_des
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     NutData.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            //
-            // // langdesc
-            // // food_des
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     LanguaL.ParseFile(_session);
-            //     transaction.Commit();
-            // }
-            
+            using (var transaction = _session.BeginTransaction())
+            {
+                FdGroup.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                SrcCd.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                DerivCD.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                LangDesc.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                DataSrc.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
+            using (var transaction = _session.BeginTransaction())
+            {
+                NutrDef.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
+            // fd_group
+            using (var transaction = _session.BeginTransaction())
+            {
+                FoodDes.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
+            // food_des
+            using (var transaction = _session.BeginTransaction())
+            {
+                Weight.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
+            // food_des
+            // nutr_def
+            // src_cd
+            // deriv_cd
+            // food_des
+            using (var transaction = _session.BeginTransaction())
+            {
+                NutData.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
+            // langdesc
+            // food_des
+            using (var transaction = _session.BeginTransaction())
+            {
+                LanguaL.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
+
             // nut_data
             // data_src
             using (var transaction = _session.BeginTransaction())
             {
-                DatScrLn.ParseFile(_session);
+                DatScrLn.ParseFile(_statelessSession);
                 transaction.Commit();
             }
 
-            // // food_des
-            // // nuter_def
-            // using (var transaction = _session.BeginTransaction())
-            // {
-            //     Footnote.ParseFile(_session);
-            //     transaction.Commit();
-            // }
+            // food_des
+            // nuter_def
+            using (var transaction = _session.BeginTransaction())
+            {
+                Footnote.ParseFile(_statelessSession);
+                transaction.Commit();
+            }
         }
     }
 }

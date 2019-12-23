@@ -21,14 +21,14 @@ namespace SR28lib.Parsers
     {
         public static readonly string Filename = "..\\..\\..\\data\\DATSRCLN.txt";
 
-        public static void ParseFile(ISession session)
+        public static void ParseFile(IStatelessSession session)
         {
             var lines = File.ReadLines(Filename);
             foreach (var line in lines)
                 ParseLine(session, line);
         }
 
-        private static void ParseLine(ISession session, string line)
+        private static void ParseLine(IStatelessSession session, string line)
         {
             var fields = line.Split('^');
             var NDB_No = fields[0].Substring(1, fields[0].Length - 2);
@@ -43,8 +43,13 @@ namespace SR28lib.Parsers
             var DataSrc_ID = fields[2].Substring(1, fields[2].Length - 2);
             var dataSource = session.Get<DataSource>(DataSrc_ID);
 
-            nutrientData.AddDataSource(dataSource);
-            dataSource.AddNutrientData(nutrientData);
+            // nutrientData.AddDataSource(dataSource);
+            // dataSource.AddNutrientData(nutrientData);
+            nutrientData.DataSourceSet.Add(dataSource);
+            dataSource.NutrientDataSet.Add(nutrientData);
+
+            // session.Update(nutrientData);    // reverse = true
+            session.Update(dataSource);
         }
     }
 }

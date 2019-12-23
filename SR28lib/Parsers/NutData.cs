@@ -47,8 +47,7 @@ namespace SR28lib.Parsers
             var Nutr_No = fields[1].Substring(1, fields[1].Length - 2);
             var nutrientDefinition = session.Get<NutrientDefinition>(Nutr_No);
 
-            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
-            item.NutrientDataKey = nutrientDataKey;
+            item.NutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
 
             item.Nutr_Val = double.Parse(fields[2]);
 
@@ -57,14 +56,14 @@ namespace SR28lib.Parsers
             if (fields[4].Length > 0) item.Std_Error = double.Parse(fields[4]);
 
             var Src_Cd = fields[5].Substring(1, fields[5].Length - 2);
-            var sourceCode = session.Get<SourceCode>(Src_Cd);
-            item.AddSourceCode(sourceCode);
+            item.SourceCode = session.Get<SourceCode>(Src_Cd);
+            // item.AddSourceCode(sourceCode);
 
             if (fields[6].Length > 2)
             {
                 var Deriv_Cd = fields[6].Substring(1, fields[6].Length - 2);
-                var dataDerivation = session.Get<DataDerivation>(Deriv_Cd);
-                item.AddDataDerivation(dataDerivation);
+                item.DataDerivation = session.Get<DataDerivation>(Deriv_Cd);
+                // item.AddDataDerivation(dataDerivation);
             }
 
             if (fields[7].Length > 2)

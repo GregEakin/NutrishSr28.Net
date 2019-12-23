@@ -57,7 +57,7 @@ namespace SR28lib.Parsers
 
             item.Footnt_Txt = fields[4].Substring(1, fields[4].Length - 2);
 
-            foodDescription.AddFootnote(item);
+            //foodDescription.AddFootnote(item);
 
             return item;
         }

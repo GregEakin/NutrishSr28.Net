@@ -43,9 +43,7 @@ namespace SR28lib.Parsers
             item.NDB_No = fields[0].Substring(1, fields[0].Length - 2);
 
             var foodGroupId = fields[1].Substring(1, fields[1].Length - 2);
-            var foodGroup = session.Get<FoodGroup>(foodGroupId);
-            item.AddFoodGroup(foodGroup);
-
+            item.FoodGroup = session.Get<FoodGroup>(foodGroupId);
             item.Long_Desc = fields[2].Substring(1, fields[2].Length - 2);
             item.Shrt_Desc = fields[3].Substring(1, fields[3].Length - 2);
             if (fields[4].Length > 2) item.ComName = fields[4].Substring(1, fields[4].Length - 2);
