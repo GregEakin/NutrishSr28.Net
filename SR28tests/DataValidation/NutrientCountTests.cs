@@ -21,27 +21,20 @@ namespace SR28tests.DataValidation
     public class NutrientCountTests
         : TransactionSetup
     {
-        private static readonly string[][] Stuff =
-        {
-            new[] {"255", "Water", "WATER", "g", "8788"},
-            new[] {"208", "Energy", "ENERC_KCAL", "kcal", "8789"},
-            new[] {"211", "Glucose (dextrose)", "GLUS", "g", "1752"},
-            new[] {"204", "Total lipid (fat)", "FAT", "g", "8789"},
-        };
-
         [TestMethod]
-        public void CounterTest()
+        [DataRow("255", "Water", "WATER", "g", "8788")]
+        [DataRow("208", "Energy", "ENERC_KCAL", "kcal", "8789")]
+        [DataRow("211", "Glucose (dextrose)", "GLUS", "g", "1752")]
+        [DataRow("204", "Total lipid (fat)", "FAT", "g", "8789")]
+        public void CounterTest(string id, string nutrDesc, string tagname, string units, string count)
         {
-            foreach (var data in Stuff)
-            {
-                var nutrientDefinition = Session.Load<NutrientDefinition>(data[0]);
-                Assert.AreEqual(data[1], nutrientDefinition.NutrDesc);
-                Assert.AreEqual(data[2], nutrientDefinition.Tagname);
-                Assert.AreEqual(data[3], nutrientDefinition.Units);
+            var nutrientDefinition = Session.Load<NutrientDefinition>(id);
+            Assert.AreEqual(nutrDesc, nutrientDefinition.NutrDesc);
+            Assert.AreEqual(tagname, nutrientDefinition.Tagname);
+            Assert.AreEqual(units, nutrientDefinition.Units);
 
-                var nutrientDataSet = nutrientDefinition.NutrientDataSet;
-                Assert.AreEqual(int.Parse(data[4]), nutrientDataSet.Count);
-            }
+            var nutrientDataSet = nutrientDefinition.NutrientDataSet;
+            Assert.AreEqual(int.Parse(count), nutrientDataSet.Count);
         }
     }
 }
