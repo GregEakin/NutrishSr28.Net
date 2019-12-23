@@ -25,29 +25,28 @@ namespace SR28tests.References
         [TestMethod]
         public void FoodDescriptionTest()
         {
-            var hql = "FROM Footnote WHERE FoodDescription.NDB_No = :ndb_no and NutrientDefinition.Nutr_No is null";
-            var query = Session.CreateQuery(hql);
-            query.SetParameter("ndb_no", "05316");
-            var footnote = query.UniqueResult<Footnote>();
+            var footnote = Session.QueryOver<Footnote>()
+                .Where(f => f.FoodDescription.NDB_No == "05316")
+                .And(f => f.NutrientDefinition.Nutr_No == null)
+                .SingleOrDefault();
 
-            var foodDescription = footnote.FoodDescription;
-            Assert.AreEqual("05316", foodDescription.NDB_No);
+            Assert.AreEqual("05316", footnote.FoodDescription.NDB_No);
+            Assert.IsNull(footnote.NutrientDefinition);
         }
 
         //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
         [TestMethod]
         public void NutrientDataTest1()
         {
-            var hql = "FROM Footnote WHERE FoodDescription.NDB_No = :ndb_no and NutrientDefinition.Nutr_No is null";
-            var query = Session.CreateQuery(hql);
-            query.SetParameter("ndb_no", "05316");
-            var footnote = query.UniqueResult<Footnote>();
+            var footnote = Session.QueryOver<Footnote>()
+                .Where(f => f.FoodDescription.NDB_No == "05316")
+                .And(f => f.NutrientDefinition.Nutr_No == null)
+                .SingleOrDefault();
 
-            var foodDescription = footnote.FoodDescription;
-            var nutrientDataSet = foodDescription.NutrientDataSet;
+            var nutrientDataSet = footnote.FoodDescription.NutrientDataSet;
             Assert.AreEqual(44, nutrientDataSet.Count);
             foreach (var nutrientData in nutrientDataSet)
-                Assert.AreEqual("05316", nutrientData.NutrientDataKey.FoodDescription.NDB_No);
+                Assert.AreEqual(footnote.FoodDescription, nutrientData.NutrientDataKey.FoodDescription);
         }
 
         //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
@@ -73,15 +72,12 @@ namespace SR28tests.References
         [TestMethod]
         public void NutrientDefinitionTest()
         {
-            var hql =
-                "FROM Footnote WHERE FoodDescription.NDB_No = :ndb_no and NutrientDefinition.Nutr_No = :nutr_no";
-            var query = Session.CreateQuery(hql);
-            query.SetParameter("ndb_no", "05316");
-            query.SetParameter("nutr_no", "204");
-            var footnote = query.UniqueResult<Footnote>();
+            var footnote = Session.QueryOver<Footnote>()
+                .Where(f => f.FoodDescription.NDB_No == "05316")
+                .And(f => f.NutrientDefinition.Nutr_No == "204")
+                .SingleOrDefault();
 
-            var nutrientDefinition = footnote.NutrientDefinition;
-            Assert.AreEqual("204", nutrientDefinition.Nutr_No);
+            Assert.AreEqual("204", footnote.NutrientDefinition.Nutr_No);
         }
     }
 }

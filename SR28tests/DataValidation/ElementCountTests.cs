@@ -19,7 +19,7 @@ using System.Linq;
 namespace SR28tests.DataValidation
 {
     [TestClass]
-    public class ElementCountTests 
+    public class ElementCountTests
         : TransactionSetup
     {
         [TestMethod]
@@ -29,24 +29,28 @@ namespace SR28tests.DataValidation
             Assert.AreEqual("255", nutrientDefinition.Nutr_No);
             Assert.AreEqual("Water", nutrientDefinition.NutrDesc);
             Assert.AreEqual("g", nutrientDefinition.Units);
-
-            var hql = "select count(*) from  NutrientData where Nutr_No = :nutr_no";
-            var query = Session.CreateQuery(hql);
-            query.SetParameter("nutr_no", "255");
-            var count = query.UniqueResult<long>();
-            Assert.AreEqual(8788L, count);
         }
 
         [TestMethod]
-        public void WaterLimitTest()
+        public void NutrientDataTest()
         {
-            var hql = "FROM NutrientData "
-                      + "WHERE Nutr_No = :nutr_no "
-                      + "ORDER BY NDB_No DESC ";
-            var query = Session.CreateQuery(hql);
-            query.SetParameter("nutr_no", "255");
-            query.SetMaxResults(10);
-            var list = query.List<NutrientData>();
+            var nutrientDefinition = Session.Load<NutrientDefinition>("255");
+            var count = Session.QueryOver<NutrientData>()
+                .Where(nd => nd.NutrientDataKey.NutrientDefinition == nutrientDefinition)
+                .RowCount();
+
+            Assert.AreEqual(8788, count);
+        }
+
+        [TestMethod]
+        public void NutrientDataLimitTest()
+        {
+            var nutrientDefinition = Session.Load<NutrientDefinition>("255");
+            var list = Session.QueryOver<NutrientData>()
+                .Where(nd => nd.NutrientDataKey.NutrientDefinition == nutrientDefinition)
+                .OrderBy(nd => nd.NutrientDataKey.FoodDescription.NDB_No).Desc
+                .Take(10)
+                .List();
 
             CollectionAssert.AreEqual(new[]
             {

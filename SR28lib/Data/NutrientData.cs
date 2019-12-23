@@ -43,7 +43,6 @@ namespace SR28lib.Data
             dataDerivation.NutrientDataSet.Add(this);
         }
 
-
         public virtual FoodDescription FoodDescription { get; set; }
         public virtual void AddFoodDescription(FoodDescription foodDescription)
         {

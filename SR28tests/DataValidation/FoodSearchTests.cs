@@ -15,6 +15,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SR28lib.Data;
 using SR28tests.Utilities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SR28tests.DataValidation
 {
@@ -26,40 +28,25 @@ namespace SR28tests.DataValidation
         public void SortedQueryTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01001");
-            Console.WriteLine("Basic Report: " + foodDescription.NDB_No
-                                               + ", " + foodDescription.Long_Desc);
+            Assert.AreEqual("01001", foodDescription.NDB_No);
+            Assert.AreEqual("BUTTER,WITH SALT", foodDescription.Shrt_Desc);
+            Assert.AreEqual("Butter, salted", foodDescription.Long_Desc);
 
-            Console.WriteLine("   Weight: Value per 100 g");
-            var weightSet = foodDescription.WeightSet;
-            foreach (var weight in weightSet)
-            {
-                Console.WriteLine(
-                    "   Weight: " + weight.Msre_Desc + ", " + weight.Amount + " x " + weight.Gm_Wgt + " g");
-            }
+            var expected1 = new[] {"pat (1\" sq, 1/3\" high)", "tbsp", "cup", "stick"};
+            var enumerable1 = foodDescription.WeightSet.Select(w => w.Msre_Desc);
+            CollectionAssert.AreEquivalent(expected1, enumerable1.ToArray());
 
-            var hql = "select nds "
-                      + "from FoodDescription fd join fd.NutrientDataSet nds "
-                      + "where fd.NDB_No = :id "
-                      + "order by nds.NutrientDataKey.NutrientDefinition.SR_Order";
-            var query = Session.CreateQuery(hql);
-            query.SetParameter("id", "01001");
-            var list = query.List<NutrientData>();
+            var expected2 = new[] {5.0, 14.2, 227, 113};
+            var enumerable2 = foodDescription.WeightSet.Select(w => w.Gm_Wgt);
+            CollectionAssert.AreEquivalent(expected2, enumerable2.ToArray());
 
-            //        Set<NutrientData> nutrientDataSet = foodDescription.getNutrientDataSet();
-            //        Comparator<NutrientData> nutrientDataComparator = Comparator.comparingInt(o -> o.getNutrientDataKey().getNutrientDefinition().getSR_Order());
-            //        List<NutrientData> list = nutrientDataSet.stream().sorted(nutrientDataComparator).collect(Collectors.toList());
-
-            Assert.AreEqual(115, list.Count);
-            foreach (var nutrientData in list)
-            {
-                var nutrientDataKey = nutrientData.NutrientDataKey;
-                var nutrientDefinition = nutrientDataKey.NutrientDefinition;
-
-                Console.WriteLine("   NutData: " + nutrientDefinition.SR_Order
-                                                 + ", " + nutrientDefinition.NutrDesc
-                                                 + " = " + nutrientData.Nutr_Val
-                                                 + " " + nutrientDefinition.Units);
-            }
+            Assert.AreEqual(115, foodDescription.NutrientDataSet.Count);
+            // foreach (var nutrientData in foodDescription.NutrientDataSet)
+            // {
+            //     var nutrientDefinition = nutrientData.NutrientDataKey.NutrientDefinition;
+            //     Console.WriteLine(
+            //         $"   NutData: {nutrientDefinition.SR_Order}, {nutrientDefinition.NutrDesc} = {nutrientData.Nutr_Val} {nutrientDefinition.Units}");
+            // }
         }
     }
 }

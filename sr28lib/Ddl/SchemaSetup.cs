@@ -45,7 +45,11 @@ namespace SR28lib.Ddl
             cfg.AddAssembly(executingAssembly);
 
             if (execute)
-                new SchemaExport(cfg).SetOutputFile("schema.hibernate5.sql").Execute(true, true, false);
+            {
+                var schemaExport = new SchemaExport(cfg);
+                var outputFile = schemaExport.SetOutputFile("schema.hibernate5.sql");
+                outputFile.Execute(true, true, false);
+            }
 
             _factory = cfg.BuildSessionFactory();
             _statelessSession = _factory.OpenStatelessSession();

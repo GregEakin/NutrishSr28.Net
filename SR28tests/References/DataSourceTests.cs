@@ -14,6 +14,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SR28lib.Data;
 using SR28tests.Utilities;
+using System.Linq;
 
 namespace SR28tests.References
 {
@@ -21,34 +22,43 @@ namespace SR28tests.References
     public class DataSourceTests
         : TransactionSetup
     {
+        [TestMethod]
+        public void DataSourceTest()
+        {
+            var dataSource = Session.Load<DataSource>("D642");
+            Assert.AreEqual("D642", dataSource.DataSrc_ID);
+            Assert.AreEqual(" Consumer Reports", dataSource.Authors);
+            Assert.AreEqual("Consumer Reports", dataSource.Journal);
+            Assert.AreEqual("Orange Drink Mixes", dataSource.Title);
+            Assert.AreEqual("1977", dataSource.Year);
+        }
+
         //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
         [TestMethod]
         public void NutrientDataTest()
         {
             var dataSource = Session.Load<DataSource>("D642");
-
             var nutrientDataSet = dataSource.NutrientDataSet;
-            Assert.AreEqual(2, nutrientDataSet.Count);
+
+            var enumerable1 = nutrientDataSet.Select(nd => nd.Nutr_Val);
+            CollectionAssert.AreEquivalent(new[] {167.0, 10.0}, enumerable1.ToArray());
+
+            var enumerable2 = nutrientDataSet.Select(nd => nd.AddMod_Date);
+            CollectionAssert.AreEqual(new[] {"01/2003", "01/2003"}, enumerable2.ToArray());
         }
 
         //  Links to the Nutrient Definition file by Nutr_No
         [TestMethod]
         public void NutrientDefinitionTest()
         {
-            //DataSource dataSource = session.load(DataSource.class, "D642");
+            var dataSource = Session.Load<DataSource>("D642");
+            var nutrientDataSet = dataSource.NutrientDataSet;
 
-            var hql =
-                "select nd " +
-                "from DataSource ds " +
-                "join ds.NutrientDataSet nds " +
-                "join nds.NutrientDataKey.NutrientDefinition nd " +
-                "where ds.DataSrc_ID = :id";
-            var query = Session.CreateQuery(hql);
-            query.SetParameter("id", "D642");
-            var list = query.List();
-            Assert.AreEqual(2, list.Count);
-            //CollectionAssert.AreEquivalent(new[] {"306", "307"},
-            //list.stream().map(NutrientDefinition::getNutr_No).sorted().toArray());
+            var enumerable1 = nutrientDataSet.Select(nd => nd.NutrientDataKey.NutrientDefinition.Nutr_No);
+            CollectionAssert.AreEquivalent(new[] {"306", "307"}, enumerable1.ToArray());
+
+            var enumerable2 = nutrientDataSet.Select(nd => nd.NutrientDataKey.NutrientDefinition.NutrDesc);
+            CollectionAssert.AreEquivalent(new[] {"Potassium, K", "Sodium, Na"}, enumerable2.ToArray());
         }
     }
 }

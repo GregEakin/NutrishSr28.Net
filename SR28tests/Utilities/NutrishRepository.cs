@@ -46,6 +46,8 @@ namespace SR28tests.Utilities
                 x.Driver<SqlClientDriver>();
                 x.Dialect<MsSql2012Dialect>();
                 x.BatchSize = 50;
+                x.LogSqlInConsole = true;
+                x.LogFormattedSql = true;
             });
 
             var libAssembly = typeof(FoodGroup).Assembly;
