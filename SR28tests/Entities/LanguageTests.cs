@@ -29,6 +29,15 @@ namespace SR28tests.Entities
         }
 
         [TestMethod]
+        public void RowCountTest()
+        {
+            var count = Session
+                .QueryOver<Language>()
+                .RowCount();
+            Assert.AreEqual(774, count);
+        }
+
+        [TestMethod]
         public void AddNullFoodDescription()
         {
             var language = CreateLanguage();

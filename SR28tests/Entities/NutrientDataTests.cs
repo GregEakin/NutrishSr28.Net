@@ -31,6 +31,15 @@ namespace SR28tests.Entities
         }
 
         [TestMethod]
+        public void RowCountTest()
+        {
+            var count = Session
+                .QueryOver<NutrientData>()
+                .RowCount();
+            Assert.AreEqual(679045, count);
+        }
+
+        [TestMethod]
         public void AddNullDataDerivationTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();

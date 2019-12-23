@@ -29,6 +29,15 @@ namespace SR28tests.Entities
         }
 
         [TestMethod]
+        public void RowCountTest()
+        {
+            var count = Session
+                .QueryOver<Footnote>()
+                .RowCount();
+            Assert.AreEqual(552, count);
+        }
+
+        [TestMethod]
         public void AddNullNutrientDefinitionTest()
         {
             var footnote = FootnoteTests.CreateFootnote();

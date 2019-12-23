@@ -76,10 +76,6 @@ namespace SR28lib.Ddl
                 FdGroup.ParseFile(_statelessSession);
                 transaction.Commit();
             }
-            // var countFdGroup = _session
-            //     .QueryOver<FoodGroup>()
-            //     .RowCount();
-            // Console.WriteLine(countFdGroup);
 
             using (var transaction = _session.BeginTransaction())
             {

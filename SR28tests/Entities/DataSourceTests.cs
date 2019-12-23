@@ -29,6 +29,15 @@ namespace SR28tests.Entities
         }
 
         [TestMethod]
+        public void RowCountTest()
+        {
+            var count = Session
+                .QueryOver<DataSource>()
+                .RowCount();
+            Assert.AreEqual(682, count);
+        }
+
+        [TestMethod]
         public void AddNullNutrientDataTest()
         {
             var dataSource = CreateDataSource();
