@@ -16,6 +16,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
+using SR28lib.Data;
 
 namespace SR28tests.Utilities
 {
@@ -47,7 +48,7 @@ namespace SR28tests.Utilities
                 x.BatchSize = 50;
             });
 
-            var libAssembly = typeof(SR28lib.Data.FoodGroup).Assembly;
+            var libAssembly = typeof(FoodGroup).Assembly;
             cfg.AddAssembly(libAssembly);
 
             Factory = cfg.BuildSessionFactory();

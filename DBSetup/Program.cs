@@ -11,11 +11,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using SR28lib.Ddl;
+
 namespace DBSetup
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             const string connection =
                 "Data Source=(localdb)\\SR28;" +
@@ -29,7 +31,7 @@ namespace DBSetup
 
             var execute = true;
 
-            using (var schema = new SR28lib.Ddl.SchemaSetup(connection, false))
+            using (var schema = new SchemaSetup(connection, false))
             {
                 if (execute)
                 {

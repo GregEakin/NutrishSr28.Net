@@ -35,11 +35,11 @@ namespace SR28lib.Parsers
             session.Insert(item);
         }
 
-        private static SR28lib.Data.Footnote ParseFootnote(IStatelessSession session, IReadOnlyList<string> fields)
+        private static Data.Footnote ParseFootnote(IStatelessSession session, IReadOnlyList<string> fields)
         {
-            var item = new SR28lib.Data.Footnote();
-            var foodDescriptionId = fields[0].Substring(1, fields[0].Length - 2);
-            var foodDescription = session.Get<SR28lib.Data.FoodDescription>(foodDescriptionId);
+            var item = new Data.Footnote();
+            var NDB_No = fields[0].Substring(1, fields[0].Length - 2);
+            var foodDescription = session.Get<Data.FoodDescription>(NDB_No);
             item.FoodDescription = foodDescription;
 
             item.Footnt_No = fields[1].Substring(1, fields[1].Length - 2);
@@ -49,7 +49,7 @@ namespace SR28lib.Parsers
             if (fields[3].Length > 2)
             {
                 var Nutr_No = fields[3].Substring(1, fields[3].Length - 2);
-                var nutrientDefinition = session.Get<SR28lib.Data.NutrientDefinition>(Nutr_No);
+                var nutrientDefinition = session.Get<Data.NutrientDefinition>(Nutr_No);
                 item.NutrientDefinition = nutrientDefinition;
             }
 
