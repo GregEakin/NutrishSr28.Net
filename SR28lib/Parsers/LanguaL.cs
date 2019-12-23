@@ -23,14 +23,14 @@ namespace SR28lib.Parsers
     {
         public static readonly string Filename = "..\\..\\..\\data\\LANGUAL.txt";
 
-        public static void ParseFile(IStatelessSession session)
+        public static void ParseFile(ISession session)
         {
             var lines = File.ReadLines(Filename);
             foreach (var line in lines)
                 ParseLine(session, line);
         }
 
-        private static void ParseLine(IStatelessSession session, string line)
+        private static void ParseLine(ISession session, string line)
         {
             var fields = line.Split('^');
 
@@ -40,9 +40,11 @@ namespace SR28lib.Parsers
             var factor_code = fields[1].Substring(1, fields[1].Length - 2);
             var language = session.Get<Language>(factor_code);
 
-            // language.AddFoodDescription(foodDescription);
+            language.FoodDescriptionSet.Add(foodDescription);
+            foodDescription.LanguageSet.Add(language);
 
-            session.Insert(language);
+            session.Update(language);
+            // session.Update(foodDescription);    // inverse = true
         }
     }
 }

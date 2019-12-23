@@ -29,7 +29,7 @@ namespace DBSetup
 
             var execute = true;
 
-            using (var schema = new SR28lib.Ddl.SchemaSetup(connection, true))
+            using (var schema = new SR28lib.Ddl.SchemaSetup(connection, false))
             {
                 if (execute)
                 {
