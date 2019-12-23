@@ -14,9 +14,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{DataSrc_ID} {Authors}")]
     public class DataSource
     {
         public virtual string DataSrc_ID { get; set; }

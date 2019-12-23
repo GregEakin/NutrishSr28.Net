@@ -14,9 +14,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{Factor_Code} {Description}")]
     public class Language
     {
         public virtual string Factor_Code { get; set; }

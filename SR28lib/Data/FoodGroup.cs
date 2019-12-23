@@ -13,9 +13,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{FdGrp_Cd} {FdGrp_Desc}")]
     public class FoodGroup
     {
         public virtual string FdGrp_Cd { get; set; }

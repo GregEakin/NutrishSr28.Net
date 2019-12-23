@@ -14,9 +14,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{Src_Cd} {SrcCd_Desc}")]
     public class SourceCode
     {
         public virtual string Src_Cd { get; set; }

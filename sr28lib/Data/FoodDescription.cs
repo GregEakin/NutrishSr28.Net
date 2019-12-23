@@ -13,9 +13,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SR28lib.Data
 {
+    [DebuggerDisplay("{NDB_No} {Shrt_Desc}")]
     public class FoodDescription
     {
         public virtual string NDB_No { get; set; }
