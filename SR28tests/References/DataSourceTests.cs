@@ -21,7 +21,7 @@ namespace SR28tests.References
 {
     [TestClass]
     public class DataSourceTests
-        : NutrishRepository
+        : TransactionSetup
     {
         //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
         [TestMethod]

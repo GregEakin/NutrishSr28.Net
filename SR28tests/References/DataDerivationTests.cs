@@ -19,7 +19,7 @@ namespace SR28tests.References
 {
     [TestClass]
     public class DataDerivationTests
-        : NutrishRepository
+        : TransactionSetup
     {
         //  Links to the Nutrient Data file by Deriv_Cd
         [TestMethod]

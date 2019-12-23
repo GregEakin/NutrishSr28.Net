@@ -20,7 +20,7 @@ namespace SR28tests.Entities
 {
     [TestClass]
     public class FoodGroupTests
-        : NutrishRepository
+        : TransactionSetup
     {
         public static FoodGroup CreateFoodGroup()
         {

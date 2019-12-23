@@ -20,7 +20,7 @@ namespace SR28tests.Entities
 {
     [TestClass]
     public class WeightTests
-        : NutrishRepository
+        : TransactionSetup
     {
         public static Weight CreateWeight(FoodDescription foodDescription)
         {

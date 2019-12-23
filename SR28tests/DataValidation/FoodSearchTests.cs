@@ -21,7 +21,7 @@ namespace SR28tests.DataValidation
 {
     [TestClass]
     public class FoodSearchTests
-        : NutrishRepository
+        : TransactionSetup
     {
         [TestMethod]
         public void SortedQueryTest()

@@ -16,7 +16,7 @@ using NHibernate;
 
 namespace SR28tests.Utilities
 {
-    public abstract class NutrishRepository
+    public abstract class TransactionSetup
     {
         private ITransaction _transaction;
 

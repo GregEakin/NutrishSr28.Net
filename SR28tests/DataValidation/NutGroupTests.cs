@@ -19,7 +19,7 @@ namespace SR28tests.DataValidation
 {
     [TestClass]
     public class NutGroupTests
-        : NutrishRepository
+        : TransactionSetup
     {
         [TestMethod]
         public void Test1()

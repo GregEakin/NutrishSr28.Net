@@ -20,7 +20,7 @@ namespace SR28tests.Entities
 {
     [TestClass]
     public class FootnoteTests
-        : NutrishRepository
+        : TransactionSetup
     {
         public static Footnote CreateFootnote()
         {

@@ -20,7 +20,7 @@ namespace SR28tests.References
 {
     [TestClass]
     public class FoodGroupTests
-        : NutrishRepository
+        : TransactionSetup
     {
         //  Links to the Food Description file by FdGrp_Cd
         [TestMethod]

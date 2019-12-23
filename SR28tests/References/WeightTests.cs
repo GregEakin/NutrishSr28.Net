@@ -20,7 +20,7 @@ namespace SR28tests.References
 {
     [TestClass]
     public class WeightTests
-        : NutrishRepository
+        : TransactionSetup
     {
         //  Links to Food Description file by NDB_No
         [TestMethod]

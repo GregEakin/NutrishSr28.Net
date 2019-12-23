@@ -20,7 +20,7 @@ namespace SR28tests.References
 {
     [TestClass]
     public class SourceCodeTests
-        : NutrishRepository
+        : TransactionSetup
     {
         //  Links to the Nutrient Data file by Src_Cd
         [TestMethod]

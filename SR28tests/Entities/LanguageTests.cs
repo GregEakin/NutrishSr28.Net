@@ -20,7 +20,7 @@ namespace SR28tests.Entities
 {
     [TestClass]
     public class LanguageTests
-        : NutrishRepository
+        : TransactionSetup
     {
         public static Language CreateLanguage()
         {

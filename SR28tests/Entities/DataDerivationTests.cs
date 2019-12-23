@@ -20,7 +20,7 @@ namespace SR28tests.Entities
 {
     [TestClass]
     public class DataDerivationTests
-        : NutrishRepository
+        : TransactionSetup
     {
         public static DataDerivation CreateDataDerivation()
         {

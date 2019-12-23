@@ -19,7 +19,7 @@ namespace SR28tests.DataValidation
 {
     [TestClass]
     public class NutrientCountTests
-        : NutrishRepository
+        : TransactionSetup
     {
         private static readonly string[][] Stuff =
         {

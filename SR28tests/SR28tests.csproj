@@ -100,7 +100,7 @@
     <Compile Include="References\WeightTests.cs" />
     <Compile Include="Utilities\ExpectedException.cs" />
     <Compile Include="Utilities\Initialize.cs" />
-    <Compile Include="Utilities\NutrishRepository.cs" />
+    <Compile Include="Utilities\TransactionSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

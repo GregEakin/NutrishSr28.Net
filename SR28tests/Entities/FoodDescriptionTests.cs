@@ -20,7 +20,7 @@ namespace SR28tests.Entities
 {
     [TestClass]
     public class FoodDescriptionTests
-        : NutrishRepository
+        : TransactionSetup
     {
         public static FoodDescription CreateFoodDescription()
         {

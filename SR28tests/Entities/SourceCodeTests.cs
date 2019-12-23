@@ -20,7 +20,7 @@ namespace SR28tests.Entities
 {
     [TestClass]
     public class SourceCodeTests
-        : NutrishRepository
+        : TransactionSetup
     {
         public static SourceCode CreateSourceCode()
         {

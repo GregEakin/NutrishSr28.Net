@@ -19,7 +19,7 @@ namespace SR28tests.DataValidation
 {
     [TestClass]
     public class FattyAcidTests 
-        : NutrishRepository
+        : TransactionSetup
     {
         [TestMethod]
         public void ButyricTest()

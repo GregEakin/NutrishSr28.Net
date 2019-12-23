@@ -18,7 +18,7 @@ namespace SR28tests.DataValidation
 {
     [TestClass]
     public class AbbreviatedTests 
-        : NutrishRepository
+        : TransactionSetup
     {
 
 
