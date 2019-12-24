@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SR28lib.Data;
 using SR28tests.Utilities;
@@ -22,19 +23,33 @@ namespace SR28tests.References
     public class NutrientDataTests
         : TransactionSetup
     {
-        //  Links to the Food Description file by Ref_NDB_No
         [TestMethod]
-        public void FoodDescriptionTest()
+        public void NutrientDataTest()
         {
-            var foodDescription = Session.Load<FoodDescription>("01119");
-            var nutrientDefinition = Session.Load<NutrientDefinition>("204");
+            var foodDescription = Session.Load<FoodDescription>("01115");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("203");
             var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
             Assert.AreEqual(nutrientDataKey, nutrientData.NutrientDataKey);
-            Assert.AreSame(foodDescription, nutrientData.NutrientDataKey.FoodDescription);
+            Assert.AreEqual(12.93, nutrientData.Nutr_Val);
+            Assert.AreEqual("11/1976", nutrientData.AddMod_Date);
+        }
+        
+        //  Links to the Food Description file by Ref_NDB_No
+        [TestMethod]
+        public void FoodDescriptionTest()
+        {
+            var foodDescription = Session.Load<FoodDescription>("01171");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("221");
+            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+            var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
+
+            var refFoodDescription = nutrientData.FoodDescription;
+            Assert.AreEqual("01123", refFoodDescription.NDB_No);
         }
 
+        // TODO: Do we need this link?
         //  Links to the Weight file by NDB_No
         //    [TestMethod]
         //    public void weightTest() {
@@ -47,41 +62,39 @@ namespace SR28tests.References
         //        assertEquals(3, weightSet.size());
         //    }
 
+        // TODO: Do we want this link?
         //  Links to the Footnote file by NDB_No
-        [TestMethod]
-        public void FootnoteTest1()
-        {
-            var foodDescription = Session.Load<FoodDescription>("12040");
-            var nutrientDefinition = Session.Load<NutrientDefinition>("204");
-            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
-
-            var footnoteSet = nutrientDataKey.FoodDescription.FootnoteSet;
-            Assert.AreEqual(2, footnoteSet.Count);
-            foreach (var footnote in footnoteSet)
-            {
-                Assert.AreEqual("12040", footnote.FoodDescription.NDB_No);
-                Assert.IsNull(footnote.NutrientDefinition);
-            }
-        }
+        // [TestMethod]
+        // public void FootnoteTest1()
+        // {
+        //     var foodDescription = Session.Load<FoodDescription>("12040");
+        //     var nutrientDefinition = Session.Load<NutrientDefinition>("204");
+        //     var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+        //     var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
+        //
+        //     var footnoteSet = nutrientData.FootnoteSet;
+        //     Assert.AreEqual(2, footnoteSet.Count);
+        //     foreach (var footnote in footnoteSet) 
+        //         Assert.AreEqual(foodDescription, footnote.FoodDescription);
+        // }
 
         //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
-        [TestMethod]
-        public void FootnoteTest2()
-        {
-            var foodDescription = Session.Load<FoodDescription>("03073");
-            var nutrientDefinition = Session.Load<NutrientDefinition>("320");
-            var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+        //[TestMethod]
+        //public void FootnoteTest2()
+        //{
+        //    var foodDescription = Session.Load<FoodDescription>("17267");
+        //    var nutrientDefinition = Session.Load<NutrientDefinition>("208");
+        //    var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
+        //    var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
-            var hql =
-                "FROM Footnote WHERE FoodDescription.NDB_No = :ndb_no and NutrientDefinition.Nutr_No = :nutr_no";
-            var query = Session.CreateQuery(hql);
-            query.SetParameter("ndb_no", nutrientDataKey.FoodDescription.NDB_No);
-            query.SetParameter("nutr_no", nutrientDataKey.NutrientDefinition.Nutr_No);
-            var footnote = query.UniqueResult<Footnote>();
-
-            Assert.AreEqual("03073", footnote.FoodDescription.NDB_No);
-            Assert.AreEqual("320", footnote.NutrientDefinition.Nutr_No);
-        }
+        //    var footnoteSet = nutrientData.FootnoteSet;
+        //    Assert.AreEqual(1, footnoteSet.Count);
+        //    foreach (var footnote in footnoteSet)
+        //    {
+        //        Assert.AreEqual(foodDescription, footnote.FoodDescription);
+        //        Assert.AreEqual(nutrientDefinition, footnote.NutrientDefinition);
+        //    }
+        //}
 
         //  Links to the Sources of Data Link file by NDB_No and Nutr_No
         [TestMethod]

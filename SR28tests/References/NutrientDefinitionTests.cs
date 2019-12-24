@@ -21,6 +21,15 @@ namespace SR28tests.References
     public class NutrientDefinitionTests
         : TransactionSetup
     {
+        [TestMethod]
+        public void NutrientDefinitionTest()
+        {
+            var nutrientDefinition = Session.Load<NutrientDefinition>("204");
+            Assert.AreEqual("204", nutrientDefinition.Nutr_No);
+            Assert.AreEqual("FAT", nutrientDefinition.Tagname);
+            Assert.AreEqual("Total lipid (fat)", nutrientDefinition.NutrDesc);
+        }
+
         //  Links to the Nutrient Data file by Nutr_No
         [TestMethod]
         public void NutrientDataTest()
@@ -28,6 +37,8 @@ namespace SR28tests.References
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
             var nutrientDataSet = nutrientDefinition.NutrientDataSet;
             Assert.AreEqual(8789, nutrientDataSet.Count);
+            foreach (var nutrientData in nutrientDataSet)
+                Assert.AreEqual(nutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
         }
     }
 }

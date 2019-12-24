@@ -21,14 +21,23 @@ namespace SR28tests.References
     public class DataDerivationTests
         : TransactionSetup
     {
+        [TestMethod]
+        public void DataDerivationTest()
+        {
+            var dataDerivation = Session.Load<DataDerivation>("RC");
+            Assert.AreEqual("RC", dataDerivation.Deriv_Cd);
+            Assert.AreEqual("Recipe; Cookbook", dataDerivation.Deriv_Desc);
+        }
+
         //  Links to the Nutrient Data file by Deriv_Cd
         [TestMethod]
         public void NutrientDataTest()
         {
             var dataDerivation = Session.Load<DataDerivation>("RC");
-
             var nutrientDataSet = dataDerivation.NutrientDataSet;
             Assert.AreEqual(2358, nutrientDataSet.Count);
+            foreach (var nutrientData in nutrientDataSet) 
+                Assert.AreEqual(dataDerivation, nutrientData.DataDerivation);
         }
     }
 }

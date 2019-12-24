@@ -21,6 +21,14 @@ namespace SR28tests.References
     public class FoodGroupTests
         : TransactionSetup
     {
+        [TestMethod]
+        public void FoodGroupTest()
+        {
+            var foodGroup = Session.Load<FoodGroup>("0400");
+            Assert.AreEqual("0400", foodGroup.FdGrp_Cd);
+            Assert.AreEqual("Fats and Oils", foodGroup.FdGrp_Desc);
+        }
+
         //  Links to the Food Description file by FdGrp_Cd
         [TestMethod]
         public void FoodDescriptionTest()
@@ -29,6 +37,9 @@ namespace SR28tests.References
 
             var foodDescriptionSet = foodGroup.FoodDescriptionSet;
             Assert.AreEqual(220, foodDescriptionSet.Count);
+
+            foreach (var foodDescription in foodDescriptionSet) 
+                Assert.AreEqual(foodGroup, foodDescription.FoodGroup);
         }
 
 }

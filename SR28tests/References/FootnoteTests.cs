@@ -21,6 +21,21 @@ namespace SR28tests.References
     public class FootnoteTests
         : TransactionSetup
     {
+        [TestMethod]
+        public void FootnoteTest()
+        {
+            var footnote = Session.QueryOver<Footnote>()
+                .Where(f => f.FoodDescription.NDB_No == "05316")
+                .And(f => f.NutrientDefinition.Nutr_No == null)
+                .SingleOrDefault();
+            // Assert.AreEqual(1217, footnote.Id);
+            Assert.AreEqual("05316", footnote.FoodDescription.NDB_No);
+            Assert.AreEqual("01", footnote.Footnt_No);
+            Assert.AreEqual("D", footnote.Footnt_Typ);
+            Assert.IsNull(footnote.NutrientDefinition);
+            Assert.AreEqual("Skinless pieces, charbroiled 12 minutes to  165 degrees F", footnote.Footnt_Txt);
+        }
+
         //  Links to the Food Description file by NDB_No
         [TestMethod]
         public void FoodDescriptionTest()
@@ -30,8 +45,9 @@ namespace SR28tests.References
                 .And(f => f.NutrientDefinition.Nutr_No == null)
                 .SingleOrDefault();
 
-            Assert.AreEqual("05316", footnote.FoodDescription.NDB_No);
-            Assert.IsNull(footnote.NutrientDefinition);
+            var foodDescription = footnote.FoodDescription;
+            Assert.AreEqual("05316", foodDescription.NDB_No);
+            Assert.IsTrue(foodDescription.FootnoteSet.Contains(footnote));
         }
 
         //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
@@ -77,7 +93,9 @@ namespace SR28tests.References
                 .And(f => f.NutrientDefinition.Nutr_No == "204")
                 .SingleOrDefault();
 
-            Assert.AreEqual("204", footnote.NutrientDefinition.Nutr_No);
+            var nutrientDefinition = footnote.NutrientDefinition;
+            Assert.AreEqual("204", nutrientDefinition.Nutr_No);
+            Assert.IsTrue(nutrientDefinition.FootnoteSet.Contains(footnote));
         }
     }
 }

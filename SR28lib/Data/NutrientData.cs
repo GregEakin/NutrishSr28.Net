@@ -79,6 +79,20 @@ namespace SR28lib.Data
             
             throw new NotImplementedException();
         }
+
+        //var footnote = Session.QueryOver<Footnote>()
+        //    .Where(f => f.FoodDescription == foodDescription)
+        //    .And(f => f.NutrientDefinition == nutrientDefinition)
+        //    .SingleOrDefault();
+
+        public virtual ISet<Footnote> FootnoteSet { get; set; } = new HashSet<Footnote>();
+        public virtual void AddFootnote(Footnote footnote)
+        {
+            if (footnote == null)
+                throw new ArgumentNullException(nameof(footnote));
+
+            throw new NotImplementedException();
+        }
     }
 
     [Serializable]
