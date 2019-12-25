@@ -43,7 +43,6 @@ namespace SR28lib.Data
             dataDerivation.NutrientDataSet.Add(this);
         }
 
-
         public virtual FoodDescription FoodDescription { get; set; }
         public virtual void AddFoodDescription(FoodDescription foodDescription)
         {
@@ -80,6 +79,30 @@ namespace SR28lib.Data
             
             throw new NotImplementedException();
         }
+
+        //var footnote = Session.QueryOver<Footnote>()
+        //    .Where(f => Equals(f.FoodDescription, foodDescription))
+        //    .And(f => Equals(f.NutrientDefinition, nutrientDefinition))
+        //    .SingleOrDefault();
+
+        public virtual ISet<Footnote> FootnoteSet { get; set; } = new HashSet<Footnote>();
+        public virtual void AddFootnote(Footnote footnote)
+        {
+            if (footnote == null)
+                throw new ArgumentNullException(nameof(footnote));
+
+            throw new NotImplementedException();
+        }
+        public override int GetHashCode()
+        {
+            return NutrientDataKey?.GetHashCode() ?? 0;
+        }
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is NutrientData that &&
+                                                    Equals(NutrientDataKey, that.NutrientDataKey));
+        }
     }
 
     [Serializable]
@@ -98,20 +121,17 @@ namespace SR28lib.Data
         public FoodDescription FoodDescription { get; set; }
         public NutrientDefinition NutrientDefinition { get; set; }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object other)
         {
-            if (this == obj) return true;
-            if (obj == null || GetType() != obj.GetType()) return false;
-            var that = (NutrientDataKey) obj;
-            var same = (FoodDescription?.Equals(that.FoodDescription) ?? that.FoodDescription == null)
-                       && (NutrientDefinition?.Equals(that.NutrientDefinition) ?? that.NutrientDefinition == null);
-            return same;
+            return ReferenceEquals(this, other) || (other is NutrientDataKey that &&
+                                                    Equals(FoodDescription, that.FoodDescription) &&
+                                                    Equals(NutrientDefinition, that.NutrientDefinition));
         }
 
         public override int GetHashCode()
         {
-            var result = FoodDescription != null ? FoodDescription.GetHashCode() : 0;
-            result = 31 * result + (NutrientDefinition != null ? NutrientDefinition.GetHashCode() : 0);
+            var result = FoodDescription?.GetHashCode() ?? 0;
+            result = 31 * result + (NutrientDefinition?.GetHashCode() ?? 0);
             return result;
         }
 

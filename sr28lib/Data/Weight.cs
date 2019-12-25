@@ -37,6 +37,16 @@ namespace SR28lib.Data
             if (nutrientData == null) throw new ArgumentNullException(nameof(nutrientData));
             throw new NotImplementedException();
         }
+
+        public override int GetHashCode()
+        {
+            return WeightKey?.GetHashCode() ?? 0;
+        }
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is Weight that && Equals(WeightKey, that.WeightKey));
+        }
     }
 
     [Serializable]
@@ -55,20 +65,17 @@ namespace SR28lib.Data
         public FoodDescription FoodDescription { get; set; }
         public string Seq { get; set; }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object other)
         {
-            if (this == obj) return true;
-            if (obj == null || GetType() != obj.GetType()) return false;
-            var that = (WeightKey) obj;
-            var same = (FoodDescription?.Equals(that.FoodDescription) ?? that.FoodDescription == null)
-                       && (Seq?.Equals(that.Seq) ?? that.Seq == null);
-            return same;
+            return ReferenceEquals(this, other) || (other is WeightKey that &&
+                                                    Equals(FoodDescription, that.FoodDescription) &&
+                                                    Equals(Seq, that.Seq));
         }
 
         public override int GetHashCode()
         {
-            var result = FoodDescription != null ? FoodDescription.GetHashCode() : 0;
-            result = 31 * result + (Seq != null ? Seq.GetHashCode() : 0);
+            var result = FoodDescription?.GetHashCode() ?? 0;
+            result = 31 * result + (Seq?.GetHashCode() ?? 0);
             return result;
         }
 

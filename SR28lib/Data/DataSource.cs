@@ -39,5 +39,16 @@ namespace SR28lib.Data
             nutrientData.DataSourceSet.Add(this);
             NutrientDataSet.Add(nutrientData);
         }
+
+        public override int GetHashCode()
+        {
+            return DataSrc_ID?.GetHashCode() ?? 0;
+        }
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is DataSource that &&
+                                                    Equals(DataSrc_ID, that.DataSrc_ID));
+        }
     }
 }

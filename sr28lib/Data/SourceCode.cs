@@ -33,5 +33,15 @@ namespace SR28lib.Data
             nutrientData.SourceCode = this;
             NutrientDataSet.Add(nutrientData);
         }
+
+        public override int GetHashCode()
+        {
+            return Src_Cd?.GetHashCode() ?? 0;
+        }
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is SourceCode that && Equals(Src_Cd, that.Src_Cd));
+        }
     }
 }

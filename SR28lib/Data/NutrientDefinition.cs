@@ -29,6 +29,7 @@ namespace SR28lib.Data
         public virtual int? SR_Order { get; set; }
 
         public virtual ISet<NutrientData> NutrientDataSet { get; set; } = new HashSet<NutrientData>();
+
         public virtual void AddNutrientData(NutrientData nutrientData)
         {
             if (nutrientData == null)
@@ -39,6 +40,7 @@ namespace SR28lib.Data
         }
 
         public virtual ISet<Footnote> FootnoteSet { get; set; } = new HashSet<Footnote>();
+
         public virtual void AddFootnote(Footnote footnote)
         {
             if (footnote == null)
@@ -46,6 +48,16 @@ namespace SR28lib.Data
 
             FootnoteSet.Add(footnote);
             footnote.NutrientDefinition = this;
+        }
+
+        public override int GetHashCode()
+        {
+            return Nutr_No?.GetHashCode() ?? 0;
+        }
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is NutrientDefinition that && Equals(Nutr_No, that.Nutr_No));
         }
     }
 }

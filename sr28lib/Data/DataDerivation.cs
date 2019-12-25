@@ -31,5 +31,16 @@ namespace SR28lib.Data
             nutrientData.DataDerivation = this;
             NutrientDataSet.Add(nutrientData);
         }
+
+        public override int GetHashCode()
+        {
+            return Deriv_Cd?.GetHashCode() ?? 0;
+        }
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is DataDerivation that &&
+                                                    Equals(Deriv_Cd, that.Deriv_Cd));
+        }
     }
 }

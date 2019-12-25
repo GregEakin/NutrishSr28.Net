@@ -87,5 +87,17 @@ namespace SR28lib.Data
             language.FoodDescriptionSet.Add(this);
             LanguageSet.Add(language);
         }
+
+        public override int GetHashCode()
+        {
+            return NDB_No?.GetHashCode() ?? 0;
+        }
+
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is FoodDescription that &&
+                                                    Equals(NDB_No, that.NDB_No));
+        }
     }
 }

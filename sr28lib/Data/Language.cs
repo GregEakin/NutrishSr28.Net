@@ -32,5 +32,16 @@ namespace SR28lib.Data
             FoodDescriptionSet.Add(foodDescription);
             foodDescription.LanguageSet.Add(this);
         }
+
+        public override int GetHashCode()
+        {
+            return Factor_Code?.GetHashCode() ?? 0;
+        }
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is Language that &&
+                                                    Equals(Factor_Code, that.Factor_Code));
+        }
     }
 }

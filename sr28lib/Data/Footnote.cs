@@ -37,5 +37,16 @@ namespace SR28lib.Data
             if (foodDescription == null) throw new ArgumentNullException(nameof(foodDescription));
             throw new System.NotImplementedException();
         }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is Footnote that &&
+                                                    Equals(Id, that.Id));
+        }
     }
 }

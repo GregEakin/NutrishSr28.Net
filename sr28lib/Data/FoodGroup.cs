@@ -32,5 +32,16 @@ namespace SR28lib.Data
             foodDescription.FoodGroup = this;
             FoodDescriptionSet.Add(foodDescription);
         }
+
+        public override int GetHashCode()
+        {
+            return FdGrp_Cd?.GetHashCode() ?? 0;
+        }
+
+        public override bool Equals(object other)
+        {
+            return ReferenceEquals(this, other) || (other is FoodGroup that &&
+                                                    Equals(FdGrp_Cd, that.FdGrp_Cd));
+        }
     }
 }
