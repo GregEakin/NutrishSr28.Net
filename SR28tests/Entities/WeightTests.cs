@@ -82,5 +82,21 @@ namespace SR28tests.Entities
             Assert.AreSame(weight.WeightKey.FoodDescription, nutrientData.NutrientDataKey.FoodDescription);
             // Assert.IsTrue(nutrientData.WeightSet.Contains(weight));
         }
+
+        [TestMethod]
+        public void EqualsTest()
+        {
+            var foodDescription = FoodDescriptionTests.CreateFoodDescription();
+            var weight = WeightTests.CreateWeight(foodDescription);
+
+            var foodDescription2 = FoodDescriptionTests.CreateFoodDescription();
+            foodDescription2.NDB_No = "123";
+            var weight2 = WeightTests.CreateWeight(foodDescription2);
+
+            Assert.IsFalse(Equals(null, weight));
+            Assert.IsFalse(Equals(weight, null));
+            Assert.IsTrue(Equals(weight, weight));
+            Assert.IsFalse(Equals(weight, weight2));
+        }
     }
 }

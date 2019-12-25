@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SR28lib.Data;
 using SR28tests.Utilities;
@@ -35,7 +36,6 @@ namespace SR28tests.DataValidation
         }
 
         [TestMethod]
-
         public void FoodGroupTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -48,10 +48,10 @@ namespace SR28tests.DataValidation
         [TestMethod]
         public void FoodDescriptionLoopbackTest()
         {
-            var foodDescription = Session.Load<FoodDescription>("01119");
+            var foodDescription = Session.Load<FoodDescription>("18637");
             var nutrientDataSet = foodDescription.NutrientDataSet;
 
-            Assert.AreEqual(91, nutrientDataSet.Count);
+            Assert.AreEqual(8, nutrientDataSet.Count);
             foreach (var nutrientData in nutrientDataSet)
             {
                 var nutrientDataKey = nutrientData.NutrientDataKey;
@@ -60,13 +60,12 @@ namespace SR28tests.DataValidation
         }
 
         [TestMethod]
-
         public void NutrientDefinitionLoopbackTest()
         {
-            var nutrientDefinition = Session.Load<NutrientDefinition>("204");
+            var nutrientDefinition = Session.Load<NutrientDefinition>("257");
             var nutrientDataSet = nutrientDefinition.NutrientDataSet;
 
-            Assert.AreEqual(8789, nutrientDataSet.Count);
+            Assert.AreEqual(4, nutrientDataSet.Count);
             foreach (var nutrientData in nutrientDataSet)
             {
                 var nutrientDataKey = nutrientData.NutrientDataKey;
@@ -75,7 +74,6 @@ namespace SR28tests.DataValidation
         }
 
         [TestMethod]
-
         public void NutrientDefinitionTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
@@ -86,7 +84,6 @@ namespace SR28tests.DataValidation
         }
 
         [TestMethod]
-
         public void NutrientDataTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -103,7 +100,6 @@ namespace SR28tests.DataValidation
         }
 
         [TestMethod]
-
         public void WeightTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -133,20 +129,16 @@ namespace SR28tests.DataValidation
         }
 
         [TestMethod]
-
         public void FoodDescriptionFootnoteTest()
         {
             var foodDescription = Session.Load<FoodDescription>("05315");
             var footnoteSet = foodDescription.FootnoteSet;
             Assert.AreEqual(3, footnoteSet.Count);
-            foreach (var footnote in footnoteSet)
-            {
-                Console.WriteLine("    Footnote: " + footnote.Footnt_Txt);
-            }
+            // foreach (var footnote in footnoteSet) 
+            //     Console.WriteLine("    Footnote: {0}", footnote.Footnt_Txt);
         }
 
         [TestMethod]
-
         public void NutrientDefinitionFootnoteTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
@@ -154,25 +146,11 @@ namespace SR28tests.DataValidation
             Assert.AreEqual(13, footnoteSet.Count);
 
             var foodDescription = Session.Load<FoodDescription>("04673");
-            // Assert.IsTrue(footnoteSet.stream().anyMatch(o -> o.FoodDescription == foodDescription));
-            // Assert.IsTrue(footnoteSet.stream().map(Footnote::getFoodDescription).anyMatch(foodDescription::equals));
-
-//        Stream<FoodDescription> foodDescriptionStream = footnoteSet.stream().map(Footnote::getFoodDescription).filter(o -> o.NDB_No() == "04673");
-//        FoodDescription f2 = foodDescriptionStream.findFirst().();
-//        Assertions.assertSame(foodDescription, f2);
-
-            foreach (var footnote in footnoteSet)
-            {
-                Console.WriteLine("    Footnote: " + footnote.Footnt_Txt + " " +
-                                   footnote.FoodDescription.NDB_No);
-
-                // if (footnote.FoodDescription.NDB_No.equals("04673"))
-                //     Assert.AreEqual("contains 2.841 g omega-3 fatty acids", footnote.Footnt_Txt);
-            }
+            var count = footnoteSet.Count(o => Equals(foodDescription, o.FoodDescription));
+            Assert.AreEqual(1, count);
         }
 
         [TestMethod]
-
         public void SourceCodeTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -187,7 +165,6 @@ namespace SR28tests.DataValidation
         }
 
         [TestMethod]
-
         public void DataDerivationTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
