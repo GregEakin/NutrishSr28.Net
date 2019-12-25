@@ -8,13 +8,13 @@
       <generator class="assigned" />
     </id>
     <!--
-    <property name = "Shrt_Desc" length="60" not-null="false" />
+    <property name = "Shrt_Desc" length="60" not-null="true" />
     <property name = "Water" />
     <property name = "Energ_Kcal" />
     <property name = "Protein" />
     <property name = "Lipid_Tot" />
     <property name = "Ash" />
-    <property name = "Carbohydrt" not-null="false" />
+    <property name = "Carbohydrt" not-null="true" />
     <property name = "Fiber_TD" />
     <property name = "Sugar_Tot" />
     <property name = "Calcium" />
@@ -79,7 +79,7 @@
       <generator class="assigned" />
     </id>
     <property name="Authors" type="string" length="255" />
-    <property name="Title" type="string" length="255" not-null="false" />
+    <property name="Title" type="string" length="255" not-null="true" />
     <property name="Year" type="string" length="4" />
     <property name="Journal" type="string" length="135" />
     <property name="Vol_City" type="string" length="16" />
