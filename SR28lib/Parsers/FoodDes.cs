@@ -20,20 +20,46 @@ namespace SR28lib.Parsers
 {
     public static class FoodDes
     {
-        public static readonly string Filename = "..\\..\\..\\data\\FOOD_DES.txt";
+        public static readonly string DataFile = "..\\..\\..\\data\\FOOD_DES.txt";
+        public static readonly string AddFile = "..\\..\\..\\data2\\ADD_FOOD.txt";
+        public static readonly string ChangeFile = "..\\..\\..\\data2\\CHG_FOOD.txt";
 
         public static void ParseFile(IStatelessSession session)
         {
-            var lines = File.ReadLines(Filename);
-            foreach (var line in lines) 
-                ParseLine(session, line);
+            if (File.Exists(DataFile))
+            {
+                var lines = File.ReadLines(DataFile);
+                foreach (var line in lines)
+                    AddLine(session, line);
+            }
+
+            if (File.Exists(AddFile))
+            {
+                var lines = File.ReadLines(AddFile);
+                foreach (var line in lines)
+                    AddLine(session, line);
+            }
+
+            if (File.Exists(ChangeFile))
+            {
+                var lines = File.ReadLines(ChangeFile);
+                foreach (var line in lines)
+                    ChangeLine(session, line);
+            }
         }
 
-        private static void ParseLine(IStatelessSession session, string line)
+        private static void AddLine(IStatelessSession session, string line)
         {
             var fields = line.Split('^');
-            var item = ParseFoodDescription(session, fields);
-            session.Insert(item);
+            var foodDescription = ParseFoodDescription(session, fields);
+            session.Insert(foodDescription);
+        }
+
+        private static void ChangeLine(IStatelessSession session, string line)
+        {
+            var fields = line.Split('^');
+            var foodDescription = ParseFoodDescription(session, fields);
+            session.Update(foodDescription);
         }
 
         private static FoodDescription ParseFoodDescription(IStatelessSession session, IReadOnlyList<string> fields)

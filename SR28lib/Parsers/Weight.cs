@@ -18,19 +18,52 @@ namespace SR28lib.Parsers
 {
     public static class Weight
     {
-        public static readonly string Filename = "..\\..\\..\\data\\WEIGHT.txt";
+        public static readonly string DataFile = "..\\..\\..\\data\\WEIGHT.txt";
+        public static readonly string AddData = "..\\..\\..\\data2\\ADD_WGT.txt";
+        public static readonly string ChangeData = "..\\..\\..\\data2\\CHG_WGT.txt";
 
         public static void ParseFile(IStatelessSession session)
         {
-            var lines = File.ReadLines(Filename);
-            foreach (var line in lines)
-                ParseLine(session, line);
+            if (File.Exists(DataFile))
+            {
+                var lines = File.ReadLines(DataFile);
+                foreach (var line in lines)
+                    AddLine(session, line);
+            }
+
+            if (File.Exists(AddData))
+            {
+                var lines = File.ReadLines(AddData);
+                foreach (var line in lines)
+                    AddLine(session, line);
+            }
+
+            if (File.Exists(ChangeData))
+            {
+                var lines = File.ReadLines(ChangeData);
+                foreach (var line in lines)
+                    ChangeLine(session, line);
+            }
         }
 
-        private static void ParseLine(IStatelessSession session, string line)
+        private static void AddLine(IStatelessSession session, string line)
         {
             var fields = line.Split('^');
+            var weight = Item(session, fields);
+            session.Insert(weight);
+        }
+
+        private static void ChangeLine(IStatelessSession session, string line)
+        {
+            var fields = line.Split('^');
+            var weight = Item(session, fields);
+            session.Update(weight);
+        }
+
+        private static Data.Weight Item(IStatelessSession session, string[] fields)
+        {
             var item = new Data.Weight();
+            
             // NDB_No A 5* N 5-digit Nutrient Databank number that uniquely identifies a food item.
             // Seq A 2* N Sequence number.
             var foodDescriptionId = fields[0].Substring(1, fields[0].Length - 2);
@@ -51,9 +84,8 @@ namespace SR28lib.Parsers
 
             // Std_Dev N 7.3 Y Standard deviation.
             if (fields[6].Length > 0) item.Std_Dev = double.Parse(fields[6]);
-
-            //foodDescription.AddWeight(item);
-            session.Insert(item);
+            
+            return item;
         }
     }
 }

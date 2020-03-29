@@ -19,11 +19,13 @@ namespace SR28lib.Parsers
 {
     public static class FdGroup
     {
-        public static readonly string Filename = "..\\..\\..\\data\\FD_GROUP.txt";
+        public static readonly string DataFile = "..\\..\\..\\data\\FD_GROUP.txt";
 
         public static void ParseFile(IStatelessSession session)
         {
-            var lines = File.ReadLines(Filename);
+            if (!File.Exists(DataFile)) return;
+
+            var lines = File.ReadLines(DataFile);
             foreach (var line in lines)
                 ParseLine(session, line);
         }

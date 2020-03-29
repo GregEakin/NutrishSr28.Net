@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataValidation\AbbreviatedTests.cs" />
+    <Compile Include="Duplication\WeightDuplicateTests.cs" />
     <Compile Include="Entities\DataDerivationTests.cs" />
     <Compile Include="DataValidation\ElementCountTests.cs" />
     <Compile Include="DataValidation\FattyAcidTests.cs" />

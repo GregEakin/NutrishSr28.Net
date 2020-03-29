@@ -24,6 +24,7 @@ namespace SR28lib.Parsers
 
         public static void ParseFile(IStatelessSession session)
         {
+            if (!File.Exists(Filename)) return;
             var lines = File.ReadLines(Filename);
             foreach (var line in lines)
                 ParseLine(session, line);

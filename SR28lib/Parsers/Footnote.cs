@@ -23,6 +23,7 @@ namespace SR28lib.Parsers
 
         public static void ParseFile(IStatelessSession session)
         {
+            if (!File.Exists(Filename)) return;
             var lines = File.ReadLines(Filename);
             foreach (var line in lines)
                 ParseLine(session, line);
@@ -31,8 +32,8 @@ namespace SR28lib.Parsers
         private static void ParseLine(IStatelessSession session, string line)
         {
             var fields = line.Split('^');
-            var item = ParseFootnote(session, fields);
-            session.Insert(item);
+            var footnote = ParseFootnote(session, fields);
+            session.Insert(footnote);
         }
 
         private static Data.Footnote ParseFootnote(IStatelessSession session, IReadOnlyList<string> fields)
