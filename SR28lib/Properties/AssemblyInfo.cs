@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SR28lib")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("http://eakin.dev")]
 [assembly: AssemblyProduct("SR28lib")]
 [assembly: AssemblyCopyright("Copyright © Gregory Eakin 2019")]
 [assembly: AssemblyTrademark("")]
