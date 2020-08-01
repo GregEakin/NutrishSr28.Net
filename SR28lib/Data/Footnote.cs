@@ -29,13 +29,13 @@ namespace SR28lib.Data
         public virtual void AddNutrientDefinition(NutrientDefinition nutrientDefinition)
         {
             if (nutrientDefinition == null) throw new ArgumentNullException(nameof(nutrientDefinition));
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public virtual void AddFoodDescription(FoodDescription foodDescription)
         {
             if (foodDescription == null) throw new ArgumentNullException(nameof(foodDescription));
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public override int GetHashCode()

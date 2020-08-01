@@ -20,20 +20,22 @@ namespace SR28lib.Parsers
 {
     public static class NutData
     {
-        public static readonly string DataFile = "..\\..\\..\\data\\NUT_DATA.txt";
-        public static readonly string AddData = "..\\..\\..\\data2\\ADD_NUTR.txt";
-        public static readonly string ChangeData = "..\\..\\..\\data2\\CHG_NUTR.txt";
-        public static readonly string DeleteData = "..\\..\\..\\data2\\DEL_NUTR.txt";
+        public const string DataFile = "..\\..\\..\\data\\NUT_DATA.txt";
+        public const string AddData = "..\\..\\..\\data2\\ADD_NUTR.txt";
+        public const string ChangeData = "..\\..\\..\\data2\\CHG_NUTR.txt";
+        public const string DeleteData = "..\\..\\..\\data2\\DEL_NUTR.txt";
 
         public static void ParseFile(IStatelessSession session)
         {
-            if (File.Exists(DataFile))
-            {
-                var lines = File.ReadLines(DataFile);
-                foreach (var line in lines)
-                    AddLine(session, line);
-            }
+            if (!File.Exists(DataFile)) return;
 
+            var lines = File.ReadLines(DataFile);
+            foreach (var line in lines)
+                AddLine(session, line);
+        }
+
+        public static void ParseUpdates(IStatelessSession session)
+        {
             if (File.Exists(AddData))
             {
                 var lines = File.ReadLines(AddData);

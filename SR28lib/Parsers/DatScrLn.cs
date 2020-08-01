@@ -19,24 +19,25 @@ namespace SR28lib.Parsers
 {
     public static class DatScrLn
     {
-        public static readonly string DataFile1 = "..\\..\\..\\data\\DATSRCLN.txt";
-        public static readonly string DataFile2 = "..\\..\\..\\data2\\DATSRCLN.txt";
+        public const string DataFile1 = "..\\..\\..\\data\\DATSRCLN.txt";
+        public const string DataFile2 = "..\\..\\..\\data2\\DATSRCLN.txt";
 
         public static void ParseFile(ISession session)
         {
             if (File.Exists(DataFile1)) return;
-            {
-                var lines = File.ReadLines(DataFile1);
-                foreach (var line in lines)
-                    ParseLine(session, line);
-            }
 
-            if (File.Exists(DataFile2))
-            {
-                var lines = File.ReadLines(DataFile2);
-                foreach (var line in lines)
-                    ParseLine(session, line);
-            }
+            var lines = File.ReadLines(DataFile1);
+            foreach (var line in lines)
+                ParseLine(session, line);
+        }
+
+        public static void ParseUpdates(ISession session)
+        {
+            if (!File.Exists(DataFile2)) return;
+
+            var lines = File.ReadLines(DataFile2);
+            foreach (var line in lines)
+                ParseLine(session, line);
         }
 
         private static void ParseLine(ISession session, string line)

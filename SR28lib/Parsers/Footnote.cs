@@ -19,9 +19,9 @@ namespace SR28lib.Parsers
 {
     public static class Footnote
     {
-        public static readonly string Filename = "..\\..\\..\\data\\FOOTNOTE.txt";
+        public const string Filename = "..\\..\\..\\data\\FOOTNOTE.txt";
 
-        public static void ParseFile(IStatelessSession session)
+        public static void ParseFile(ISession session)
         {
             if (!File.Exists(Filename)) return;
             var lines = File.ReadLines(Filename);
@@ -29,14 +29,14 @@ namespace SR28lib.Parsers
                 ParseLine(session, line);
         }
 
-        private static void ParseLine(IStatelessSession session, string line)
+        private static void ParseLine(ISession session, string line)
         {
             var fields = line.Split('^');
             var footnote = ParseFootnote(session, fields);
-            session.Insert(footnote);
+            session.SaveOrUpdate(footnote);
         }
 
-        private static Data.Footnote ParseFootnote(IStatelessSession session, IReadOnlyList<string> fields)
+        private static Data.Footnote ParseFootnote(ISession session, IReadOnlyList<string> fields)
         {
             var item = new Data.Footnote();
             var NDB_No = fields[0].Substring(1, fields[0].Length - 2);

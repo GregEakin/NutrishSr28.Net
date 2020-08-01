@@ -20,19 +20,21 @@ namespace SR28lib.Parsers
 {
     public static class FoodDes
     {
-        public static readonly string DataFile = "..\\..\\..\\data\\FOOD_DES.txt";
-        public static readonly string AddFile = "..\\..\\..\\data2\\ADD_FOOD.txt";
-        public static readonly string ChangeFile = "..\\..\\..\\data2\\CHG_FOOD.txt";
+        public const string DataFile = "..\\..\\..\\data\\FOOD_DES.txt";
+        public const string AddFile = "..\\..\\..\\data2\\ADD_FOOD.txt";
+        public const string ChangeFile = "..\\..\\..\\data2\\CHG_FOOD.txt";
 
         public static void ParseFile(IStatelessSession session)
         {
-            if (File.Exists(DataFile))
-            {
-                var lines = File.ReadLines(DataFile);
-                foreach (var line in lines)
-                    AddLine(session, line);
-            }
+            if (!File.Exists(DataFile)) return;
 
+            var lines = File.ReadLines(DataFile);
+            foreach (var line in lines)
+                AddLine(session, line);
+        }
+
+        public static void ParseUpdates(IStatelessSession session)
+        {
             if (File.Exists(AddFile))
             {
                 var lines = File.ReadLines(AddFile);

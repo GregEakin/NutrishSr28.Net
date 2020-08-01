@@ -19,7 +19,7 @@ namespace SR28lib.Parsers
 {
     public static class LanguaL
     {
-        public static readonly string Filename = "..\\..\\..\\data\\LANGUAL.txt";
+        public const string Filename = "..\\..\\..\\data\\LANGUAL.txt";
 
         public static void ParseFile(ISession session)
         {

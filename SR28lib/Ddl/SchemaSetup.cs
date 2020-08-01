@@ -58,58 +58,66 @@ namespace SR28lib.Ddl
 
         public void Dispose()
         {
-            _statelessSession?.Dispose();
             _session?.Dispose();
+            _statelessSession?.Dispose();
             _factory?.Dispose();
         }
 
         public void SetupDates()
         {
-            using (var transaction = _session.BeginTransaction())
+            Console.WriteLine("Load FdGroup");
+            using (var transaction = _statelessSession.BeginTransaction())
             {
                 FdGroup.ParseFile(_statelessSession);
                 transaction.Commit();
             }
 
-            using (var transaction = _session.BeginTransaction())
+            Console.WriteLine("Load SrcCd");
+            using (var transaction = _statelessSession.BeginTransaction())
             {
                 SrcCd.ParseFile(_statelessSession);
                 transaction.Commit();
             }
 
-            using (var transaction = _session.BeginTransaction())
+            Console.WriteLine("Load DerivCD");
+            using (var transaction = _statelessSession.BeginTransaction())
             {
                 DerivCD.ParseFile(_statelessSession);
                 transaction.Commit();
             }
 
-            using (var transaction = _session.BeginTransaction())
+            Console.WriteLine("Load LangDesc");
+            using (var transaction = _statelessSession.BeginTransaction())
             {
                 LangDesc.ParseFile(_statelessSession);
                 transaction.Commit();
             }
 
-            using (var transaction = _session.BeginTransaction())
+            Console.WriteLine("Load DataSrc");
+            using (var transaction = _statelessSession.BeginTransaction())
             {
                 DataSrc.ParseFile(_statelessSession);
                 transaction.Commit();
             }
 
-            using (var transaction = _session.BeginTransaction())
+            Console.WriteLine("Load NutrDef");
+            using (var transaction = _statelessSession.BeginTransaction())
             {
                 NutrDef.ParseFile(_statelessSession);
                 transaction.Commit();
             }
 
             // fd_group
-            using (var transaction = _session.BeginTransaction())
+            Console.WriteLine("Load FoodDes");
+            using (var transaction = _statelessSession.BeginTransaction())
             {
                 FoodDes.ParseFile(_statelessSession);
                 transaction.Commit();
             }
 
             // food_des
-            using (var transaction = _session.BeginTransaction())
+            Console.WriteLine("Load Weight");
+            using (var transaction = _statelessSession.BeginTransaction())
             {
                 Weight.ParseFile(_statelessSession);
                 transaction.Commit();
@@ -117,6 +125,7 @@ namespace SR28lib.Ddl
 
             // langdesc
             // food_des
+            Console.WriteLine("Load LanguaL");
             using (var transaction = _session.BeginTransaction())
             {
                 LanguaL.ParseFile(_session);
@@ -125,9 +134,10 @@ namespace SR28lib.Ddl
 
             // food_des
             // nuter_def
+            Console.WriteLine("Load Footnote");
             using (var transaction = _session.BeginTransaction())
             {
-                Footnote.ParseFile(_statelessSession);
+                Footnote.ParseFile(_session);
                 transaction.Commit();
             }
 
@@ -136,7 +146,8 @@ namespace SR28lib.Ddl
             // src_cd
             // deriv_cd
             // food_des
-            using (var transaction = _session.BeginTransaction())
+            Console.WriteLine("Load NutData");
+            using (var transaction = _statelessSession.BeginTransaction())
             {
                 NutData.ParseFile(_statelessSession);
                 transaction.Commit();
@@ -144,6 +155,7 @@ namespace SR28lib.Ddl
 
             // nut_data
             // data_src
+            Console.WriteLine("Load DatScrLn");
             using (var transaction = _session.BeginTransaction())
             {
                 DatScrLn.ParseFile(_session);

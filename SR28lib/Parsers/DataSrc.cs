@@ -20,7 +20,7 @@ namespace SR28lib.Parsers
 {
     public static class DataSrc
     {
-        public static readonly string Filename = "..\\..\\..\\data\\DATA_SRC.txt";
+        public const string Filename = "..\\..\\..\\data\\DATA_SRC.txt";
 
         public static void ParseFile(IStatelessSession session)
         {

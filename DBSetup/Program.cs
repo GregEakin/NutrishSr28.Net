@@ -31,12 +31,10 @@ namespace DBSetup
 
             var execute = true;
 
-            using (var schema = new SchemaSetup(connection, false))
+            using (var schema = new SchemaSetup(connection, execute))
             {
-                if (execute)
-                {
+                if (execute) 
                     schema.SetupDates();
-                }
             }
         }
     }

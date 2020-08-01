@@ -40,7 +40,7 @@ namespace SR28tests.Entities
         [TestMethod]
         public void AddNullNutrientDefinitionTest()
         {
-            var footnote = FootnoteTests.CreateFootnote();
+            var footnote = CreateFootnote();
 
             void ClosureContainingCodeToTest() => footnote.AddNutrientDefinition(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);

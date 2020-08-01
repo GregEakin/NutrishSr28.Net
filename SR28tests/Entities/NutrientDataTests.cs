@@ -44,7 +44,7 @@ namespace SR28tests.Entities
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
             var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
-            var nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
+            var nutrientData = CreateNutrientData(foodDescription, nutrientDefinition);
 
             void ClosureContainingCodeToTest() => nutrientData.AddDataDerivation(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
@@ -56,7 +56,7 @@ namespace SR28tests.Entities
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
             var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
-            var nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
+            var nutrientData = CreateNutrientData(foodDescription, nutrientDefinition);
             var dataDerivation = DataDerivationTests.CreateDataDerivation();
 
             nutrientData.AddDataDerivation(dataDerivation);

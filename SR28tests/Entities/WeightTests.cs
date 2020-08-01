@@ -43,7 +43,7 @@ namespace SR28tests.Entities
         public void AddNullFoodDescription()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
-            var weight = WeightTests.CreateWeight(foodDescription);
+            var weight = CreateWeight(foodDescription);
 
             void ClosureContainingCodeToTest() => weight.AddFoodDescription(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
@@ -54,7 +54,7 @@ namespace SR28tests.Entities
         public void AddFoodDescription()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
-            var weight = WeightTests.CreateWeight(foodDescription);
+            var weight = CreateWeight(foodDescription);
 
             Assert.AreSame(foodDescription, weight.WeightKey.FoodDescription);
             Assert.IsTrue(foodDescription.WeightSet.Contains(weight));
@@ -64,7 +64,7 @@ namespace SR28tests.Entities
         public void AddNullNutrientDataTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
-            var weight = WeightTests.CreateWeight(foodDescription);
+            var weight = CreateWeight(foodDescription);
 
             void ClosureContainingCodeToTest() => weight.AddNutrientData(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
@@ -75,7 +75,7 @@ namespace SR28tests.Entities
         public void AddNutrientData()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
-            var weight = WeightTests.CreateWeight(foodDescription);
+            var weight = CreateWeight(foodDescription);
             var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
             var nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
 
@@ -87,11 +87,11 @@ namespace SR28tests.Entities
         public void EqualsTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
-            var weight = WeightTests.CreateWeight(foodDescription);
+            var weight = CreateWeight(foodDescription);
 
             var foodDescription2 = FoodDescriptionTests.CreateFoodDescription();
             foodDescription2.NDB_No = "123";
-            var weight2 = WeightTests.CreateWeight(foodDescription2);
+            var weight2 = CreateWeight(foodDescription2);
 
             Assert.IsFalse(Equals(null, weight));
             Assert.IsFalse(Equals(weight, null));
