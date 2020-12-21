@@ -12,13 +12,13 @@
 // limitations under the License.
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.Entities
 {
-    [TestClass]
+    [TestFixture]
     public class SourceCodeTests
         : TransactionSetup
     {
@@ -28,7 +28,7 @@ namespace SR28tests.Entities
             return sourceCode;
         }
 
-        [TestMethod]
+        [Test]
         public void RowCountTest()
         {
             var count = Session
@@ -37,7 +37,7 @@ namespace SR28tests.Entities
             Assert.AreEqual(10, count);
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullNutrientDataTest()
         {
             var sourceCode = CreateSourceCode();
@@ -47,7 +47,7 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: nutrientData", exception.Message);
         }
 
-    [TestMethod]
+    [Test]
         public void AddNutrientDataTest()
         {
             var sourceCode = CreateSourceCode();

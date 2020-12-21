@@ -11,18 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.References
 {
-    [TestClass]
+    [TestFixture]
     public class WeightTests
         : TransactionSetup
     {
         //  Links to Food Description file by NDB_No
-        [TestMethod]
+        [Test]
         public void FoodDescriptionTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -33,7 +33,7 @@ namespace SR28tests.References
         }
 
         //  Links to Nutrient Data file by NDB_No
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");

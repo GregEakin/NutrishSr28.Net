@@ -11,18 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 using System.Linq;
 
 namespace SR28tests.DataValidation
 {
-    [TestClass]
+    [TestFixture]
     public class ElementCountTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void WaterTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("255");
@@ -31,7 +31,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual("g", nutrientDefinition.Units);
         }
 
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("255");
@@ -42,7 +42,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual(8788, count);
         }
 
-        [TestMethod]
+        [Test]
         public void NutrientDataLimitTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("255");

@@ -12,13 +12,13 @@
 // limitations under the License.
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.Entities
 {
-    [TestClass]
+    [TestFixture]
     public class FootnoteTests
         : TransactionSetup
     {
@@ -28,7 +28,7 @@ namespace SR28tests.Entities
             return footnote;
         }
 
-        [TestMethod]
+        [Test]
         public void RowCountTest()
         {
             var count = Session
@@ -37,7 +37,7 @@ namespace SR28tests.Entities
             Assert.AreEqual(552, count);
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullNutrientDefinitionTest()
         {
             var footnote = FootnoteTests.CreateFootnote();
@@ -47,8 +47,8 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: nutrientDefinition", exception.Message);
         }
 
-        [TestMethod]
-        [Ignore]
+        [Test]
+        [Ignore("@@ reason")]
         public void AddNutrientDefinitionTest()
         {
             var footnote = CreateFootnote();
@@ -59,7 +59,7 @@ namespace SR28tests.Entities
             Assert.IsTrue(nutrientDefinition.FootnoteSet.Contains(footnote));
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullFoodDescriptionTest()
         {
             var footnote = CreateFootnote();
@@ -69,8 +69,8 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: foodDescription", exception.Message);
         }
 
-        [TestMethod]
-        [Ignore]
+        [Test]
+        [Ignore("@@ reason")]
         public void AddFoodDescriptionTest()
         {
             var footnote = CreateFootnote();

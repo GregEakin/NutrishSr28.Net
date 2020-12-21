@@ -11,17 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.DataValidation
 {
-    [TestClass]
+    [TestFixture]
     public class FattyAcidTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void ButyricTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("607");
@@ -30,7 +30,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual("g", nutrientDefinition.Units);
         }
 
-        [TestMethod]
+        [Test]
         public void CaproicTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("608");
@@ -39,7 +39,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual("g", nutrientDefinition.Units);
         }
 
-        [TestMethod]
+        [Test]
         public void MyristoleicTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("625");

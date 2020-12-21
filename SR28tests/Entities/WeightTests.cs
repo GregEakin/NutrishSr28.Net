@@ -12,13 +12,13 @@
 // limitations under the License.
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.Entities
 {
-    [TestClass]
+    [TestFixture]
     public class WeightTests
         : TransactionSetup
     {
@@ -30,7 +30,7 @@ namespace SR28tests.Entities
             return weight;
         }
 
-        [TestMethod]
+        [Test]
         public void RowCountTest()
         {
             var count = Session
@@ -39,7 +39,7 @@ namespace SR28tests.Entities
             Assert.AreEqual(15438, count);
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullFoodDescription()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -47,10 +47,10 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => weight.AddFoodDescription(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: foodDescription", exception.Message);
+            Assert.AreEqual("Value cannot be null. Parameter name: foodDescription", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void AddFoodDescription()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -60,7 +60,7 @@ namespace SR28tests.Entities
             Assert.IsTrue(foodDescription.WeightSet.Contains(weight));
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullNutrientDataTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -68,10 +68,10 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => weight.AddNutrientData(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: nutrientData", exception.Message);
+            Assert.AreEqual("Value cannot be null. Parameter name: nutrientData", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void AddNutrientData()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -83,7 +83,7 @@ namespace SR28tests.Entities
             // Assert.IsTrue(nutrientData.WeightSet.Contains(weight));
         }
 
-        [TestMethod]
+        [Test]
         public void EqualsTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();

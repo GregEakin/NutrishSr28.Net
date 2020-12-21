@@ -12,13 +12,13 @@
 // limitations under the License.
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.Entities
 {
-    [TestClass]
+    [TestFixture]
     public class NutrientDataTests
         : TransactionSetup
     {
@@ -30,7 +30,7 @@ namespace SR28tests.Entities
             return nutrientData;
         }
 
-        [TestMethod]
+        [Test]
         public void RowCountTest()
         {
             var count = Session
@@ -39,7 +39,7 @@ namespace SR28tests.Entities
             Assert.AreEqual(679045, count);
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullDataDerivationTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -51,7 +51,7 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: dataDerivation", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void AddDataDerivationTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -64,7 +64,7 @@ namespace SR28tests.Entities
             Assert.IsTrue(dataDerivation.NutrientDataSet.Contains(nutrientData));
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullDataSourceTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -76,7 +76,7 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: dataSource", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void AddDataSourceTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -89,7 +89,7 @@ namespace SR28tests.Entities
             Assert.IsTrue(dataSource.NutrientDataSet.Contains(nutrientData));
         }
 
-        [TestMethod]
+        [Test]
         public void SetNullRefFoodDescriptionTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -101,7 +101,7 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: foodDescription", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void SetRefFoodDescriptionTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -112,7 +112,7 @@ namespace SR28tests.Entities
             Assert.AreSame(foodDescription, nutrientData.FoodDescription);
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullSourceCodeTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -124,7 +124,7 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: sourceCode", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void AddSourceCodeTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -137,7 +137,7 @@ namespace SR28tests.Entities
             Assert.IsTrue(sourceCode.NutrientDataSet.Contains(nutrientData));
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullWeightTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
@@ -149,8 +149,8 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: weight", exception.Message);
         }
 
-        [TestMethod]
-        [Ignore]
+        [Test]
+        [Ignore("@@ reason")]
         public void AddWeightTest()
         {
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();

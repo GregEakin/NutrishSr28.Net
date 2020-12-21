@@ -11,17 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.DataValidation
 {
-    [TestClass]
+    [TestFixture]
     public class NutGroupTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void Test1()
         {
             var foodGroup = Session.Load<FoodGroup>("1200");

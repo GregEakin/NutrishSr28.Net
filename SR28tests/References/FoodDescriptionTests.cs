@@ -11,17 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.References
 {
-    [TestClass]
+    [TestFixture]
     public class FoodDescriptionTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void FoodDescriptionTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -31,7 +31,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Food Group Description file by the FdGrp_Cd field
-        [TestMethod]
+        [Test]
         public void FoodGroupTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -44,7 +44,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Nutrient Data file by the NDB_No field
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -56,7 +56,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Weight file by the NDB_No field
-        [TestMethod]
+        [Test]
         public void WeightTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -68,7 +68,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Footnote file by the NDB_No field
-        [TestMethod]
+        [Test]
         public void FootnoteTest()
         {
             var foodDescription = Session.Load<FoodDescription>("05315");
@@ -80,7 +80,7 @@ namespace SR28tests.References
         }
 
         //  Links to the LanguaL Factor file by the NDB_No field
-        [TestMethod]
+        [Test]
         public void LanguageTest()
         {
             var foodDescription = Session.Load<FoodDescription>("02002");

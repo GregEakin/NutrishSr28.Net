@@ -11,17 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.DataValidation
 {
-    [TestClass]
+    [TestFixture]
     public class NutrientValidationTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var dataSource = Session.Load<DataSource>("D642");

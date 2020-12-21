@@ -11,18 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 using System.Linq;
 
 namespace SR28tests.References
 {
-    [TestClass]
+    [TestFixture]
     public class DataSourceTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void DataSourceTest()
         {
             var dataSource = Session.Load<DataSource>("D642");
@@ -34,7 +34,7 @@ namespace SR28tests.References
         }
 
         //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var dataSource = Session.Load<DataSource>("D642");
@@ -48,7 +48,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Nutrient Definition file by Nutr_No
-        [TestMethod]
+        [Test]
         public void NutrientDefinitionTest()
         {
             var dataSource = Session.Load<DataSource>("D642");

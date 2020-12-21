@@ -11,17 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.References
 {
-    [TestClass]
+    [TestFixture]
     public class FootnoteTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void FootnoteTest()
         {
             var footnote = Session.QueryOver<Footnote>()
@@ -37,7 +37,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Food Description file by NDB_No
-        [TestMethod]
+        [Test]
         public void FoodDescriptionTest()
         {
             var footnote = Session.QueryOver<Footnote>()
@@ -51,7 +51,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
-        [TestMethod]
+        [Test]
         public void NutrientDataTest1()
         {
             var footnote = Session.QueryOver<Footnote>()
@@ -66,7 +66,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
-        [TestMethod]
+        [Test]
         public void NutrientDataTest2()
         {
             var footnote = Session.QueryOver<Footnote>()
@@ -85,7 +85,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Nutrient Definition file by Nutr_No, when applicable
-        [TestMethod]
+        [Test]
         public void NutrientDefinitionTest()
         {
             var footnote = Session.QueryOver<Footnote>()

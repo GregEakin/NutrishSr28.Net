@@ -11,18 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.References
 {
-    [TestClass]
+    [TestFixture]
     public class SourceCodeTests
         : TransactionSetup
     {
         //  Links to the Nutrient Data file by Src_Cd
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var sourceCode = Session.Load<SourceCode>("11");

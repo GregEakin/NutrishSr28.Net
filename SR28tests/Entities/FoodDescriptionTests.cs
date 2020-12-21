@@ -12,13 +12,13 @@
 // limitations under the License.
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.Entities
 {
-    [TestClass]
+    [TestFixture]
     public class FoodDescriptionTests
         : TransactionSetup
     {
@@ -28,7 +28,7 @@ namespace SR28tests.Entities
             return foodDescription;
         }
 
-        [TestMethod]
+        [Test]
         public void RowCountTest()
         {
             var count = Session
@@ -37,7 +37,7 @@ namespace SR28tests.Entities
             Assert.AreEqual(8789, count);
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullFoodGroupTest()
         {
             var foodDescription = CreateFoodDescription();
@@ -47,7 +47,7 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: foodGroup", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void AddFoodGroupTest()
         {
             var foodDescription = CreateFoodDescription();
@@ -58,7 +58,7 @@ namespace SR28tests.Entities
             Assert.IsTrue(foodGroup.FoodDescriptionSet.Contains(foodDescription));
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullWeightTest()
         {
             var foodDescription = CreateFoodDescription();
@@ -68,7 +68,7 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: weight", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void AddWeightTest()
         {
             var foodDescription = CreateFoodDescription();
@@ -79,7 +79,7 @@ namespace SR28tests.Entities
             Assert.AreSame(foodDescription, weight.WeightKey.FoodDescription);
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullFootnoteTest()
         {
             var foodDescription = CreateFoodDescription();
@@ -89,7 +89,7 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: footnote", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void AddFootnoteTest()
         {
             var foodDescription = CreateFoodDescription();
@@ -100,7 +100,7 @@ namespace SR28tests.Entities
             Assert.AreSame(foodDescription, footnote.FoodDescription);
         }
 
-        [TestMethod]
+        [Test]
         public void AddNullLanguageTest()
         {
             var foodDescription = CreateFoodDescription();
@@ -110,7 +110,7 @@ namespace SR28tests.Entities
             Assert.AreEqual("Value cannot be null.\r\nParameter name: language", exception.Message);
         }
 
-        [TestMethod]
+        [Test]
         public void AddLanguageTest()
         {
             var foodDescription = CreateFoodDescription();

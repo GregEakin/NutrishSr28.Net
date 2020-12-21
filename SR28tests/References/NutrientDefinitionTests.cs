@@ -11,17 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.References
 {
-    [TestClass]
+    [TestFixture]
     public class NutrientDefinitionTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void NutrientDefinitionTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
@@ -31,7 +31,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Nutrient Data file by Nutr_No
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");

@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 using System;
@@ -20,11 +20,11 @@ using System.Linq;
 
 namespace SR28tests.DataValidation
 {
-    [TestClass]
+    [TestFixture]
     public class FoodSearchTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void SortedQueryTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01001");

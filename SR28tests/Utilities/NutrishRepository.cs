@@ -11,18 +11,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using SR28lib.Data;
+using System;
 
 namespace SR28tests.Utilities
 {
-    [TestClass]
     public class NutrishRepository
     {
+        private static readonly Lazy<Configuration> configuration_ = new(BuildConfiguration);
+        private static readonly Lazy<ISessionFactory> factory_ = new(BuildFactory);
+        private static readonly Lazy<ISession> session_ = new(BuildSession);
+
         private const string Connection =
             "Data Source=(localdb)\\SR28;" +
             "Initial Catalog=Nutrish;" +
@@ -33,14 +36,16 @@ namespace SR28tests.Utilities
             "ApplicationIntent=ReadWrite;" +
             "MultiSubnetFailover=False";
 
-        public static ISessionFactory Factory { get; private set; }
-        public static ISession Session { get; private set; }
+        public static Configuration Configuration => configuration_.Value;
 
-        [AssemblyInitialize]
-        public static void AssemblyInitialize(TestContext context)
+        public static ISessionFactory Factory => factory_.Value;
+
+        public static ISession Session => session_.Value;
+
+        public static Configuration BuildConfiguration()
         {
-            var cfg = new Configuration();
-            cfg.DataBaseIntegration(x =>
+            var configuration = new Configuration();
+            configuration.DataBaseIntegration(x =>
             {
                 x.ConnectionString = Connection;
                 x.Driver<SqlClientDriver>();
@@ -51,25 +56,26 @@ namespace SR28tests.Utilities
             });
 
             var libAssembly = typeof(FoodGroup).Assembly;
-            cfg.AddAssembly(libAssembly);
+            configuration.AddAssembly(libAssembly);
 
-            Factory = cfg.BuildSessionFactory();
-            Session = Factory.OpenSession();
+            return configuration;
+        }
 
-            // Console.WriteLine("AssemblyInitialize");
+        public static ISessionFactory BuildFactory()
+        {
+            var factory = Configuration.BuildSessionFactory();
+            return factory;
+        }
+        
+        public static ISession BuildSession()
+        {
+            var session = Factory.OpenSession();
+
+            // Console.WriteLine("BuildSession");
             // foreach (DictionaryEntry property in context.Properties)
             //     Console.WriteLine("Prop {0}, {1}", property.Key, property.Value);
-        }
-
-        [AssemblyCleanup]
-        public static void AssemblyCleanup()
-        {
-            // Console.WriteLine("AssemblyCleanup");
-        }
-
-        [TestMethod]
-        public void InitTest()
-        {
+            
+            return session;
         }
     }
 }

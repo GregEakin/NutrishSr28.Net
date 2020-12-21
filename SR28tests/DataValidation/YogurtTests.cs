@@ -13,17 +13,17 @@
 
 using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.DataValidation
 {
-    [TestClass]
+    [TestFixture]
     public class YogurtTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void FoodDescriptionTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -35,7 +35,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual(6.38, foodDescription.N_Factor);
         }
 
-        [TestMethod]
+        [Test]
         public void FoodGroupTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -45,7 +45,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual("Dairy and Egg Products", foodGroup.FdGrp_Desc);
         }
 
-        [TestMethod]
+        [Test]
         public void FoodDescriptionLoopbackTest()
         {
             var foodDescription = Session.Load<FoodDescription>("18637");
@@ -59,7 +59,7 @@ namespace SR28tests.DataValidation
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NutrientDefinitionLoopbackTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("257");
@@ -73,7 +73,7 @@ namespace SR28tests.DataValidation
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NutrientDefinitionTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
@@ -83,7 +83,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual("g", nutrientDefinition.Units);
         }
 
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -99,7 +99,7 @@ namespace SR28tests.DataValidation
             Assert.IsNull(nutrientData.Up_EB);
         }
 
-        [TestMethod]
+        [Test]
         public void WeightTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -128,7 +128,7 @@ namespace SR28tests.DataValidation
             }
         }
 
-        [TestMethod]
+        [Test]
         public void FoodDescriptionFootnoteTest()
         {
             var foodDescription = Session.Load<FoodDescription>("05315");
@@ -138,7 +138,7 @@ namespace SR28tests.DataValidation
             //     Console.WriteLine("    Footnote: {0}", footnote.Footnt_Txt);
         }
 
-        [TestMethod]
+        [Test]
         public void NutrientDefinitionFootnoteTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
@@ -150,7 +150,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual(1, count);
         }
 
-        [TestMethod]
+        [Test]
         public void SourceCodeTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -164,7 +164,7 @@ namespace SR28tests.DataValidation
             Assert.AreEqual("Analytical or derived from analytical", sourceCode.SrcCd_Desc);
         }
 
-        [TestMethod]
+        [Test]
         public void DataDerivationTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");

@@ -13,17 +13,17 @@
 
 using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.References
 {
-    [TestClass]
+    [TestFixture]
     public class NutrientDataTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01115");
@@ -37,7 +37,7 @@ namespace SR28tests.References
         }
         
         //  Links to the Food Description file by Ref_NDB_No
-        [TestMethod]
+        [Test]
         public void FoodDescriptionTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01171");
@@ -51,7 +51,7 @@ namespace SR28tests.References
 
         // TODO: Do we need this link?
         //  Links to the Weight file by NDB_No
-        //    [TestMethod]
+        //    [Test]
         //    public void weightTest() {
         //        FoodDescription foodDescription = Session.Load<FoodDescription.class, "01119");
         //        NutrientDefinition nutrientDefinition = Session.Load<NutrientDefinition.class, "204");
@@ -64,7 +64,7 @@ namespace SR28tests.References
 
         // TODO: Do we want this link?
         //  Links to the Footnote file by NDB_No
-        // [TestMethod]
+        // [Test]
         // public void FootnoteTest1()
         // {
         //     var foodDescription = Session.Load<FoodDescription>("12040");
@@ -79,7 +79,7 @@ namespace SR28tests.References
         // }
 
         //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
-        //[TestMethod]
+        //[Test]
         //public void FootnoteTest2()
         //{
         //    var foodDescription = Session.Load<FoodDescription>("17267");
@@ -97,7 +97,7 @@ namespace SR28tests.References
         //}
 
         //  Links to the Sources of Data Link file by NDB_No and Nutr_No
-        [TestMethod]
+        [Test]
         public void DataSourceTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -110,7 +110,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Nutrient Definition file by Nutr_No
-        [TestMethod]
+        [Test]
         public void NutrientDefinitionTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -123,7 +123,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Source Code file by Src_Cd
-        [TestMethod]
+        [Test]
         public void SourceCodeTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
@@ -137,7 +137,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Data Derivation Code Description file by Deriv_Cd
-        [TestMethod]
+        [Test]
         public void DataDerivationTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");

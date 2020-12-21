@@ -11,17 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
 namespace SR28tests.References
 {
-    [TestClass]
+    [TestFixture]
     public class DataDerivationTests
         : TransactionSetup
     {
-        [TestMethod]
+        [Test]
         public void DataDerivationTest()
         {
             var dataDerivation = Session.Load<DataDerivation>("RC");
@@ -30,7 +30,7 @@ namespace SR28tests.References
         }
 
         //  Links to the Nutrient Data file by Deriv_Cd
-        [TestMethod]
+        [Test]
         public void NutrientDataTest()
         {
             var dataDerivation = Session.Load<DataDerivation>("RC");
