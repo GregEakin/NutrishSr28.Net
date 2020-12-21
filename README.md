@@ -4,8 +4,9 @@
 This is an experiment in configuring an existing [USDA Nutrition Database](https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr11-sr28/) in [NHibernate](https://nhibernate.info/).
 
 ## Steps to setup SQL Local DB:
-1. Unzip the [Full Version of the SR28 ASCII file format](https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr11-sr28/) into the data folder
-1. Unzip the patch file (May 2016) into the data2 folder
+1. Unzip the [Full Version of the SR28 ASCII file format](https://www.ars.usda.gov/northeast-area/beltsville-md-bhnrc/beltsville-human-nutrition-research-center/methods-and-application-of-food-composition-laboratory/mafcl-site-pages/sr11-sr28/) into the data folder.
+1. Unzip the patch file (May 2016) into the data2 folder.
+	Overwrite the DATASRCLN.txt and sr28_doc.pdf
 1. SqllocalDB i
 1. SqllocalDB create "SR28" -s
 1. sqlcmd -S (localdb)\SR28 -Q "CREATE DATABASE Nutrish"
