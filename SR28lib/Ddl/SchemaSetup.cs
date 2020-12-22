@@ -36,8 +36,8 @@ namespace SR28lib.Ddl
             cfg.DataBaseIntegration(x =>
             {
                 x.ConnectionString = connection;
-                x.Driver<SqlClientDriver>();
-                x.Dialect<MsSql2012Dialect>();
+                x.Driver<NpgsqlDriver>();
+                x.Dialect<PostgreSQL83Dialect>();
                 x.BatchSize = 50;
             });
 

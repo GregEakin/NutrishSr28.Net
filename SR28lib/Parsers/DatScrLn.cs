@@ -19,7 +19,7 @@ namespace SR28lib.Parsers
 {
     public static class DatScrLn
     {
-        public static readonly string Filename = "..\\..\\..\\data\\DATSRCLN.txt";
+        public static readonly string Filename = "data/DATSRCLN.txt";
 
         public static void ParseFile(ISession session)
         {

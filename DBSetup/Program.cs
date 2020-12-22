@@ -20,18 +20,15 @@ namespace DBSetup
         public static void Main(string[] args)
         {
             const string connection =
-                "Data Source=(localdb)\\SR28;" +
-                "Initial Catalog=Nutrish;" +
-                "Integrated Security=True;" +
-                "Connect Timeout=30;" +
-                "Encrypt=False;" +
-                "TrustServerCertificate=False;" +
-                "ApplicationIntent=ReadWrite;" +
-                "MultiSubnetFailover=False";
+                "Server=192.168.40.140;" +
+                "Database=postgres;" +
+                "User ID=postgres;" +
+                "Password=postgres;" +
+                "Enlist=true;";
 
             var execute = true;
 
-            using (var schema = new SchemaSetup(connection, false))
+            using (var schema = new SchemaSetup(connection, true))
             {
                 if (execute)
                 {

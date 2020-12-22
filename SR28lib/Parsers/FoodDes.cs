@@ -20,7 +20,7 @@ namespace SR28lib.Parsers
 {
     public static class FoodDes
     {
-        public static readonly string Filename = "..\\..\\..\\data\\FOOD_DES.txt";
+        public static readonly string Filename = "data/FOOD_DES.txt";
 
         public static void ParseFile(IStatelessSession session)
         {

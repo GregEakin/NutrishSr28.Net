@@ -20,7 +20,7 @@ namespace SR28lib.Parsers
 {
     public static class DerivCD
     {
-        public static readonly string Filename = "..\\..\\..\\data\\DERIV_CD.txt";
+        public static readonly string Filename = "data/DERIV_CD.txt";
 
         public static void ParseFile(IStatelessSession session)
         {

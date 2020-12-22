@@ -19,7 +19,7 @@ namespace SR28lib.Parsers
 {
     public static class Footnote
     {
-        public static readonly string Filename = "..\\..\\..\\data\\FOOTNOTE.txt";
+        public static readonly string Filename = "data/FOOTNOTE.txt";
 
         public static void ParseFile(IStatelessSession session)
         {

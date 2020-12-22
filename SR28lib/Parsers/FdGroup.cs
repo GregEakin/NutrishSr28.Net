@@ -19,7 +19,7 @@ namespace SR28lib.Parsers
 {
     public static class FdGroup
     {
-        public static readonly string Filename = "..\\..\\..\\data\\FD_GROUP.txt";
+        public static readonly string Filename = "data/FD_GROUP.txt";
 
         public static void ParseFile(IStatelessSession session)
         {

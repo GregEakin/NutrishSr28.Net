@@ -20,7 +20,7 @@ namespace SR28lib.Parsers
 {
     public static class NutrDef
     {
-        public static readonly string Filename = "..\\..\\..\\data\\NUTR_DEF.txt";
+        public static readonly string Filename = "data/NUTR_DEF.txt";
 
         public static void ParseFile(IStatelessSession session)
         {

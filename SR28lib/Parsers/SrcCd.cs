@@ -20,7 +20,7 @@ namespace SR28lib.Parsers
 {
     public static class SrcCd
     {
-        public static readonly string Filename = "..\\..\\..\\data\\SRC_CD.txt";
+        public static readonly string Filename = "data/SRC_CD.txt";
 
         public static void ParseFile(IStatelessSession session)
         {

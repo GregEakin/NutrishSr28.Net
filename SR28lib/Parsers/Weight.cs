@@ -18,7 +18,7 @@ namespace SR28lib.Parsers
 {
     public static class Weight
     {
-        public static readonly string Filename = "..\\..\\..\\data\\WEIGHT.txt";
+        public static readonly string Filename = "data/WEIGHT.txt";
 
         public static void ParseFile(IStatelessSession session)
         {

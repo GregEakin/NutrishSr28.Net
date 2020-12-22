@@ -20,7 +20,7 @@ namespace SR28lib.Parsers
 {
     public static class LangDesc
     {
-        public static readonly string Filename = "..\\..\\..\\data\\LANGDESC.txt";
+        public static readonly string Filename = "data/LANGDESC.txt";
 
         public static void ParseFile(IStatelessSession session)
         {

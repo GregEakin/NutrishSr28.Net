@@ -20,7 +20,7 @@ namespace SR28lib.Parsers
 {
     public static class NutData
     {
-        public static readonly string Filename = "..\\..\\..\\data\\NUT_DATA.txt";
+        public static readonly string Filename = "data/NUT_DATA.txt";
 
         public static void ParseFile(IStatelessSession session)
         {
