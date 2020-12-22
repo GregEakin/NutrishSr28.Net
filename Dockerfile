@@ -1,13 +1,32 @@
-FROM mcr.misrosoft.com/dotnet/sdk:5.0
+FROM postgres:13.1 as base
+EXPOSE 5432
+ENV POSTGRES_PASSWORD=pass1
+# ENV POSTGRES_HOST_AUTH_METHOD=trust
 
-dotnet build NutrishSr28.Core.sln
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
+COPY ["SR28lib/SR28lib.csproj", "SR28lib/"]
+RUN dotnet restore "SR28lib/SR28lib.csproj"
+COPY . .
+WORKDIR "/src/SR28lib"
+RUN dotnet build "SR28lib.csproj" -c Release -o /app/build
 
-FROM mcr.misrosoft.com/dotnet/runtime:5.0
+WORKDIR /src
+COPY ["DBSetup/DBSetup.csproj", "DBSetup/"]
+RUN dotnet restore "DBSetup/DBSetup.csproj"
+COPY . .
+WORKDIR "/src/DBSetup"
+RUN dotnet build "DBSetup.csproj" -c Release -o /app/build
 
-RUN curl https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip -O dir \
- && unzip dir/sr28asc.zip -d dir2 \
- && rm dir/sr28asc.zip
+FROM base AS final
+WORKDIR /src
+COPY --from=build /app/build .
+#RUN wget https://www.ars.usda.gov/ARSUserFiles/80400535/DATA/SR/sr28/dnload/sr28asc.zip
+#unzip sr28asc.zip -o data/
+COPY data/* data/
+RUN ./DBSetup
 
-DBSetup/bin/Debug/net5.0/DBSetup
-
-FROM arm64v8/postgres
+#FROM base AS final
+#WORKDIR /app
+#COPY --from=publish /app/publish .
+#ENTRYPOINT ["dotnet", "BlazorApp1.dll"]
