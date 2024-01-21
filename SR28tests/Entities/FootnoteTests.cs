@@ -13,6 +13,7 @@
 
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -34,7 +35,7 @@ namespace SR28tests.Entities
             var count = Session
                 .QueryOver<Footnote>()
                 .RowCount();
-            Assert.AreEqual(552, count);
+            ClassicAssert.AreEqual(552, count);
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => footnote.AddNutrientDefinition(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: nutrientDefinition", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'nutrientDefinition')", exception.Message);
         }
 
         [Test]
@@ -55,8 +56,8 @@ namespace SR28tests.Entities
             var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
 
             footnote.AddNutrientDefinition(nutrientDefinition);
-            Assert.AreSame(nutrientDefinition, footnote.NutrientDefinition);
-            Assert.IsTrue(nutrientDefinition.FootnoteSet.Contains(footnote));
+            ClassicAssert.AreSame(nutrientDefinition, footnote.NutrientDefinition);
+            ClassicAssert.IsTrue(nutrientDefinition.FootnoteSet.Contains(footnote));
         }
 
         [Test]
@@ -66,7 +67,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => footnote.AddFoodDescription(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: foodDescription", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'foodDescription')", exception.Message);
         }
 
         [Test]
@@ -77,8 +78,8 @@ namespace SR28tests.Entities
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
 
             footnote.AddFoodDescription(foodDescription);
-            Assert.AreSame(foodDescription, footnote.FoodDescription);
-            Assert.IsTrue(foodDescription.FootnoteSet.Contains(footnote));
+            ClassicAssert.AreSame(foodDescription, footnote.FoodDescription);
+            ClassicAssert.IsTrue(foodDescription.FootnoteSet.Contains(footnote));
         }
     }
 }

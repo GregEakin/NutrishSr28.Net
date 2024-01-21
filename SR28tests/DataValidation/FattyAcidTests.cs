@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -25,27 +26,27 @@ namespace SR28tests.DataValidation
         public void ButyricTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("607");
-            Assert.AreEqual("4:0", nutrientDefinition.NutrDesc);
-            Assert.AreEqual("F4D0", nutrientDefinition.Tagname);
-            Assert.AreEqual("g", nutrientDefinition.Units);
+            ClassicAssert.AreEqual("4:0", nutrientDefinition.NutrDesc);
+            ClassicAssert.AreEqual("F4D0", nutrientDefinition.Tagname);
+            ClassicAssert.AreEqual("g", nutrientDefinition.Units);
         }
 
         [Test]
         public void CaproicTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("608");
-            Assert.AreEqual("6:0", nutrientDefinition.NutrDesc);
-            Assert.AreEqual("F6D0", nutrientDefinition.Tagname);
-            Assert.AreEqual("g", nutrientDefinition.Units);
+            ClassicAssert.AreEqual("6:0", nutrientDefinition.NutrDesc);
+            ClassicAssert.AreEqual("F6D0", nutrientDefinition.Tagname);
+            ClassicAssert.AreEqual("g", nutrientDefinition.Units);
         }
 
         [Test]
         public void MyristoleicTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("625");
-            Assert.AreEqual("14:1", nutrientDefinition.NutrDesc);
-            Assert.AreEqual("F14D1", nutrientDefinition.Tagname);
-            Assert.AreEqual("g", nutrientDefinition.Units);
+            ClassicAssert.AreEqual("14:1", nutrientDefinition.NutrDesc);
+            ClassicAssert.AreEqual("F14D1", nutrientDefinition.Tagname);
+            ClassicAssert.AreEqual("g", nutrientDefinition.Units);
         }
     }
 }

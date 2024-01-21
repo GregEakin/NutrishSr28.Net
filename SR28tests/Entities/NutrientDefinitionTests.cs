@@ -13,6 +13,7 @@
 
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -34,7 +35,7 @@ namespace SR28tests.Entities
             var count = Session
                 .QueryOver<NutrientDefinition>()
                 .RowCount();
-            Assert.AreEqual(150, count);
+            ClassicAssert.AreEqual(150, count);
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => nutrientDefinition.AddNutrientData(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: nutrientData", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'nutrientData')", exception.Message);
         }
 
         [Test]
@@ -55,8 +56,8 @@ namespace SR28tests.Entities
             var nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
 
             nutrientDefinition.AddNutrientData(nutrientData);
-            Assert.IsTrue(nutrientDefinition.NutrientDataSet.Contains(nutrientData));
-            Assert.AreSame(nutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
+            ClassicAssert.IsTrue(nutrientDefinition.NutrientDataSet.Contains(nutrientData));
+            ClassicAssert.AreSame(nutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
         }
 
         [Test]
@@ -66,7 +67,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => nutrientDefinition.AddFootnote(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: footnote", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'footnote')", exception.Message);
         }
 
         [Test]
@@ -76,8 +77,8 @@ namespace SR28tests.Entities
             var footnote = FootnoteTests.CreateFootnote();
 
             nutrientDefinition.AddFootnote(footnote);
-            Assert.AreSame(nutrientDefinition, footnote.NutrientDefinition);
-            Assert.IsTrue(nutrientDefinition.FootnoteSet.Contains(footnote));
+            ClassicAssert.AreSame(nutrientDefinition, footnote.NutrientDefinition);
+            ClassicAssert.IsTrue(nutrientDefinition.FootnoteSet.Contains(footnote));
         }
     }
 }

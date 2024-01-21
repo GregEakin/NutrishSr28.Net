@@ -9,7 +9,7 @@ This is an experiment in configuring an existing [USDA Nutrition Database](https
 	Overwrite the DATASRCLN.txt and sr28_doc.pdf
 1. SqllocalDB i
 1. SqllocalDB create "SR28" -s
-1. sqlcmd -S (localdb)\SR28 -Q "CREATE DATABASE Nutrish"
+1. sqlcmd -S "(localdb)\SR28" -Q "CREATE DATABASE Nutrish"
 1. Run the DBSetup.exe project
 
 ## Database:

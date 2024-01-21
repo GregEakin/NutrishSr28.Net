@@ -17,6 +17,7 @@ using SR28tests.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework.Legacy;
 
 namespace SR28tests.DataValidation
 {
@@ -28,9 +29,9 @@ namespace SR28tests.DataValidation
         public void SortedQueryTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01001");
-            Assert.AreEqual("01001", foodDescription.NDB_No);
-            Assert.AreEqual("BUTTER,WITH SALT", foodDescription.Shrt_Desc);
-            Assert.AreEqual("Butter, salted", foodDescription.Long_Desc);
+            ClassicAssert.AreEqual("01001", foodDescription.NDB_No);
+            ClassicAssert.AreEqual("BUTTER,WITH SALT", foodDescription.Shrt_Desc);
+            ClassicAssert.AreEqual("Butter, salted", foodDescription.Long_Desc);
 
             var expected1 = new[] {"pat (1\" sq, 1/3\" high)", "tbsp", "cup", "stick"};
             var enumerable1 = foodDescription.WeightSet.Select(w => w.Msre_Desc);
@@ -40,7 +41,7 @@ namespace SR28tests.DataValidation
             var enumerable2 = foodDescription.WeightSet.Select(w => w.Gm_Wgt);
             CollectionAssert.AreEquivalent(expected2, enumerable2.ToArray());
 
-            Assert.AreEqual(115, foodDescription.NutrientDataSet.Count);
+            ClassicAssert.AreEqual(115, foodDescription.NutrientDataSet.Count);
             // foreach (var nutrientData in foodDescription.NutrientDataSet)
             // {
             //     var nutrientDefinition = nutrientData.NutrientDataKey.NutrientDefinition;

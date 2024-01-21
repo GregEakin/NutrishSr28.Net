@@ -11,10 +11,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 using System.Linq;
+using NUnit.Framework;
 
 namespace SR28tests.DataValidation
 {
@@ -26,9 +27,9 @@ namespace SR28tests.DataValidation
         public void WaterTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("255");
-            Assert.AreEqual("255", nutrientDefinition.Nutr_No);
-            Assert.AreEqual("Water", nutrientDefinition.NutrDesc);
-            Assert.AreEqual("g", nutrientDefinition.Units);
+            ClassicAssert.AreEqual("255", nutrientDefinition.Nutr_No);
+            ClassicAssert.AreEqual("Water", nutrientDefinition.NutrDesc);
+            ClassicAssert.AreEqual("g", nutrientDefinition.Units);
         }
 
         [Test]
@@ -39,7 +40,7 @@ namespace SR28tests.DataValidation
                 .Where(nd => nd.NutrientDataKey.NutrientDefinition == nutrientDefinition)
                 .RowCount();
 
-            Assert.AreEqual(8788, count);
+            ClassicAssert.AreEqual(8788, count);
         }
 
         [Test]

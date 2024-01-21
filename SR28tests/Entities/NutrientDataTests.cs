@@ -13,6 +13,7 @@
 
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -36,7 +37,7 @@ namespace SR28tests.Entities
             var count = Session
                 .QueryOver<NutrientData>()
                 .RowCount();
-            Assert.AreEqual(679045, count);
+            ClassicAssert.AreEqual(679045, count);
         }
 
         [Test]
@@ -48,7 +49,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => nutrientData.AddDataDerivation(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: dataDerivation", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'dataDerivation')", exception.Message);
         }
 
         [Test]
@@ -60,8 +61,8 @@ namespace SR28tests.Entities
             var dataDerivation = DataDerivationTests.CreateDataDerivation();
 
             nutrientData.AddDataDerivation(dataDerivation);
-            Assert.AreEqual(dataDerivation, nutrientData.DataDerivation);
-            Assert.IsTrue(dataDerivation.NutrientDataSet.Contains(nutrientData));
+            ClassicAssert.AreEqual(dataDerivation, nutrientData.DataDerivation);
+            ClassicAssert.IsTrue(dataDerivation.NutrientDataSet.Contains(nutrientData));
         }
 
         [Test]
@@ -73,7 +74,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => nutrientData.AddDataSource(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: dataSource", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'dataSource')", exception.Message);
         }
 
         [Test]
@@ -85,8 +86,8 @@ namespace SR28tests.Entities
             var dataSource = DataSourceTests.CreateDataSource();
 
             nutrientData.AddDataSource(dataSource);
-            Assert.IsTrue(nutrientData.DataSourceSet.Contains(dataSource));
-            Assert.IsTrue(dataSource.NutrientDataSet.Contains(nutrientData));
+            ClassicAssert.IsTrue(nutrientData.DataSourceSet.Contains(dataSource));
+            ClassicAssert.IsTrue(dataSource.NutrientDataSet.Contains(nutrientData));
         }
 
         [Test]
@@ -98,7 +99,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => nutrientData.AddFoodDescription(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: foodDescription", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'foodDescription')", exception.Message);
         }
 
         [Test]
@@ -109,7 +110,7 @@ namespace SR28tests.Entities
             var nutrientData = CreateNutrientData(foodDescription, nutrientDefinition);
 
             nutrientData.FoodDescription = foodDescription;
-            Assert.AreSame(foodDescription, nutrientData.FoodDescription);
+            ClassicAssert.AreSame(foodDescription, nutrientData.FoodDescription);
         }
 
         [Test]
@@ -121,7 +122,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => nutrientData.AddSourceCode(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: sourceCode", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'sourceCode')", exception.Message);
         }
 
         [Test]
@@ -133,8 +134,8 @@ namespace SR28tests.Entities
             var sourceCode = SourceCodeTests.CreateSourceCode();
 
             nutrientData.AddSourceCode(sourceCode);
-            Assert.AreSame(sourceCode, nutrientData.SourceCode);
-            Assert.IsTrue(sourceCode.NutrientDataSet.Contains(nutrientData));
+            ClassicAssert.AreSame(sourceCode, nutrientData.SourceCode);
+            ClassicAssert.IsTrue(sourceCode.NutrientDataSet.Contains(nutrientData));
         }
 
         [Test]
@@ -146,7 +147,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => nutrientData.AddWeight(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: weight", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'weight')", exception.Message);
         }
 
         [Test]
@@ -159,8 +160,8 @@ namespace SR28tests.Entities
             var weight = WeightTests.CreateWeight(foodDescription);
 
             nutrientData.AddWeight(weight);
-            //Assert.IsTrue(nutrientData.WeightSet.Contains(weight));
-            //Assert.IsTrue(nutrientData.FoodDescription.WeightSet.Contains(weight));
+            //ClassicAssert.IsTrue(nutrientData.WeightSet.Contains(weight));
+            //ClassicAssert.IsTrue(nutrientData.FoodDescription.WeightSet.Contains(weight));
         }
     }
 }

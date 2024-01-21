@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -25,8 +26,8 @@ namespace SR28tests.References
         public void FoodGroupTest()
         {
             var foodGroup = Session.Load<FoodGroup>("0400");
-            Assert.AreEqual("0400", foodGroup.FdGrp_Cd);
-            Assert.AreEqual("Fats and Oils", foodGroup.FdGrp_Desc);
+            ClassicAssert.AreEqual("0400", foodGroup.FdGrp_Cd);
+            ClassicAssert.AreEqual("Fats and Oils", foodGroup.FdGrp_Desc);
         }
 
         //  Links to the Food Description file by FdGrp_Cd
@@ -36,10 +37,10 @@ namespace SR28tests.References
             var foodGroup = Session.Load<FoodGroup>("0400");
 
             // var foodDescriptionSet = foodGroup.FoodDescriptionSet;
-            // Assert.AreEqual(220, foodDescriptionSet.Count);
+            // ClassicAssert.AreEqual(220, foodDescriptionSet.Count);
             //
             // foreach (var foodDescription in foodDescriptionSet) 
-            //     Assert.AreEqual(foodGroup, foodDescription.FoodGroup);
+            //     ClassicAssert.AreEqual(foodGroup, foodDescription.FoodGroup);
         }
 
 }

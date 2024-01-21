@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -28,12 +29,12 @@ namespace SR28tests.References
                 .Where(f => f.FoodDescription.NDB_No == "05316")
                 .And(f => f.NutrientDefinition.Nutr_No == null)
                 .SingleOrDefault();
-            // Assert.AreEqual(1217, footnote.Id);
-            Assert.AreEqual("05316", footnote.FoodDescription.NDB_No);
-            Assert.AreEqual("01", footnote.Footnt_No);
-            Assert.AreEqual("D", footnote.Footnt_Typ);
-            Assert.IsNull(footnote.NutrientDefinition);
-            Assert.AreEqual("Skinless pieces, charbroiled 12 minutes to  165 degrees F", footnote.Footnt_Txt);
+            // ClassicAssert.AreEqual(1217, footnote.Id);
+            ClassicAssert.AreEqual("05316", footnote.FoodDescription.NDB_No);
+            ClassicAssert.AreEqual("01", footnote.Footnt_No);
+            ClassicAssert.AreEqual("D", footnote.Footnt_Typ);
+            ClassicAssert.IsNull(footnote.NutrientDefinition);
+            ClassicAssert.AreEqual("Skinless pieces, charbroiled 12 minutes to  165 degrees F", footnote.Footnt_Txt);
         }
 
         //  Links to the Food Description file by NDB_No
@@ -46,8 +47,8 @@ namespace SR28tests.References
                 .SingleOrDefault();
 
             var foodDescription = footnote.FoodDescription;
-            Assert.AreEqual("05316", foodDescription.NDB_No);
-            Assert.IsTrue(foodDescription.FootnoteSet.Contains(footnote));
+            ClassicAssert.AreEqual("05316", foodDescription.NDB_No);
+            ClassicAssert.IsTrue(foodDescription.FootnoteSet.Contains(footnote));
         }
 
         //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
@@ -60,9 +61,9 @@ namespace SR28tests.References
                 .SingleOrDefault();
 
             // var nutrientDataSet = footnote.FoodDescription.NutrientDataSet;
-            // Assert.AreEqual(44, nutrientDataSet.Count);
+            // ClassicAssert.AreEqual(44, nutrientDataSet.Count);
             // foreach (var nutrientData in nutrientDataSet)
-            //     Assert.AreEqual(footnote.FoodDescription, nutrientData.NutrientDataKey.FoodDescription);
+            //     ClassicAssert.AreEqual(footnote.FoodDescription, nutrientData.NutrientDataKey.FoodDescription);
         }
 
         //  Links to the Nutrient Data file by NDB_No and when applicable, Nutr_No
@@ -80,8 +81,8 @@ namespace SR28tests.References
                 .And(nd => nd.NutrientDataKey.NutrientDefinition == footnote.NutrientDefinition)
                 .SingleOrDefault();
 
-            Assert.AreEqual(footnote.FoodDescription, nutrientData.NutrientDataKey.FoodDescription);
-            Assert.AreEqual(footnote.NutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
+            ClassicAssert.AreEqual(footnote.FoodDescription, nutrientData.NutrientDataKey.FoodDescription);
+            ClassicAssert.AreEqual(footnote.NutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
         }
 
         //  Links to the Nutrient Definition file by Nutr_No, when applicable
@@ -94,8 +95,8 @@ namespace SR28tests.References
                 .SingleOrDefault();
 
             var nutrientDefinition = footnote.NutrientDefinition;
-            Assert.AreEqual("204", nutrientDefinition.Nutr_No);
-            Assert.IsTrue(nutrientDefinition.FootnoteSet.Contains(footnote));
+            ClassicAssert.AreEqual("204", nutrientDefinition.Nutr_No);
+            ClassicAssert.IsTrue(nutrientDefinition.FootnoteSet.Contains(footnote));
         }
     }
 }

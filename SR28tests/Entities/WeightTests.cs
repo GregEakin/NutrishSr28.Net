@@ -13,6 +13,7 @@
 
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -36,7 +37,7 @@ namespace SR28tests.Entities
             var count = Session
                 .QueryOver<Weight>()
                 .RowCount();
-            Assert.AreEqual(15438, count);
+            ClassicAssert.AreEqual(15438, count);
         }
 
         [Test]
@@ -47,7 +48,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => weight.AddFoodDescription(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null. Parameter name: foodDescription", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'foodDescription')", exception.Message);
         }
 
         [Test]
@@ -56,8 +57,8 @@ namespace SR28tests.Entities
             var foodDescription = FoodDescriptionTests.CreateFoodDescription();
             var weight = WeightTests.CreateWeight(foodDescription);
 
-            Assert.AreSame(foodDescription, weight.WeightKey.FoodDescription);
-            Assert.IsTrue(foodDescription.WeightSet.Contains(weight));
+            ClassicAssert.AreSame(foodDescription, weight.WeightKey.FoodDescription);
+            ClassicAssert.IsTrue(foodDescription.WeightSet.Contains(weight));
         }
 
         [Test]
@@ -68,7 +69,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => weight.AddNutrientData(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null. Parameter name: nutrientData", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'nutrientData')", exception.Message);
         }
 
         [Test]
@@ -79,8 +80,8 @@ namespace SR28tests.Entities
             var nutrientDefinition = NutrientDefinitionTests.CreateNutrientDefinition();
             var nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
 
-            Assert.AreSame(weight.WeightKey.FoodDescription, nutrientData.NutrientDataKey.FoodDescription);
-            // Assert.IsTrue(nutrientData.WeightSet.Contains(weight));
+            ClassicAssert.AreSame(weight.WeightKey.FoodDescription, nutrientData.NutrientDataKey.FoodDescription);
+            // ClassicAssert.IsTrue(nutrientData.WeightSet.Contains(weight));
         }
 
         [Test]
@@ -93,10 +94,10 @@ namespace SR28tests.Entities
             foodDescription2.NDB_No = "123";
             var weight2 = WeightTests.CreateWeight(foodDescription2);
 
-            Assert.IsFalse(Equals(null, weight));
-            Assert.IsFalse(Equals(weight, null));
-            Assert.IsTrue(Equals(weight, weight));
-            Assert.IsFalse(Equals(weight, weight2));
+            ClassicAssert.IsFalse(Equals(null, weight));
+            ClassicAssert.IsFalse(Equals(weight, null));
+            ClassicAssert.IsTrue(Equals(weight, weight));
+            ClassicAssert.IsFalse(Equals(weight, weight2));
         }
     }
 }

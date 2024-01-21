@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -25,9 +26,9 @@ namespace SR28tests.References
         public void NutrientDefinitionTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
-            Assert.AreEqual("204", nutrientDefinition.Nutr_No);
-            Assert.AreEqual("FAT", nutrientDefinition.Tagname);
-            Assert.AreEqual("Total lipid (fat)", nutrientDefinition.NutrDesc);
+            ClassicAssert.AreEqual("204", nutrientDefinition.Nutr_No);
+            ClassicAssert.AreEqual("FAT", nutrientDefinition.Tagname);
+            ClassicAssert.AreEqual("Total lipid (fat)", nutrientDefinition.NutrDesc);
         }
 
         //  Links to the Nutrient Data file by Nutr_No
@@ -36,9 +37,9 @@ namespace SR28tests.References
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
             var nutrientDataSet = nutrientDefinition.NutrientDataSet;
-            // Assert.AreEqual(8789, nutrientDataSet.Count);
+            // ClassicAssert.AreEqual(8789, nutrientDataSet.Count);
             // foreach (var nutrientData in nutrientDataSet)
-            //     Assert.AreEqual(nutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
+            //     ClassicAssert.AreEqual(nutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
         }
     }
 }

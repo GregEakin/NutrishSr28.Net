@@ -13,6 +13,7 @@
 
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -34,7 +35,7 @@ namespace SR28tests.Entities
             var count = Session
                 .QueryOver<FoodDescription>()
                 .RowCount();
-            Assert.AreEqual(8789, count);
+            ClassicAssert.AreEqual(8789, count);
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => foodDescription.AddFoodGroup(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: foodGroup", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'foodGroup')", exception.Message);
         }
 
         [Test]
@@ -54,8 +55,8 @@ namespace SR28tests.Entities
             var foodGroup = FoodGroupTests.CreateFoodGroup();
 
             foodDescription.AddFoodGroup(foodGroup);
-            Assert.AreSame(foodGroup, foodDescription.FoodGroup);
-            Assert.IsTrue(foodGroup.FoodDescriptionSet.Contains(foodDescription));
+            ClassicAssert.AreSame(foodGroup, foodDescription.FoodGroup);
+            ClassicAssert.IsTrue(foodGroup.FoodDescriptionSet.Contains(foodDescription));
         }
 
         [Test]
@@ -65,7 +66,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => foodDescription.AddWeight(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: weight", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'weight')", exception.Message);
         }
 
         [Test]
@@ -75,8 +76,8 @@ namespace SR28tests.Entities
             var weight = WeightTests.CreateWeight(foodDescription);
 
             foodDescription.AddWeight(weight);
-            Assert.IsTrue(foodDescription.WeightSet.Contains(weight));
-            Assert.AreSame(foodDescription, weight.WeightKey.FoodDescription);
+            ClassicAssert.IsTrue(foodDescription.WeightSet.Contains(weight));
+            ClassicAssert.AreSame(foodDescription, weight.WeightKey.FoodDescription);
         }
 
         [Test]
@@ -86,7 +87,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => foodDescription.AddFootnote(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: footnote", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'footnote')", exception.Message);
         }
 
         [Test]
@@ -96,8 +97,8 @@ namespace SR28tests.Entities
             var footnote = FootnoteTests.CreateFootnote();
 
             foodDescription.AddFootnote(footnote);
-            Assert.IsTrue(foodDescription.FootnoteSet.Contains(footnote));
-            Assert.AreSame(foodDescription, footnote.FoodDescription);
+            ClassicAssert.IsTrue(foodDescription.FootnoteSet.Contains(footnote));
+            ClassicAssert.AreSame(foodDescription, footnote.FoodDescription);
         }
 
         [Test]
@@ -107,7 +108,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => foodDescription.AddLanguage(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: language", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'language')", exception.Message);
         }
 
         [Test]
@@ -117,8 +118,8 @@ namespace SR28tests.Entities
             var language = LanguageTests.CreateLanguage();
 
             foodDescription.AddLanguage(language);
-            Assert.IsTrue(foodDescription.LanguageSet.Contains(language));
-            Assert.IsTrue(language.FoodDescriptionSet.Contains(foodDescription));
+            ClassicAssert.IsTrue(foodDescription.LanguageSet.Contains(language));
+            ClassicAssert.IsTrue(language.FoodDescriptionSet.Contains(foodDescription));
         }
     }
 }

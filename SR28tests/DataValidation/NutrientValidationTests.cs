@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -27,7 +28,7 @@ namespace SR28tests.DataValidation
             var dataSource = Session.Load<DataSource>("D642");
 
             var nutrientDataSet = dataSource.NutrientDataSet;
-            Assert.AreEqual(2, nutrientDataSet.Count);
+            ClassicAssert.AreEqual(2, nutrientDataSet.Count);
         }
     }
 }

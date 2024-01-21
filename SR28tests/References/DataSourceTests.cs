@@ -15,6 +15,7 @@ using NUnit.Framework;
 using SR28lib.Data;
 using SR28tests.Utilities;
 using System.Linq;
+using NUnit.Framework.Legacy;
 
 namespace SR28tests.References
 {
@@ -26,11 +27,11 @@ namespace SR28tests.References
         public void DataSourceTest()
         {
             var dataSource = Session.Load<DataSource>("D642");
-            Assert.AreEqual("D642", dataSource.DataSrc_ID);
-            Assert.AreEqual(" Consumer Reports", dataSource.Authors);
-            Assert.AreEqual("Consumer Reports", dataSource.Journal);
-            Assert.AreEqual("Orange Drink Mixes", dataSource.Title);
-            Assert.AreEqual("1977", dataSource.Year);
+            ClassicAssert.AreEqual("D642", dataSource.DataSrc_ID);
+            ClassicAssert.AreEqual(" Consumer Reports", dataSource.Authors);
+            ClassicAssert.AreEqual("Consumer Reports", dataSource.Journal);
+            ClassicAssert.AreEqual("Orange Drink Mixes", dataSource.Title);
+            ClassicAssert.AreEqual("1977", dataSource.Year);
         }
 
         //  Links to Nutrient Data file by NDB No. through the Sources of Data Link file

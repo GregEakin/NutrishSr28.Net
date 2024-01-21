@@ -14,6 +14,7 @@
 using System;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -27,12 +28,12 @@ namespace SR28tests.DataValidation
         public void FoodDescriptionTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
-            Assert.AreEqual("01119", foodDescription.NDB_No);
-            Assert.AreEqual("Yogurt, vanilla, low fat, 11 grams protein per 8 ounce", foodDescription.Long_Desc);
-            Assert.AreEqual("YOGURT,VANILLA,LOFAT,11 GRAMS PROT PER 8 OZ", foodDescription.Shrt_Desc);
-            Assert.AreEqual(3.87, foodDescription.CHO_Factor);
-            Assert.AreEqual(4.27, foodDescription.Pro_Factor);
-            Assert.AreEqual(6.38, foodDescription.N_Factor);
+            ClassicAssert.AreEqual("01119", foodDescription.NDB_No);
+            ClassicAssert.AreEqual("Yogurt, vanilla, low fat, 11 grams protein per 8 ounce", foodDescription.Long_Desc);
+            ClassicAssert.AreEqual("YOGURT,VANILLA,LOFAT,11 GRAMS PROT PER 8 OZ", foodDescription.Shrt_Desc);
+            ClassicAssert.AreEqual(3.87, foodDescription.CHO_Factor);
+            ClassicAssert.AreEqual(4.27, foodDescription.Pro_Factor);
+            ClassicAssert.AreEqual(6.38, foodDescription.N_Factor);
         }
 
         [Test]
@@ -41,8 +42,8 @@ namespace SR28tests.DataValidation
             var foodDescription = Session.Load<FoodDescription>("01119");
             var foodGroup = foodDescription.FoodGroup;
 
-            Assert.AreEqual("0100", foodGroup.FdGrp_Cd);
-            Assert.AreEqual("Dairy and Egg Products", foodGroup.FdGrp_Desc);
+            ClassicAssert.AreEqual("0100", foodGroup.FdGrp_Cd);
+            ClassicAssert.AreEqual("Dairy and Egg Products", foodGroup.FdGrp_Desc);
         }
 
         [Test]
@@ -51,11 +52,11 @@ namespace SR28tests.DataValidation
             var foodDescription = Session.Load<FoodDescription>("18637");
             var nutrientDataSet = foodDescription.NutrientDataSet;
 
-            Assert.AreEqual(8, nutrientDataSet.Count);
+            ClassicAssert.AreEqual(8, nutrientDataSet.Count);
             foreach (var nutrientData in nutrientDataSet)
             {
                 var nutrientDataKey = nutrientData.NutrientDataKey;
-                Assert.AreSame(foodDescription, nutrientDataKey.FoodDescription);
+                ClassicAssert.AreSame(foodDescription, nutrientDataKey.FoodDescription);
             }
         }
 
@@ -65,11 +66,11 @@ namespace SR28tests.DataValidation
             var nutrientDefinition = Session.Load<NutrientDefinition>("257");
             var nutrientDataSet = nutrientDefinition.NutrientDataSet;
 
-            Assert.AreEqual(4, nutrientDataSet.Count);
+            ClassicAssert.AreEqual(4, nutrientDataSet.Count);
             foreach (var nutrientData in nutrientDataSet)
             {
                 var nutrientDataKey = nutrientData.NutrientDataKey;
-                Assert.AreSame(nutrientDefinition, nutrientDataKey.NutrientDefinition);
+                ClassicAssert.AreSame(nutrientDefinition, nutrientDataKey.NutrientDefinition);
             }
         }
 
@@ -77,10 +78,10 @@ namespace SR28tests.DataValidation
         public void NutrientDefinitionTest()
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
-            Assert.AreEqual("204", nutrientDefinition.Nutr_No);
-            Assert.AreEqual("Total lipid (fat)", nutrientDefinition.NutrDesc);
-            Assert.AreEqual("FAT", nutrientDefinition.Tagname);
-            Assert.AreEqual("g", nutrientDefinition.Units);
+            ClassicAssert.AreEqual("204", nutrientDefinition.Nutr_No);
+            ClassicAssert.AreEqual("Total lipid (fat)", nutrientDefinition.NutrDesc);
+            ClassicAssert.AreEqual("FAT", nutrientDefinition.Tagname);
+            ClassicAssert.AreEqual("g", nutrientDefinition.Units);
         }
 
         [Test]
@@ -91,12 +92,12 @@ namespace SR28tests.DataValidation
             var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
 
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
-            Assert.AreEqual(nutrientDataKey, nutrientData.NutrientDataKey);
-            Assert.AreEqual(1.25, nutrientData.Nutr_Val);
-            Assert.IsNull(nutrientData.Max);
-            Assert.IsNull(nutrientData.Min);
-            Assert.IsNull(nutrientData.Low_EB);
-            Assert.IsNull(nutrientData.Up_EB);
+            ClassicAssert.AreEqual(nutrientDataKey, nutrientData.NutrientDataKey);
+            ClassicAssert.AreEqual(1.25, nutrientData.Nutr_Val);
+            ClassicAssert.IsNull(nutrientData.Max);
+            ClassicAssert.IsNull(nutrientData.Min);
+            ClassicAssert.IsNull(nutrientData.Low_EB);
+            ClassicAssert.IsNull(nutrientData.Up_EB);
         }
 
         [Test]
@@ -104,25 +105,25 @@ namespace SR28tests.DataValidation
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
             var weightSet = foodDescription.WeightSet;
-            Assert.AreEqual(3, weightSet.Count);
+            ClassicAssert.AreEqual(3, weightSet.Count);
 
             foreach (var weight in weightSet)
             {
-                Assert.AreEqual(1.0, weight.Amount);
-                Assert.IsNull(weight.Std_Dev);
+                ClassicAssert.AreEqual(1.0, weight.Amount);
+                ClassicAssert.IsNull(weight.Std_Dev);
                 switch (weight.WeightKey.Seq)
                 {
                     case "1 ":
-                        Assert.AreEqual(170.0, weight.Gm_Wgt);
-                        Assert.AreEqual("container (6 oz)", weight.Msre_Desc);
+                        ClassicAssert.AreEqual(170.0, weight.Gm_Wgt);
+                        ClassicAssert.AreEqual("container (6 oz)", weight.Msre_Desc);
                         break;
                     case "2 ":
-                        Assert.AreEqual(227.0, weight.Gm_Wgt);
-                        Assert.AreEqual("container (8 oz)", weight.Msre_Desc);
+                        ClassicAssert.AreEqual(227.0, weight.Gm_Wgt);
+                        ClassicAssert.AreEqual("container (8 oz)", weight.Msre_Desc);
                         break;
                     case "3 ":
-                        Assert.AreEqual(245.0, weight.Gm_Wgt);
-                        Assert.AreEqual("cup (8 fl oz)", weight.Msre_Desc);
+                        ClassicAssert.AreEqual(245.0, weight.Gm_Wgt);
+                        ClassicAssert.AreEqual("cup (8 fl oz)", weight.Msre_Desc);
                         break;
                 }
             }
@@ -133,7 +134,7 @@ namespace SR28tests.DataValidation
         {
             var foodDescription = Session.Load<FoodDescription>("05315");
             var footnoteSet = foodDescription.FootnoteSet;
-            Assert.AreEqual(3, footnoteSet.Count);
+            ClassicAssert.AreEqual(3, footnoteSet.Count);
             // foreach (var footnote in footnoteSet) 
             //     Console.WriteLine("    Footnote: {0}", footnote.Footnt_Txt);
         }
@@ -143,11 +144,11 @@ namespace SR28tests.DataValidation
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>("204");
             var footnoteSet = nutrientDefinition.FootnoteSet;
-            Assert.AreEqual(13, footnoteSet.Count);
+            ClassicAssert.AreEqual(13, footnoteSet.Count);
 
             var foodDescription = Session.Load<FoodDescription>("04673");
             var count = footnoteSet.Count(o => Equals(foodDescription, o.FoodDescription));
-            Assert.AreEqual(1, count);
+            ClassicAssert.AreEqual(1, count);
         }
 
         [Test]
@@ -160,8 +161,8 @@ namespace SR28tests.DataValidation
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
             var sourceCode = nutrientData.SourceCode;
-            Assert.AreEqual("1", sourceCode.Src_Cd);
-            Assert.AreEqual("Analytical or derived from analytical", sourceCode.SrcCd_Desc);
+            ClassicAssert.AreEqual("1", sourceCode.Src_Cd);
+            ClassicAssert.AreEqual("Analytical or derived from analytical", sourceCode.SrcCd_Desc);
         }
 
         [Test]
@@ -174,8 +175,8 @@ namespace SR28tests.DataValidation
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
             var dataDerivation = nutrientData.DataDerivation;
-            Assert.AreEqual("A", dataDerivation.Deriv_Cd);
-            Assert.AreEqual("Analytical data", dataDerivation.Deriv_Desc);
+            ClassicAssert.AreEqual("A", dataDerivation.Deriv_Cd);
+            ClassicAssert.AreEqual("Analytical data", dataDerivation.Deriv_Desc);
         }
     }
 }

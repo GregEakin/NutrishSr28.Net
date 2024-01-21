@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -27,7 +28,7 @@ namespace SR28tests.References
         {
             var sourceCode = Session.Load<SourceCode>("11");
             var nutrientDataSet = sourceCode.NutrientDataSet;
-            Assert.AreEqual(822, nutrientDataSet.Count);
+            ClassicAssert.AreEqual(822, nutrientDataSet.Count);
         }
     }
 }

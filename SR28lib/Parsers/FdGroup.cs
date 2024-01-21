@@ -11,6 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using NHibernate;
 using SR28lib.Data;
 using System.IO;
@@ -23,6 +24,8 @@ namespace SR28lib.Parsers
 
         public static void ParseFile(IStatelessSession session)
         {
+            Console.WriteLine("Working dir {0}", Directory.GetCurrentDirectory());
+
             var lines = File.ReadLines(Filename);
             foreach (var line in lines)
                 ParseLine(session, line);

@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -25,11 +26,11 @@ namespace SR28tests.DataValidation
         public void Test1()
         {
             var foodGroup = Session.Load<FoodGroup>("1200");
-            Assert.AreEqual("1200", foodGroup.FdGrp_Cd);
-            Assert.AreEqual("Nut and Seed Products", foodGroup.FdGrp_Desc);
+            ClassicAssert.AreEqual("1200", foodGroup.FdGrp_Cd);
+            ClassicAssert.AreEqual("Nut and Seed Products", foodGroup.FdGrp_Desc);
 
             var foodDescriptionSet = foodGroup.FoodDescriptionSet;
-            Assert.AreEqual(137, foodDescriptionSet.Count);
+            ClassicAssert.AreEqual(137, foodDescriptionSet.Count);
         }
     }
 }

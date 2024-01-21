@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -25,8 +26,8 @@ namespace SR28tests.References
         public void DataDerivationTest()
         {
             var dataDerivation = Session.Load<DataDerivation>("RC");
-            Assert.AreEqual("RC", dataDerivation.Deriv_Cd);
-            Assert.AreEqual("Recipe; Cookbook", dataDerivation.Deriv_Desc);
+            ClassicAssert.AreEqual("RC", dataDerivation.Deriv_Cd);
+            ClassicAssert.AreEqual("Recipe; Cookbook", dataDerivation.Deriv_Desc);
         }
 
         //  Links to the Nutrient Data file by Deriv_Cd
@@ -35,9 +36,9 @@ namespace SR28tests.References
         {
             var dataDerivation = Session.Load<DataDerivation>("RC");
             var nutrientDataSet = dataDerivation.NutrientDataSet;
-            // Assert.AreEqual(2358, nutrientDataSet.Count);
+            // ClassicAssert.AreEqual(2358, nutrientDataSet.Count);
             // foreach (var nutrientData in nutrientDataSet) 
-            //     Assert.AreEqual(dataDerivation, nutrientData.DataDerivation);
+            //     ClassicAssert.AreEqual(dataDerivation, nutrientData.DataDerivation);
         }
     }
 }

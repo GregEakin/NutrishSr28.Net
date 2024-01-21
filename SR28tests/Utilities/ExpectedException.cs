@@ -13,6 +13,7 @@
 
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace SR28tests.Utilities
 {
@@ -30,7 +31,7 @@ namespace SR28tests.Utilities
                 return ex;
             }
 
-            Assert.Fail("Failed to throw exception!");
+            ClassicAssert.Fail("Failed to throw exception!");
             return null;
         }
     }

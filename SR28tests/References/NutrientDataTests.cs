@@ -14,6 +14,7 @@
 using System;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -31,9 +32,9 @@ namespace SR28tests.References
             var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
-            Assert.AreEqual(nutrientDataKey, nutrientData.NutrientDataKey);
-            Assert.AreEqual(12.93, nutrientData.Nutr_Val);
-            Assert.AreEqual("11/1976", nutrientData.AddMod_Date);
+            ClassicAssert.AreEqual(nutrientDataKey, nutrientData.NutrientDataKey);
+            ClassicAssert.AreEqual(12.93, nutrientData.Nutr_Val);
+            ClassicAssert.AreEqual("11/1976", nutrientData.AddMod_Date);
         }
         
         //  Links to the Food Description file by Ref_NDB_No
@@ -46,7 +47,7 @@ namespace SR28tests.References
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
             var refFoodDescription = nutrientData.FoodDescription;
-            Assert.AreEqual("01123", refFoodDescription.NDB_No);
+            ClassicAssert.AreEqual("01123", refFoodDescription.NDB_No);
         }
 
         // TODO: Do we need this link?
@@ -73,9 +74,9 @@ namespace SR28tests.References
         //     var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
         //
         //     var footnoteSet = nutrientData.FootnoteSet;
-        //     Assert.AreEqual(2, footnoteSet.Count);
+        //     ClassicAssert.AreEqual(2, footnoteSet.Count);
         //     foreach (var footnote in footnoteSet) 
-        //         Assert.AreEqual(foodDescription, footnote.FoodDescription);
+        //         ClassicAssert.AreEqual(foodDescription, footnote.FoodDescription);
         // }
 
         //  Links to the Footnote file by NDB_No and when applicable, Nutr_No
@@ -88,11 +89,11 @@ namespace SR28tests.References
         //    var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
         //    var footnoteSet = nutrientData.FootnoteSet;
-        //    Assert.AreEqual(1, footnoteSet.Count);
+        //    ClassicAssert.AreEqual(1, footnoteSet.Count);
         //    foreach (var footnote in footnoteSet)
         //    {
-        //        Assert.AreEqual(foodDescription, footnote.FoodDescription);
-        //        Assert.AreEqual(nutrientDefinition, footnote.NutrientDefinition);
+        //        ClassicAssert.AreEqual(foodDescription, footnote.FoodDescription);
+        //        ClassicAssert.AreEqual(nutrientDefinition, footnote.NutrientDefinition);
         //    }
         //}
 
@@ -106,7 +107,7 @@ namespace SR28tests.References
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
             var dataSourceSet = nutrientData.DataSourceSet;
-            Assert.AreEqual(1, dataSourceSet.Count);
+            ClassicAssert.AreEqual(1, dataSourceSet.Count);
         }
 
         //  Links to the Nutrient Definition file by Nutr_No
@@ -118,8 +119,8 @@ namespace SR28tests.References
             var nutrientDataKey = new NutrientDataKey(foodDescription, nutrientDefinition);
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
-            Assert.AreEqual(nutrientDataKey, nutrientData.NutrientDataKey);
-            Assert.AreSame(nutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
+            ClassicAssert.AreEqual(nutrientDataKey, nutrientData.NutrientDataKey);
+            ClassicAssert.AreSame(nutrientDefinition, nutrientData.NutrientDataKey.NutrientDefinition);
         }
 
         //  Links to the Source Code file by Src_Cd
@@ -132,8 +133,8 @@ namespace SR28tests.References
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
             var sourceCode = nutrientData.SourceCode;
-            Assert.AreEqual("4", sourceCode.Src_Cd);
-            Assert.AreEqual("Calculated or imputed", sourceCode.SrcCd_Desc);
+            ClassicAssert.AreEqual("4", sourceCode.Src_Cd);
+            ClassicAssert.AreEqual("Calculated or imputed", sourceCode.SrcCd_Desc);
         }
 
         //  Links to the Data Derivation Code Description file by Deriv_Cd
@@ -146,8 +147,8 @@ namespace SR28tests.References
             var nutrientData = Session.Load<NutrientData>(nutrientDataKey);
 
             var dataDerivation = nutrientData.DataDerivation;
-            Assert.AreEqual("BFNN", dataDerivation.Deriv_Cd);
-            Assert.AreEqual(
+            ClassicAssert.AreEqual("BFNN", dataDerivation.Deriv_Cd);
+            ClassicAssert.AreEqual(
                 "Based on another form of the food or similar food; Concentration adjustment; Non-fat solids; Retention factors not used",
                 dataDerivation.Deriv_Desc);
         }

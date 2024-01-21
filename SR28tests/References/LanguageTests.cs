@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -25,8 +26,8 @@ namespace SR28tests.References
         public void LanguageTest()
         {
             var language = Session.Load<Language>("A0143");
-            Assert.AreEqual("A0143", language.Factor_Code);
-            Assert.AreEqual("FRUIT OR FRUIT PRODUCT (US CFR)", language.Description);
+            ClassicAssert.AreEqual("A0143", language.Factor_Code);
+            ClassicAssert.AreEqual("FRUIT OR FRUIT PRODUCT (US CFR)", language.Description);
         }
 
         //  Links to the Food Description file by the NDB_No field
@@ -35,9 +36,9 @@ namespace SR28tests.References
         {
             var language = Session.Load<Language>("A0143");
             var foodDescriptionSet = language.FoodDescriptionSet;
-            // Assert.AreEqual(232, foodDescriptionSet.Count);
+            // ClassicAssert.AreEqual(232, foodDescriptionSet.Count);
             // foreach (var foodDescription in foodDescriptionSet)
-            //     Assert.IsTrue(foodDescription.LanguageSet.Contains(language));
+            //     ClassicAssert.IsTrue(foodDescription.LanguageSet.Contains(language));
         }
 
         //  Links to LanguaL Factors Description file by the Factor_Code field
@@ -46,9 +47,9 @@ namespace SR28tests.References
         {
             var foodDescription = Session.Load<FoodDescription>("02014");
             var languageSet = foodDescription.LanguageSet;
-            // Assert.AreEqual(13, languageSet.Count);
+            // ClassicAssert.AreEqual(13, languageSet.Count);
             // foreach (var language in languageSet) 
-            //     Assert.IsTrue(language.FoodDescriptionSet.Contains(foodDescription));
+            //     ClassicAssert.IsTrue(language.FoodDescriptionSet.Contains(foodDescription));
         }
     }
 }

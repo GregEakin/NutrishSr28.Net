@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -29,12 +30,12 @@ namespace SR28tests.DataValidation
         public void CounterTest(string id, string nutrDesc, string tagname, string units, string count)
         {
             var nutrientDefinition = Session.Load<NutrientDefinition>(id);
-            Assert.AreEqual(nutrDesc, nutrientDefinition.NutrDesc);
-            Assert.AreEqual(tagname, nutrientDefinition.Tagname);
-            Assert.AreEqual(units, nutrientDefinition.Units);
+            ClassicAssert.AreEqual(nutrDesc, nutrientDefinition.NutrDesc);
+            ClassicAssert.AreEqual(tagname, nutrientDefinition.Tagname);
+            ClassicAssert.AreEqual(units, nutrientDefinition.Units);
 
             // var nutrientDataSet = nutrientDefinition.NutrientDataSet;
-            // Assert.AreEqual(int.Parse(count), nutrientDataSet.Count);
+            // ClassicAssert.AreEqual(int.Parse(count), nutrientDataSet.Count);
         }
     }
 }

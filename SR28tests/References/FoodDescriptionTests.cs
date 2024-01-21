@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -25,9 +26,9 @@ namespace SR28tests.References
         public void FoodDescriptionTest()
         {
             var foodDescription = Session.Load<FoodDescription>("01119");
-            Assert.AreEqual("01119", foodDescription.NDB_No);
-            Assert.AreEqual("YOGURT,VANILLA,LOFAT,11 GRAMS PROT PER 8 OZ", foodDescription.Shrt_Desc);
-            Assert.AreEqual("Yogurt, vanilla, low fat, 11 grams protein per 8 ounce", foodDescription.Long_Desc);
+            ClassicAssert.AreEqual("01119", foodDescription.NDB_No);
+            ClassicAssert.AreEqual("YOGURT,VANILLA,LOFAT,11 GRAMS PROT PER 8 OZ", foodDescription.Shrt_Desc);
+            ClassicAssert.AreEqual("Yogurt, vanilla, low fat, 11 grams protein per 8 ounce", foodDescription.Long_Desc);
         }
 
         //  Links to the Food Group Description file by the FdGrp_Cd field
@@ -37,10 +38,10 @@ namespace SR28tests.References
             var foodDescription = Session.Load<FoodDescription>("01119");
 
             var foodGroup = foodDescription.FoodGroup;
-            Assert.AreEqual("0100", foodGroup.FdGrp_Cd);
-            Assert.AreEqual("Dairy and Egg Products", foodGroup.FdGrp_Desc);
+            ClassicAssert.AreEqual("0100", foodGroup.FdGrp_Cd);
+            ClassicAssert.AreEqual("Dairy and Egg Products", foodGroup.FdGrp_Desc);
 
-            Assert.IsTrue(foodGroup.FoodDescriptionSet.Contains(foodDescription));
+            ClassicAssert.IsTrue(foodGroup.FoodDescriptionSet.Contains(foodDescription));
         }
 
         //  Links to the Nutrient Data file by the NDB_No field
@@ -50,9 +51,9 @@ namespace SR28tests.References
             var foodDescription = Session.Load<FoodDescription>("01119");
 
             // var nutrientDataSet = foodDescription.NutrientDataSet;
-            // Assert.AreEqual(91, nutrientDataSet.Count);
+            // ClassicAssert.AreEqual(91, nutrientDataSet.Count);
             // foreach (var nutrientData in nutrientDataSet)
-            //     Assert.AreEqual(foodDescription, nutrientData.NutrientDataKey.FoodDescription);
+            //     ClassicAssert.AreEqual(foodDescription, nutrientData.NutrientDataKey.FoodDescription);
         }
 
         //  Links to the Weight file by the NDB_No field
@@ -62,9 +63,9 @@ namespace SR28tests.References
             var foodDescription = Session.Load<FoodDescription>("01119");
             
             // var weightSet = foodDescription.WeightSet;
-            // Assert.AreEqual(3, weightSet.Count);
+            // ClassicAssert.AreEqual(3, weightSet.Count);
             // foreach (var weight in weightSet) 
-            //     Assert.AreEqual(foodDescription, weight.WeightKey.FoodDescription);
+            //     ClassicAssert.AreEqual(foodDescription, weight.WeightKey.FoodDescription);
         }
 
         //  Links to the Footnote file by the NDB_No field
@@ -74,9 +75,9 @@ namespace SR28tests.References
             var foodDescription = Session.Load<FoodDescription>("05315");
 
             // var footnoteSet = foodDescription.FootnoteSet;
-            // Assert.AreEqual(3, footnoteSet.Count);
+            // ClassicAssert.AreEqual(3, footnoteSet.Count);
             // foreach (var footnote in footnoteSet) 
-            //     Assert.AreEqual(foodDescription, footnote.FoodDescription);
+            //     ClassicAssert.AreEqual(foodDescription, footnote.FoodDescription);
         }
 
         //  Links to the LanguaL Factor file by the NDB_No field
@@ -86,9 +87,9 @@ namespace SR28tests.References
             var foodDescription = Session.Load<FoodDescription>("02002");
 
             // var languageSet = foodDescription.LanguageSet;
-            // Assert.AreEqual(13, languageSet.Count);
+            // ClassicAssert.AreEqual(13, languageSet.Count);
             // foreach (var language in languageSet)
-            //     Assert.IsTrue(language.FoodDescriptionSet.Contains(foodDescription));
+            //     ClassicAssert.IsTrue(language.FoodDescriptionSet.Contains(foodDescription));
         }
     }
 }

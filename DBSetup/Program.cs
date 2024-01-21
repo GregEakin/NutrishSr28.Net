@@ -13,28 +13,7 @@
 
 using SR28lib.Ddl;
 
-namespace DBSetup
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            const string connection =
-                "Server=192.168.40.140;" +
-                "Database=postgres;" +
-                "User ID=postgres;" +
-                "Password=postgres;" +
-                "Enlist=true;";
+var connection = "Data Source=(localdb)\\SR28;Initial Catalog=Nutrish;Integrated Security=True";
 
-            var execute = true;
-
-            using (var schema = new SchemaSetup(connection, true))
-            {
-                if (execute)
-                {
-                    schema.SetupDates();
-                }
-            }
-        }
-    }
-}
+using var schema = new SchemaSetup(connection, true);
+schema.SetupDates();

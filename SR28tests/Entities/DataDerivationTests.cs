@@ -13,6 +13,7 @@
 
 using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -34,7 +35,7 @@ namespace SR28tests.Entities
             var count = Session
                 .QueryOver<DataDerivation>()
                 .RowCount();
-            Assert.AreEqual(55, count);
+            ClassicAssert.AreEqual(55, count);
         }
 
         [Test]
@@ -44,7 +45,7 @@ namespace SR28tests.Entities
 
             void ClosureContainingCodeToTest() => dataDerivation.AddNutrientData(null);
             var exception = ExpectedException.AssertThrows<ArgumentNullException>(ClosureContainingCodeToTest);
-            Assert.AreEqual("Value cannot be null.\r\nParameter name: nutrientData", exception.Message);
+            ClassicAssert.AreEqual("Value cannot be null. (Parameter 'nutrientData')", exception.Message);
         }
 
         [Test]
@@ -56,8 +57,8 @@ namespace SR28tests.Entities
             var nutrientData = NutrientDataTests.CreateNutrientData(foodDescription, nutrientDefinition);
 
             dataDerivation.AddNutrientData(nutrientData);
-            Assert.AreSame(dataDerivation, nutrientData.DataDerivation);
-            Assert.IsTrue(dataDerivation.NutrientDataSet.Contains(nutrientData));
+            ClassicAssert.AreSame(dataDerivation, nutrientData.DataDerivation);
+            ClassicAssert.IsTrue(dataDerivation.NutrientDataSet.Contains(nutrientData));
         }
     }
 }

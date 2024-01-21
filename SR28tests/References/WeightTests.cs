@@ -12,6 +12,7 @@
 // limitations under the License.
 
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SR28lib.Data;
 using SR28tests.Utilities;
 
@@ -29,7 +30,7 @@ namespace SR28tests.References
             var weightKey = new WeightKey(foodDescription, "3 ");
             var weight = Session.Load<Weight>(weightKey);
 
-            Assert.AreSame(foodDescription, weight.WeightKey.FoodDescription);
+            ClassicAssert.AreSame(foodDescription, weight.WeightKey.FoodDescription);
         }
 
         //  Links to Nutrient Data file by NDB_No
@@ -41,7 +42,7 @@ namespace SR28tests.References
             var weight = Session.Load<Weight>(weightKey);
 
             var nutrientDataSet = weight.WeightKey.FoodDescription.NutrientDataSet;
-            Assert.AreEqual(91, nutrientDataSet.Count);
+            ClassicAssert.AreEqual(91, nutrientDataSet.Count);
         }
     }
 }
