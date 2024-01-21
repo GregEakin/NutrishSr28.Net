@@ -13,7 +13,17 @@
 
 using SR28lib.Ddl;
 
-var connection = "Data Source=(localdb)\\SR28;Initial Catalog=Nutrish;Integrated Security=True";
+// var connection = "Data Source=(localdb)\\SR28;Initial Catalog=Nutrish;Integrated Security=True";
+
+const string connection =
+    "Server=homer.lab.eakin.wtf;" +
+    "User ID=postgres;" +
+    "Password=sqlserver;" +
+    "Database=sr28;" +
+    "Search Path=nutrish;" +
+    "Pooling=true;" +
+    "Enlist=true;" +
+    "options=--search_path=nutrish;";
 
 using var schema = new SchemaSetup(connection, true);
 schema.SetupDates();

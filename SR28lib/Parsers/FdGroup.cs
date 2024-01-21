@@ -24,8 +24,6 @@ namespace SR28lib.Parsers
 
         public static void ParseFile(IStatelessSession session)
         {
-            Console.WriteLine("Working dir {0}", Directory.GetCurrentDirectory());
-
             var lines = File.ReadLines(Filename);
             foreach (var line in lines)
                 ParseLine(session, line);

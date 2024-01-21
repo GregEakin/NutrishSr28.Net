@@ -27,3 +27,13 @@ US Department of Agriculture, Agricultural Research Service. 2016. Nutrient Data
 
 ## Author
 :fire: [Greg Eakin](https://www.linkedin.com/in/gregeakin)
+
+
+# PostgreSQL DB Stuff
+1. docker exec -it sqlserver-sqldb-1 psql -U sqlserver -c "CREATE database sr28;"
+1. docker exec -it sqlserver-sqldb-1 psql -U sqlserver -c "CREATE USER postgres;"
+1. docker exec -it sqlserver-sqldb-1 psql -U sqlserver -c "ALTER USER postgres WITH PASSWORD 'sqlserver';"
+1. docker exec -it sqlserver-sqldb-1 psql -U sqlserver -c "GRANT ALL PRIVILEGES ON DATABASE sr28 TO postgres;"
+1. docker exec -it sqlserver-sqldb-1 psql -U sqlserver -c "ALTER USER postgres WITH SUPERUSER;"
+
+

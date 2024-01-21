@@ -17,7 +17,6 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Tool.hbm2ddl;
 using SR28lib.Parsers;
-using System;
 using System.Reflection;
 using Footnote = SR28lib.Parsers.Footnote;
 using Weight = SR28lib.Parsers.Weight;
@@ -36,8 +35,10 @@ namespace SR28lib.Ddl
             cfg.DataBaseIntegration(x =>
             {
                 x.ConnectionString = connection;
-                x.Driver<MicrosoftDataSqlClientDriver>();
-                x.Dialect<MsSql2012Dialect>();
+                // x.Driver<MicrosoftDataSqlClientDriver>();
+                // x.Dialect<MsSql2012Dialect>();
+                x.Driver<NpgsqlDriver>();
+                x.Dialect<PostgreSQL83Dialect>();
                 x.BatchSize = 50;
             });
 
